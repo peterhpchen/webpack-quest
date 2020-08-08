@@ -5,7 +5,7 @@
   ],
   "scripts": {
     "clean": "lerna clean && rm -rf node_modules",
-    "lint:prettier": "prettier",
+    "lint:prettier": "prettier --write --loglevel warn",
     "lint:all:prettier": "yarn lint:prettier \"**/*.{js,css,html,md}\""
   },
   "devDependencies": {

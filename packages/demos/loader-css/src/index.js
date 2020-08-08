@@ -1,21 +1,21 @@
-import _ from 'lodash';
-import css from './style.css';
+import _ from "lodash";
+import css from "./style.css";
 
-const demoName = 'Loader CSS'
+const demoName = "Loader CSS";
 
 function style(cssString) {
-  const element = document.createElement('style');
-  
-  element.innerHTML = cssString
+  const element = document.createElement("style");
+
+  element.innerHTML = cssString;
 
   return element;
 }
 
 function component() {
-  const element = document.createElement('div');
-  
-  element.innerHTML = _.join(['Webpack Demo', demoName], ': ');
-  element.classList.add('demo')
+  const element = document.createElement("div");
+
+  element.innerHTML = _.join(["Webpack Demo", demoName], ": ");
+  element.classList.add("demo");
 
   return element;
 }

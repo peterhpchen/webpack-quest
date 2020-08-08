@@ -20,5 +20,5 @@
 
 由於本書會專注於講解 webpack 本身，因此在讀本書之前，有下面的基本知識會比較容易進入狀況：
 
-* HTML、CSS 及 JavaScript(ES6)
-* node.js 及 npm
+- HTML、CSS 及 JavaScript(ES6)
+- node.js 及 npm

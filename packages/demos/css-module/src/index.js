@@ -1,13 +1,13 @@
-import _ from 'lodash';
-import style from './style.css';
+import _ from "lodash";
+import style from "./style.css";
 
-const demoName = 'CSS Module'
+const demoName = "CSS Module";
 
 function component() {
-  const element = document.createElement('div');
-  
-  element.innerHTML = _.join(['Webpack Demo', demoName], ': ');
-  element.classList.add(style.demo)
+  const element = document.createElement("div");
+
+  element.innerHTML = _.join(["Webpack Demo", demoName], ": ");
+  element.classList.add(style.demo);
 
   return element;
 }

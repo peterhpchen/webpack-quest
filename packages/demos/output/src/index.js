@@ -1,11 +1,11 @@
-import _ from 'lodash';
+import _ from "lodash";
 
-const demoName = 'Output'
+const demoName = "Output";
 
 function component() {
-  const element = document.createElement('div');
+  const element = document.createElement("div");
 
-  element.innerHTML = _.join(['Webpack Demo', demoName], ': ');
+  element.innerHTML = _.join(["Webpack Demo", demoName], ": ");
 
   return element;
 }
