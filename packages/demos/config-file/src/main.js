@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-const demoName = 'Zero Config'
+const demoName = 'Config File'
 
 function component() {
   const element = document.createElement('div');

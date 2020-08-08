@@ -1,10 +1,10 @@
 {
-  "name": "zero-config",
+  "name": "output",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build": "webpack"
+    "build": "webpack --output ./dist/index.js"
   },
   "devDependencies": {
     "webpack": "4.44.1",

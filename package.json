@@ -5,9 +5,11 @@
   ],
   "scripts": {
     "clean": "lerna clean && rm -rf node_modules",
-    "dev:docs": "yarn workspace docs dev"
+    "lint:prettier": "prettier",
+    "lint:all:prettier": "yarn lint:prettier \"**/*.{js,css,html,md}\""
   },
   "devDependencies": {
-    "lerna": "3.22.1"
+    "lerna": "3.22.1",
+    "prettier": "2.0.5"
   }
 }

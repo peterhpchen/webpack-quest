@@ -1,5 +1,5 @@
 {
-  "name": "zero-config",
+  "name": "config-file",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
@@ -11,6 +11,6 @@
     "webpack-cli": "3.3.12"
   },
   "dependencies": {
-    "lodash": "^4.17.19"
+    "lodash": "4.17.19"
   }
 }

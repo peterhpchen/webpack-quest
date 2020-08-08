@@ -1,16 +1,16 @@
 {
-  "name": "zero-config",
+  "name": "entry",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build": "webpack"
+    "build": "webpack --entry ./src/main.js --output ./dist/index.js"
   },
   "devDependencies": {
     "webpack": "4.44.1",
     "webpack-cli": "3.3.12"
   },
   "dependencies": {
-    "lodash": "^4.17.19"
+    "lodash": "4.17.19"
   }
 }

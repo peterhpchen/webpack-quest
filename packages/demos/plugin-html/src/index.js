@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-const demoName = 'Zero Config'
+const demoName = 'Plugin HTML'
 
 function component() {
   const element = document.createElement('div');
