@@ -1,5 +1,5 @@
 {
-  "name": "zero-config",
+  "name": "minify-image",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
@@ -7,6 +7,8 @@
     "build": "webpack"
   },
   "devDependencies": {
+    "image-webpack-loader": "^6.0.0",
+    "url-loader": "4.1.0",
     "webpack": "4.44.1",
     "webpack-cli": "3.3.12"
   },

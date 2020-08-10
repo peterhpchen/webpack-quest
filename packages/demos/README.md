@@ -9,3 +9,6 @@
 1. [Loader Style(Inline)](./loader-style-inline): [Loader Style](./loader-style)
 1. [CSS Module](./css-module): [Loader Style(Inline)](./loader-style-inline)
 1. [Plugin HTML](./plugin-html): [Zero Config](./zero-config)
+1. [Load Image](./load-image): [Zero Config](./zero-config)
+1. [Load Image By url](./load-image-by-url): [Load Image](./load-image)
+1. [Minify Image](minify-image): [Load Image By url](./load-image-by-url)
