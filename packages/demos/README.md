@@ -12,3 +12,5 @@
 1. [Load Image](./load-image): [Zero Config](./zero-config)
 1. [Load Image By url](./load-image-by-url): [Load Image](./load-image)
 1. [Minify Image](minify-image): [Load Image By url](./load-image-by-url)
+1. [Mode Development](./mode-development): [Zero Config](./zero-config)
+1. [Mode Production](./mode-production): [Mode Development](./mode-development)
