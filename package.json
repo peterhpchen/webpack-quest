@@ -6,10 +6,20 @@
   "scripts": {
     "clean": "lerna clean && rm -rf node_modules",
     "lint:prettier": "prettier --write --loglevel warn",
-    "lint:all:prettier": "yarn lint:prettier \"**/*.{js,css,html,md}\""
+    "lint:all:prettier": "yarn lint:prettier \"**/*.{js,json,css,html,md}\""
   },
   "devDependencies": {
+    "husky": "4.2.5",
     "lerna": "3.22.1",
+    "lint-staged": "10.2.11",
     "prettier": "2.0.5"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,json,css,html,md}": "yarn lint:prettier"
   }
 }
