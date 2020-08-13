@@ -14,3 +14,7 @@
 1. [Minify Image](minify-image): [Load Image By url](./load-image-by-url)
 1. [Mode Development](./mode-development): [Zero Config](./zero-config)
 1. [Mode Production](./mode-production): [Mode Development](./mode-development)
+1. [Source Map](./source-map): [Mode Development](./mode-development)
+1. [Watch Mode](./watch-mode): [Source Map](./source-map)
+1. [Code Split](code-split): [Config File](./config-file)
+1. [Split Vendors](split-vendors): [Code Split](./code-split)

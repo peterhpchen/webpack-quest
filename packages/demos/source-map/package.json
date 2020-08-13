@@ -1,0 +1,16 @@
+{
+  "name": "source-map",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "webpack --mode none --devtool inline-source-map"
+  },
+  "devDependencies": {
+    "webpack": "4.44.1",
+    "webpack-cli": "3.3.12"
+  },
+  "dependencies": {
+    "lodash": "4.17.19"
+  }
+}
