@@ -1,6 +1,6 @@
 # 尋碼記 - Webpack
 
-這是一本 Webpack 教學手冊 。
+這是一本 Webpack 教學手冊。
 
 ## Demo 建置
 
