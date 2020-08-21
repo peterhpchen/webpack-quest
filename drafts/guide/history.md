@@ -104,8 +104,125 @@ Uncaught ReferenceError: jQuery is not defined
 
 大部分的專案都會引入第三方的庫或是框架來減少開發的負擔，但這樣做會增加要引入的檔案，造成請求次數增加，拖慢效能。
 
-## 第三方的模組化
+## 模組系統
 
-由於專案越趨龐大，沒有模組化的 JavaScript 在開發上遇到了瓶頸，也使許多模組化解決方案展露頭角。
+由於專案越趨龐大，沒有模組化的 JavaScript 在開發上遇到了瓶頸，也使開發者發想了許多模組化解決方案。
 
-### Node.js 的 CommonJS
+### Node.js 的 CJS (CommonJS)
+
+Node.js 是 JavaScript 伺服器端的執行環境，使得 JavaScript 由前端跨至後端的領域，成為一個全端的程式語言。 Node.js 使用 CommonJS (簡稱 CJS) 規格實作模組系統，作為 JavaScript 語言的模塊化解決方案。
+
+```js
+// add.js
+function add(a, b) {
+  return a + b;
+}
+
+module.exports = add;
+```
+
+```js
+// index.js
+const add = require("./add");
+
+console.log(add(1, 2));
+// 3
+```
+
+- `module.exports` 導出模塊
+- `require` 引入模塊
+- 採取同步加載的方式
+- 使用於後端，前端環境需經過轉譯
+
+在檔案都在本地的後端環境下，同步加載的模組系統是可行的，但是在資源分散的前端環境下，為了增進效能，能擁有異步加載的模組系統是必須的。
+
+### AMD (Asynchronous Module Definition) 與 require.js
+
+require.js 做為前端模塊的解決方案，它實作了 Asynchronous Module Definition 規格，使模塊可以異步加載。
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Webpack Demo: Require.js</title>
+    <script
+      data-main="index"
+      src="https://unpkg.com/requirejs@2.3.6/bin/r.js"
+    ></script>
+  </head>
+  <body></body>
+</html>
+```
+
+```js
+// add.js
+define(function () {
+  return function (a, b) {
+    return a + b;
+  };
+});
+```
+
+```js
+// index.js
+requirejs(["add"], function (add) {
+  console.log(add(1, 2));
+  // 3
+});
+```
+
+- `define` 定義導出模塊
+- `requirejs` 導入模塊，在加載完成後叫用 `callback` 函數，執行程式
+- 採用異步加載方式
+- 是以前端為目標環境的模組化方式
+
+使用 require.js 後，我們終於可以在瀏覽器上以模組開發 JavaScript 。接著最後的一哩路就是原生的模組系統。
+
+### ESM (ES Module)
+
+ESM 是 ES2015 中定義的模組化語意所實作的模組系統，各瀏覽器實作了 ES2015 標準後，使得 ESM 成為 JavaScript 在前端的原生模組系統，將網頁前端帶入了模組的時代。
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Webpack Demo: ES Module</title>
+    <script src="index.js" type="module"></script>
+    <script src="add.js" type="module"></script>
+  </head>
+  <body></body>
+</html>
+```
+
+```js
+// add.js
+export default function (a, b) {
+  return a + b;
+}
+```
+
+```js
+// index.js
+import add from "./add.js";
+
+console.log(add(1, 2));
+// 3
+```
+
+- `export` 導出模塊
+- `import` 導入模塊
+- 異步加載模塊
+- 瀏覽器原生語意
+
+雖然瀏覽器擁有了原生的模塊系統，但是前端環境受制於終端程式的實作程度，並不是全部都已經支援 ESM 。而因為歷史的關係， JavaScript 的模組實作方式多樣(CJS, AMD, ESM) ，這也造成模組整合的困難。
+
+##  新的語言
+
+## 參考資料
+
+- https://zh.wikipedia.org/wiki/Node.js
+- https://dev.to/iggredible/what-the-heck-are-cjs-amd-umd-and-esm-ikm
+- https://juejin.im/post/6844903917680066567
+- https://blog.risingstack.com/node-js-at-scale-module-system-commonjs-require/
+- https://requirejs.org/
+- https://github.com/volojs/create-template
