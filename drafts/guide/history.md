@@ -216,7 +216,108 @@ console.log(add(1, 2));
 
 雖然瀏覽器擁有了原生的模塊系統，但是前端環境受制於終端程式的實作程度，並不是全部都已經支援 ESM 。而因為歷史的關係， JavaScript 的模組實作方式多樣(CJS, AMD, ESM) ，這也造成模組整合的困難。
 
-##  新的語言
+## 各環境對於語言支援度不一
+
+前端須仰賴各家瀏覽器對於規格的實作，但是支援度會因為不同的瀏覽器而有所不同，因此前端在開發上需要對目標環境做支援度的確認才能使用較新的語法，增加了開發者的負擔。
+
+### Babel
+
+JavaScript 規格名為 ECMA-262 (以此規格實作的語言名為 ECMAScript)，由 Ecma International 所制定，目前每年會出一個新的版本。但是在各家瀏覽器上，新語法的相容性並不一致，Babel 借助轉譯器以及 Polyfill 將新語法轉為目標環境可以讀懂的舊語法。
+
+使用了 Babel 後，開發者可以使用新語法進行開發，在部署前利用 Babel 轉譯為目標瀏覽器可支援的語法，使各個功能可以在目標環境中正常執行。
+
+```js
+const add = (a, b) => {
+  // ES2015: Arrow Function
+  return a + b;
+};
+
+console.log(add(1, 2));
+// 3
+```
+
+會轉譯為：
+
+```js
+"use strict";
+
+var add = function add(a, b) {
+  // ES5
+  return a + b;
+};
+
+console.log(add(1, 2)); // 3
+```
+
+### PostCSS
+
+CSS 的標準是由 W3C 所制定，與 JavaScript 同樣因不同的環境相容性問題，因此需要轉譯器以確保可以執行在目標環境中。
+
+PostCSS 使用 JavaScript 來轉換 CSS 。依據使用的 Plugin 的功能，可以對 CSS 做不同的處理。
+
+其中 [postcss-preset-env](https://preset-env.cssdb.org/) Plugin 可以將開發者的 CSS 新語法轉換為目標瀏覽器可以辨識的舊語法。
+
+```css
+/* https://www.w3.org/TR/css-variables-1/ */
+:root {
+  --demoColor: blue;
+}
+
+.demo {
+  color: var(--demoColor);
+}
+```
+
+會轉譯為：
+
+```css
+:root {
+  --demoColor: blue;
+}
+
+.demo {
+  color: blue;
+  color: var(--demoColor);
+}
+```
+
+## JavaScript 的弱型別特性
+
+JavaScript 的弱型別性質使得開發者可以快速的開發小型的專案，但這樣的便利性也很容易產生 Bug 。
+
+例如像是下面這例子：
+
+```js
+const add = (a, b) => {
+  return a + b;
+};
+
+console.log(add("I", 2));
+// I2
+```
+
+ 我們期望 `add` 是輸入兩個數字，但如果使用者輸入了字串， JavaScript 並不會出錯，造成了 Bug 的產生。
+
+為了解決 JavaScript 型別問題， 出現了 TypeScript, flow 這類的 JavaScript 超集語言。
+
+### TypeScript
+
+TypeScript 由微軟開發，是目前最流行的 JavaScript 超集，它支援靜態型別檢查，使其可以在開發階段發現型別問題，而不用等到執行時才發現錯誤。
+
+```ts
+function add(a: number, b: number): number {
+  return a + b;
+}
+
+console.log(add("I", 2));
+// Argument of type '"I"' is not assignable to parameter of type 'number'.
+```
+
+> 除了 TypeScript ， Flow 也是個 JavaScript 強型別的解決方案。
+
+## CSS 沒有結構特性
+
+## 新的框架
 
 ## 參考資料
 
@@ -226,3 +327,8 @@ console.log(add(1, 2));
 - https://blog.risingstack.com/node-js-at-scale-module-system-commonjs-require/
 - https://requirejs.org/
 - https://github.com/volojs/create-template
+- https://webpack.wuhaolin.cn/1%E5%85%A5%E9%97%A8/1-1%E5%89%8D%E7%AB%AF%E7%9A%84%E5%8F%91%E5%B1%95.html
+- https://zh.wikipedia.org/wiki/ECMAScript
+- https://en.wikipedia.org/wiki/Cascading_Style_Sheets
+- https://postcss.org/
+- https://preset-env.cssdb.org/
