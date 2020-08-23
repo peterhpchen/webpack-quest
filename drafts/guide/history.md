@@ -315,9 +315,87 @@ console.log(add("I", 2));
 
 > 除了 TypeScript ， Flow 也是個 JavaScript 強型別的解決方案。
 
-## CSS 沒有結構特性
+## CSS 語意過於簡單
 
-## 新的框架
+CSS 的語法是由多個選擇器搭配屬性定義的規則所組成，使用起來就像是寫一個清單一樣，簡單易懂。
+
+CSS 的清單式語意，語法單純，使開發者很容易可以入門。
+
+但是在開發大型專案時，結構死板的 CSS 會遇到無法復用規則而必須一再重複定義的問題。
+
+為解決這個問題，各路大神開發了 CSS 預處理器，為 CSS 增加了好用的語法，使用預處理器的語法做開發，然後編譯為原生的 CSS ，使其可以跑在瀏覽器上。
+
+### SASS
+
+這裡介紹其中一個 CSS 預處理器：SASS，它使得 CSS 可以使用 Variables, Mixins, Extend/Inheritance 及 Nesting 等豐富的功能。
+
+```scss
+// Variables
+$demoColor: blue;
+$exampleColor: green;
+
+// Mixins
+@mixin color($color) {
+  border-color: $color;
+  color: $color;
+}
+
+// Extend/Inheritance
+%boreder-shared {
+  border-radius: 30px;
+}
+
+.demo {
+  // Nesting
+  .demo__input {
+    @extend %boreder-shared;
+    @include color($demoColor);
+  }
+}
+
+.example {
+  // Nesting
+  .example__input {
+    @extend %boreder-shared;
+    @include color($exampleColor);
+  }
+}
+```
+
+它會被轉譯為：
+
+```css
+.example .example__input,
+.demo .demo__input {
+  border-radius: 30px;
+}
+
+.demo .demo__input {
+  border-color: blue;
+  color: blue;
+}
+
+.example .example__input {
+  border-color: green;
+  color: green;
+}
+
+/*# sourceMappingURL=style.css.map */
+```
+
+> 除了 SASS 外，還有像是 [LESS](http://lesscss.org/), [Stylus](https://stylus-lang.com/) 等預處理器。
+
+## HTML 是靜態的
+
+HTML 負責定義網頁的元素配置，在靜態網頁中，由於資料是固定的，因此可以依靠一份靜態的 HTML 定義頁面的結構，但是對於資料是由後端取回的網頁來講，只能依靠 JavaScript 動態的改變頁面上的元素，做到顯示資料的目的，這樣子 HTML 檔案就不能完全反應當前網頁的狀況，需要去追查 JavaScript 的代碼，才能知道目前的頁面結構，而失去了 HTML 管理頁面的優勢。
+
+為了解決這個問題，後端的網頁框架都會有一套模板語言，使用類似 HTML 的架構，搭配動態的語法來定義頁面的配置，例如 ASP.NET 的 Razor 。
+
+現在流行的單頁式應用程式(Single Page Application) 會將畫面的渲染完全交給前端，後端只負責資料的部分，因此前端也出現了許多的模板語言來定義動態的網頁配置。
+
+### Pug
+
+Pug 是一個模板引擎，它讓開發者可以使用 Pug 的模板語言定義頁面，然後經過轉換變為 HTML
 
 ## 參考資料
 
@@ -332,3 +410,5 @@ console.log(add("I", 2));
 - https://en.wikipedia.org/wiki/Cascading_Style_Sheets
 - https://postcss.org/
 - https://preset-env.cssdb.org/
+- https://stylus-lang.com/
+- http://lesscss.org/

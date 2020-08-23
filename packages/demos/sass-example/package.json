@@ -1,0 +1,13 @@
+{
+  "name": "sass-example",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "sass src:dist",
+    "dev": "sass --watch src:dist"
+  },
+  "devDependencies": {
+    "sass": "^1.26.10"
+  }
+}

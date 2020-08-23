@@ -1,0 +1,30 @@
+// Variables
+$demoColor: blue;
+$exampleColor: green;
+
+// Mixins
+@mixin color($color) {
+    border-color: $color;
+    color: $color;
+}
+
+// Extend/Inheritance
+%boreder-shared {
+    border-radius: 30px;
+}
+
+.demo {
+    // Nesting
+    .demo__input {
+        @extend %boreder-shared;
+        @include color($demoColor);
+    }
+}
+
+.example {
+    // Nesting
+    .example__input {
+        @extend %boreder-shared;
+        @include color($exampleColor);
+    }
+}
