@@ -9,10 +9,11 @@
     "lint:all:prettier": "yarn lint:prettier \"**/*.{js,json,css,html,md}\""
   },
   "devDependencies": {
+    "@prettier/plugin-pug": "^1.5.1",
     "husky": "4.2.5",
     "lerna": "3.22.1",
     "lint-staged": "10.2.11",
-    "prettier": "2.0.5"
+    "prettier": "^2.1.0"
   },
   "husky": {
     "hooks": {
@@ -20,6 +21,6 @@
     }
   },
   "lint-staged": {
-    "*.{js,json,css,html,md}": "yarn lint:prettier"
+    "*.{js,json,css,html,pug,md}": "yarn lint:prettier"
   }
 }

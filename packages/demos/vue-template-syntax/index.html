@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Webpack Demo: Vue Template Syntax</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <span>Message: {{ msg }}</span>
+    </div>
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          msg: "Hello Vue.js!",
+        },
+      });
+    </script>
+  </body>
+</html>

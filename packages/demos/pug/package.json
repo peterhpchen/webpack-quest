@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build": "pug src -o dist"
+    "build": "pug -O '{\"name\": \"Pug\"}' src -o dist"
   },
   "devDependencies": {
     "pug-cli": "^1.0.0-alpha6"
