@@ -419,6 +419,20 @@ html
 
 ## 結論
 
+網頁技術在現代急遽變化，遇到了各種問題，也出現了許多的解決方案，以下做個總覽：
+
+- JavaScript
+  - 沒有模組化：require.js, ES Module
+  - 宿主環境對各語法支援度不一：Babel
+  - 是弱型別語言：TypeScript, flow
+- CSS
+  - 宿主環境對各語法支援度不一：PostCSS
+  - 語法過於簡單：SASS
+- HTML
+  - 是靜態的：Pug, Template Syntax
+
+出現了許多問題，也被許多大神找到各種的解決方案，而 webpack 這類的 bundler 工具就是將這些工具帶入開發鍊的背後功臣。
+
 ## 參考資料
 
 - https://zh.wikipedia.org/wiki/Node.js
