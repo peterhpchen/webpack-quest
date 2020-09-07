@@ -6,8 +6,8 @@
 
 1. [02 - JavaScript 的模組化之路](./02-history-of-js-module/README.md)
 1. [03 - 新技術的崛起](./03-new-tech/README.md)
-1. [04 - 初探 webpack](./04-first-glance/README.md)
-1. []()
+1. [04 - 介紹 webpack](./04-introduction/README.md)
+1. [05 - 第一次使用 webpack 就上手](./05-first-webpack/README.md)
 1. []()
 1. []()
 1. []()

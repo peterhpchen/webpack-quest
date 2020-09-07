@@ -1,4 +1,4 @@
-# 初探 webpack
+# 介紹 webpack
 
 > 本文介紹 webpack 運作流程、以及說明為什麼使用 webpack 可以解決現代前端工程所遇到的問題。
 
