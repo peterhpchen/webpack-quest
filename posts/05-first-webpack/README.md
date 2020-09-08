@@ -133,6 +133,44 @@ root
   |- index.js
 ```
 
+### 改為模組化編程
+
+原本 Lodash 是用 CDN 載入的，現在改為用 `npm` 安裝，再用 `import` 語法引入：
+
+```js
+// demos/zero-config/src/index.js
+import _ from "lodash";
+
+const demoName = "Zero Config";
+
+function component() {
+  const element = document.createElement("div");
+
+  element.innerHTML = _.join(["Webpack Demo", demoName], ": ");
+
+  return element;
+}
+
+document.body.appendChild(component());
+```
+
+記得要把 `index.html` 的 `<script>` 刪除：
+
+```html
+<!-- demos/zero-config/dist/index.html -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Webpack Demo: Zero Config</title>
+  </head>
+  <body>
+    <script src="./index.js"></script>
+  </body>
+</html>
+```
+
+接著終於輪到配置 webpack 了。
+
 ## 使用 webpack
 
  先將 `webpack` 指令加到 `package.json` 的 `scripts`：
@@ -161,3 +199,111 @@ npm run build
 因為預設的起始模組是 `./src/index.js` ，
 
 建置依照 webpack 的內建值，輸出到了 `./dist` 目錄下， bundle 會是一個名為 `main.js` 的檔案。
+
+> WARNING 是提醒沒有配置 `mode` ，預設會以 `production` 處理。 `mode` 會在之後的章節說明。
+
+由於 JavaScript 檔名變為 `main.js`，因此要去修改 `index.html` ：
+
+```html
+<!-- demos/zero-config/dist/index.html -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Webpack Demo: Zero Config</title>
+  </head>
+  <body>
+    <script src="./main.js"></script>
+  </body>
+</html>
+```
+
+現在建置後的檔案在 `./dist` 目錄下，因此需要修改 `start` 指令中 `http-server` 的目標目錄：
+
+```js
+// demos/zero-config/package.json
+{
+    "scripts": {
+      "start": "http-server ./dist"
+    }
+}
+```
+
+然後就把它跑起來吧。
+
+![zero-config-result](./assets/zero-config-result.png)
+
+恭喜你，你寫出了第一隻 webpack 建置的應用程式，現在的架構如下：
+
+![zero-config](./assets/zero-config.png)
+
+經過 webpack 的處理，會在 `./dist` 中產生 `main.js` 並被 `index.html` 引入。
+
+在這個例子中，我們已經配置最基本的 webpack ，預設配置了 `entry` 及 `output` ，使 webpack 可以完成建置。
+
+## 嘗試載入圖片
+
+現在我們來加張圖片吧，把 `webpack-logo.png` 放到 `./src` ，並且在 `index.js` 中寫程式將圖片加到畫面上：
+
+```js
+// demos/load-image/src/index.js
+import _ from "lodash";
+
+import WebpackLogo from "./webpack-logo.png";
+
+const demoName = "Load Image";
+
+function logo(url) {
+  const element = new Image();
+
+  element.src = url;
+
+  return element;
+}
+
+function component() {
+  const element = document.createElement("div");
+
+  element.innerHTML = _.join(["Webpack Demo", demoName], ": ");
+
+  return element;
+}
+
+document.body.appendChild(logo(WebpackLogo));
+document.body.appendChild(component());
+```
+
+執行 webpack 後，產生下面的錯誤：
+
+![load-image-fail](./assets/load-image-fail.png)
+
+由於沒有適當的 loader 載入圖片，因此 webpack 看不懂這個圖片的模組而產生錯誤。
+
+## 使用 loader
+
+要載入圖片，必須要先安裝 `file-loader`:
+
+```bash
+npm install file-loader --save-dev
+```
+
+然後我們修改一下 `import` 圖片的方式：
+
+```js
+import WebpackLogo from "file-loader!./webpack-logo.png";
+```
+
+前面加上 `file-loader` 並以 `!` 與原路徑分割，這是個 pipe 的概念，檔案從路徑載入後會經過 `file-loader` 的處理再 `import` 進程式裡。
+
+再重新建立一次，這次成功了！
+
+![load-image-success](./assets/load-image-success.png)
+
+可以看到 webpack 多了一個 bundle ，名為 `6c80d661b822703023e4531a9ec5267f.png` 圖片，可以看到他的名字已經被 `file-loader` 轉為 hash 值了。
+
+執行起來會發現圖片成功載入了：
+
+![load-image-result](./assets/load-image-result.png)
+
+## 自動產生 dist 內所有的內容
+
+我們現在直接將 `index.html` 放到

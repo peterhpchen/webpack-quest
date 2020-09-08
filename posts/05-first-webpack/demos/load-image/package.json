@@ -1,0 +1,19 @@
+{
+  "name": "load-image",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "webpack",
+    "start": "http-server ./dist"
+  },
+  "devDependencies": {
+    "file-loader": "6.1.0",
+    "http-server": "0.12.3",
+    "webpack": "4.44.1",
+    "webpack-cli": "3.3.12"
+  },
+  "dependencies": {
+    "lodash": "4.17.19"
+  }
+}
