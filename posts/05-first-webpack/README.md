@@ -232,7 +232,7 @@ npm run build
 
 ![zero-config-result](./assets/zero-config-result.png)
 
-恭喜你，你寫出了第一隻 webpack 建置的應用程式，現在的架構如下：
+ 恭喜你，你寫出了第一隻 webpack 建置的應用程式，現在的架構如下：
 
 ![zero-config](./assets/zero-config.png)
 
@@ -304,6 +304,79 @@ import WebpackLogo from "file-loader!./webpack-logo.png";
 
 ![load-image-result](./assets/load-image-result.png)
 
+現在的建置流程如下：
+
+![load-image](./assets/load-image.png)
+
+> 在 `./dist` 中看到的圖片檔是 `file-loader` 處理的，所以你從頭到尾不需要自己去處理這張圖，只是把它視為建置過程中的一個模組而已，因此在流程圖中不畫出來，避免混淆。
+
 ## 自動產生 dist 內所有的內容
 
-我們現在直接將 `index.html` 放到
+`index.html` 目前是直接放在 `./dist` 目錄下，但是大部分常規專案的 `./dist` 的內容都是自動產生的，這樣的好處是可以讓自己撰寫的有邏輯的代碼與一般人較難理解的機器產生的代碼做區分，在 `commit` 代碼時也會避免將 `./dist` 的代碼 `push` 到代碼庫中。
+
+為了方便管理，我們建立一個 `./public` 目錄並將 `index.html` 放到這目錄下：
+
+```plaintext
+root
+|- package.json
+|- /public
+  |- index.html
+|- /src
+  |- index.js
+```
+
+但這樣一來，每次建置完後都要手動將 `index.html` 複製到 `./dist` 中，非常的麻煩。
+
+這時就要請出 webpack 中最強大的功能 plugin 來幫忙了。
+
+## 使用 plugin
+
+`CopyWebpackPlugin` 可以幫助我們把檔案從 A 地複製到 B 地，它正好可以幫我們把 `index.html` 複製到 `./dist` 資料夾中。
+
+首先做安裝的動作：
+
+```bash
+npm install copy-webpack-plugin --save-dev
+```
+
+接著因為我們要跟 `webpack` 說要怎麼使用 `CopyWebpackPlugin` ，因此我們需要建置一個 webpack 的配置檔 `webpack.config.js` ：
+
+```js
+// ./copy-html/webpack.config.js
+const path = require("path");
+const CopyPlugin = require("copy-webpack-plugin");
+
+module.exports = {
+  plugins: [
+    new CopyPlugin({
+      patterns: [{ from: path.resolve(__dirname, "public") }],
+    }),
+  ],
+};
+```
+
+我們告訴 `CopyWebpackPlugin` 要把 `public` 目錄中的檔案複製到 `dist` 目錄中。
+
+建置結果如下：
+
+![copy-html-build](./assets/copy-html-build.png)
+
+我們可以看到 index.html 也變成了其中一個 bundle 被輸出了。
+
+目前整個建置的過程如下：
+
+![copy-html](./assets/copy-html.png)
+
+結果雖然與之前的相同，但是整個建置流程變得很通暢。
+
+## 總結
+
+我們剛開始創建一個沒有使用 webpack 的應用程式，接著將 webpack 帶入專案建立建置流程，並且使用 `file-loader` 載入圖片檔，最後使用 `CopyWebpackPlugin` 複製 `index.html` 到 `./dist` 目錄中。
+
+這個範例讓我們了解到， webpack **處理模組**、**使用 loader 引入非 JavaScript 代碼**及**藉由 plugin 處理打包模組外的其他事情**，充分地展示了 webpack 的能力，也讓我們對 webpack 有粗略的了解。
+
+## 參考資料
+
+- [Getting Started](https://webpack.js.org/guides/getting-started/)
+- [file-loader](https://webpack.js.org/loaders/file-loader/)
+- [CopyWebpackPlugin](https://webpack.js.org/plugins/copy-webpack-plugin/)
