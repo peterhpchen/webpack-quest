@@ -1,0 +1,16 @@
+{
+  "name": "cli-config",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "demo:help": "webpack --help",
+    "demo:output": "webpack --output ./build/bundle.js",
+    "demo:entry": "webpack --entry ./src/index2.js --output ./build/bundle.js",
+    "demo:mode": "webpack --mode development"
+  },
+  "devDependencies": {
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12"
+  }
+}

@@ -184,7 +184,7 @@ document.body.appendChild(component());
 }
 ```
 
-webpack 可以**開箱即用(out of box)**，不需要任何配置(zero config)。
+webpack 可以**開箱即用(out of the box)**，不需要任何配置(zero config)。
 
 直接執行指令試試看吧：
 
@@ -357,11 +357,13 @@ module.exports = {
 
 我們告訴 `CopyWebpackPlugin` 要把 `public` 目錄中的檔案複製到 `dist` 目錄中。
 
+> webpack 會預設尋找 root 目錄下的 `webpack.config.js` 當作配置檔，配置黨的內容會在[配置 webpack](../06-config-webpack/README.md) 一文中講解。
+
 建置結果如下：
 
 ![copy-html-build](./assets/copy-html-build.png)
 
-我們可以看到 index.html 也變成了其中一個 bundle 被輸出了。
+我們可以看到 `index.html` 也變成了其中一個 bundle 被輸出了。
 
 目前整個建置的過程如下：
 
