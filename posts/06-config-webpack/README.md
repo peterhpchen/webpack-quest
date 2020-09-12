@@ -1,63 +1,18 @@
-# 配置 webpack 的方式
+# webpack 的配置
 
-> 本文會講解如何配置 webpack 。
+> 本文會講解 webpack 的配置檔。
 
 webpack 開箱即用(out of the box)，不用任何配置就可以使用。只要將起始模組放於 `./src/index.js` ，輸入 `webpack` 指令就可以在 `./dist/main.js` 中產生適用於生產環境( `production` )的 bundle 。
 
 但開箱即用的功能僅占了 webpack 的極小部分，如果想要完全掌握 webpack ，首先最重要的就是學會如何配置它。
 
-接下來會說明如何配置 webpack 。
-
 ## 配置 webpack
 
-以 CLI 執行 webpack 時，兩種方式可以配置設定，一種是**使用 CLI 的參數**，另一種是**使用配置檔案**。
+webpack 主要的配置方式是利用 CLI 或是 Node.js API 引入配置物件，引入的方式會在下一篇[使用 webpack](../07-use-webpack/README.md) 中詳細說明，本文主要說明配置物件本身的設定方式。
 
-> 除了 CLI 外， webpack 還提供開發者 [Node.js API](https://webpack.js.org/api/node/) 執行建置，在後面會提到這部分。
+## 配置物件(Configuration Object)
 
-### 使用 CLI 的參數配置
-
-webpack CLI 提供很多的選項做配置，可以藉由 `webpack --help` 查詢選項或是看 [webpack-cli 的文件](https://github.com/webpack/webpack-cli/blob/next/packages/webpack-cli/README.md) 以學習如何配置。
-
-下面舉幾個簡單的例子來展示 CLI 的配置。
-
-* 使用 CLI 修改 output
-
-```bash
-# ./demos/cli-config
-webpack --output ./build/bundle.js
-```
-
-輸出從預設的 `./dist/main.js` 改為 `./build/bundle.js` 。
-
-* 使用 CLI 修改 entry
-
-```bash
-# ./demos/cli-config
-webpack --entry ./src/index2.js --output ./build/bundle.js
-```
-
-輸入從預設的 `./src/index.js` 改為 `./src/index2.js` 。
-
-> CLI 如果已經設定了 `entry` 選項，但沒設定 `output` 的話，會造成輸出 bunlde 檔名變為 `null.js` ，因此此例子加上 `output` 設定避免此問題。
-
-* 使用 CLI 設定開發模式
-
-```bash
-# ./demos/cli-config
-webpack --mode development
-```
-
-將模式從預設的 `production` 改為 `development` 。
-
-> 由於 CLI 的限制，並不能設定太複雜的配置，因此某先功能無法再 CLI 中設定(例如： Plugins)，所以 webpack 需要配置檔來做更精密且完整的配置。
-
-### 使用配置檔配置
-
-webpack 的配置檔是個 Node.js 的 CommonJS 模組，這個模組會 `export` 出配置物件( Configuration Object )， webpack 接收到後會使用相對應的配置執行建置。
-
-#### 配置物件(Configuration Object)
-
-配置物件是個標準的 JavaScript 物件，使用者可以藉由調整物件中的屬性來做配置。
+配置物件是個標準的 JavaScript 物件，**使用者可以藉由調整物件中的屬性來做配置**。
 
 下面是個簡單的配置物件：
 
@@ -75,280 +30,117 @@ webpack 的配置檔是個 Node.js 的 CommonJS 模組，這個模組會 `export
 
 這配置物件配置了 `mode`, `entry` 及 `output` 。
 
-#### 配置檔
+## 使用配置物件
 
-將配置物件以 Node.js CommonJS 模組匯出就是個合法的配置檔。
+webpack 的 CLI 工具可以引入配置檔 (預設是 `webpack.config.js`) ，讓 webpack 依照配置物件做建置：
 
 ```js
 // ./demos/config-file/webpack.config.js
-const path = require('path');
+const path = require("path");
 
 module.exports = {
-    mode: 'development',
-    entry: './src/index2.js',
-    output: {
-        filename: 'bundle.js',
-        path: path.resolve(__dirname, 'build')
-    }
-}
+  mode: "development",
+  entry: "./src/index2.js",
+  output: {
+    filename: "bundle.js",
+    path: path.resolve(__dirname, "build"),
+  },
+};
 ```
 
-webpack 會將 root 目錄下的 `webpack.config.js` 做為預設的配置檔，這樣一來 CLI 就不需要特別帶參數指定配置檔了。
+## 配置物件中的路徑
 
-## CLI 及配置檔的互相搭配
+配置物件中的某些屬性會需要輸入路徑（absolute path），為了避免 [POSIX 與 Windows 路徑不相容](https://nodejs.org/api/path.html#path_windows_vs_posix)的問題，盡量使用 Node.js 內建的 [`path` 模組](https://nodejs.org/api/path.html)與 [`__dirname`](https://nodejs.org/docs/latest/api/globals.html#globals_dirname) 這類 Node.js 的全域變數來處理路徑相關的屬性值。
 
-上面說了使用 CLI 的參數及配置檔這兩種配置方式，在實際使用時，如果只是 demo 或是 prototype 這類單純且不用長時間維護的專案，就可以只使用 CLI 做配置，但如果是大型專案的話，會藉由兩者的互相搭配來配置 webpack。
+## 配置物件中的選項
 
-配置的方式如下：
-
-* CLI 的參數: 設定 config file, 環境變數及 log 的輸出
-* 配置檔：設定除了 CLI 外的其他細部設定
-
-會在 CLI 的參數上配置環境所對應的配置檔與環境變數等與環境相關的設定，而配置檔則將其他全部的設定做配置。
-
-例如像下面這樣：
+本節概略的介紹配置物件中各個不同的選項，我們會在下一章中詳細講解：
 
 ```js
-// ./demos/cli-file/package.json
 {
-    ...
-  "scripts": {
-    "build": "webpack --mode production --config webpack.config.prod.js",
-    "dev": "webpack --mode development --config webpack.config.dev.js"
+  mode: "production", // 模式：依照所選模式做對應的最佳化，預設值為 "production"
+  entry: "./app/entry", // 入口： webpack 開始建置作業的起始模組，預設值為 "./src/index.js"
+  output: {
+      // 輸出：配置如何輸出 webpack
+  },
+  module: {
+      // 模組：處理各個模組（檔案） 如何載入，依照對應的規則設定 loader 配置
+  },
+  resolve: {
+      // 解析：配置如何解析模組，像是路徑、別名等設定
+  },
+  performance: {
+      // (略)效能：提示使用者 bundle 目前的情況，以促使使用者改善 bundle 的效能
+  },
+  devtool: "source-map", // devtool: 設定是否及如何生成 source map ，source map 可以解決 bundle 在 debug 時造成行數與原檔案 miss mapping 的問題
+  context: __dirname, // 內容：根目錄位置，此為絕對路徑，會被 entry, module.rules.loader 等選項使用於路徑的解析上
+  target: "web", // 目標： 設定 bundle 的目標環境，它會依照環境會 bundle 做相對應的處理
+  externals: ["react", /^@angular/], // 外部擴展：從相依中排除此選項設定的模組
+  stats: "errors-only", // (略)stats：控制輸出資訊
+  devServer: {
+      // webpack-dev-server 中的設定選項
+  },
+  watch: true, // 是否啟用監聽模式
+  watchOptions: {
+      // 設定監聽模式的選項
   }
-  ...
+  plugins: [
+      // 插件：設定插件的配置
+  ],
+  optimization: {
+      // 最佳化：設定 Code split, Tree Shaking 等優化配置
+  }
 }
 ```
 
-設定兩個指令，一個是生產環境使用，另一個是開發環境使用，分別帶入對應的配置檔。
+> 有些插件的配置會改變配置物件中的選項，如果插件及配置物件中都有設定，則會以插件的配置值為主。
 
-配置檔則將除了模式外的設定都做配置：
+## 產生配置物件
 
-```js
-// ./demos/cli-file/webpack.config.dev.js
-const path = require('path');
+配置物件雖然完整，但需要對自己的環境有高度的了解才能自由地運用及配置，對於一般的初階工程師來說難度比較高，為了解決這個問題，我們可以使用一些工具來幫我們自動產生配置檔。
 
-module.exports = {
-    entry: './src/index2.js'
-}
+### Generate Custom Webpack Configuration
+
+[Generate Custom Webpack Configuration](https://generatewebpackconfig.netlify.app/) 是個線上的配置物件產生工具，使用者勾選想要配置的庫， Generate Custom Webpack Configuration 會依照對應的選項產生配置物件，使用者直接複製貼於專案中即可完成設置。
+
+![generatewebpackconfig](./assets/generatewebpackconfig.png)
+
+### Create App
+
+[Create App](https://createapp.dev/) 同樣是藉由勾選目標的技術，然後幫你把起始專案創建出來，可以快速的開始開發。
+
+![createapp](./assets/createapp.png)
+
+### webpack CLI init
+
+webpack-cli 有個 [init](https://github.com/webpack/webpack-cli/blob/next/packages/init/README.md#webpack-cli-init) 的指令，它可以幫我們產生 webpack 為基底的起始專案 。
+
+要使用 `webpack-cli init` 需要另外安裝 `@webpack-cli/init`：
+
+```bash
+npm install webpack webpack-cli @webpack-cli/init@0.2.2
 ```
 
-```js
-// ./demos/cli-life/webpack.config.prod.js
-const path = require('path');
+> 目前使用 webpack v4 ，[不能使用 `@webpack-cli/init` 最新的 `0.3.0` 版本](https://github.com/webpack/webpack-cli/issues/1127)，必須指定 `0.2` 的版本。
 
-module.exports = {
-    entry: './src/index2.js',
-    output: {
-        filename: 'bundle.js',
-        path: path.resolve(__dirname, 'build')
-    }
-}
-```
+他會以交互問答的方式完成專案的配置：
 
-如果 CLI 參數與配置檔都配置了相同屬性時會以 CLI 參數為準，例如在 CLI 參數配置模式是 `development` ，而配置檔 `webpack.config.js` 將模式設為 `production` 的話，會以 `development` 為準。
+![webpack-cli-init](./assets/webpack-cli-init.png)
 
-## 配置檔的配置
-
-webpack 的配置會基於建置環境的不同而變化，像是開發環境與生產環境，在配置上就會有很大的差別。
-
-本節帶大家學習要如配置多環境的 webpack 配置檔。
-
-### 使用不同的配置檔
-
-最簡單的方式就是使用不同的配置檔，我們以例子來說明：
-
-```js
-// ./demos/diff-config/src/index2.js
-console.log('This is index2.js')
-```
-
-這是一個 JavaScript 檔 `index2.js` ，我們有兩個環境 `development` 及 `production` 需要配置，於是創建了 `webpack.config.dev.js` 及 `webpack.config.prod.js` 兩個配置檔：
-
-```js
-// ./demos/diff-config/webpack.config.dev.js
-const path = require('path');
-
-module.exports = {
-    entry: './src/index2.js'
-}
-```
-
-```js
-// ./demos/diff-config/webpack.config.prod.js
-const path = require('path');
-
-module.exports = {
-    entry: './src/index2.js',
-    output: {
-        filename: 'bundle.js',
-        path: path.resolve(__dirname, 'build')
-    }
-}
-```
-
-我想要將 `production` 所產生的檔案改為 `./build/bundle.js` ，因此在 `webpack.config.prod.js` 中要再加上 `output` 的設定。
-
-我們下指令各別建置不同的環境：
-
-```js
-// ./demos/diff-config/package.json
-{
-    ...
-  "scripts": {
-    "prod": "webpack --mode production --config webpack.config.prod.js",
-    "dev": "webpack --mode development --config webpack.config.dev.js"
-  },
-  ...
-}
-```
-
-到這裡就配置完成了，然而雖然在不同環境下，仍然有些配置還是相同的（例如上面例子的 `entry`），為了避免 duplicate code 的問題，讓我們試試其他的辦法吧。
-
-### 配置模組傳回 Function
-
-配置檔是個標準的 Node.js CoomonJS 模組，除了回傳物件外， webpack 還允許配置檔傳回 Function 。
-
-```js
-// ./demos/export-function/webpack.config.env.js
-const path = require('path');
-
-module.exports = (env, argv) => ({
-    mode: env.production ? 'production' : 'development',
-    entry: './src/index2.js',
-    output: env.production ? {
-        filename: 'bundle.js',
-        path: path.resolve(__dirname, 'build')
-    }: {}
-})
-```
-
-webpack 會傳入兩個參數：
-
-* `env`: 環境變數，在 CLI 中用 [`--env`](https://webpack.js.org/api/cli/#environment-options) 設定
-* `argv`: CLI 參數，像是 `--mode` 、 `--config` 等參數
-
-```js
-// ./demos/export-function/package.json
-{
-    ...
-  "scripts": {
-    "prod:env": "webpack --env.production --config webpack.config.env.js",
-    "dev:env": "webpack --env.development --config webpack.config.env.js",
-  },
-  ...
-}
-```
-
-使用 `--env` 傳回環境變數，藉由環境變數判斷環境配置。
-
-也可以使用 `argv` 做判斷：
-
-```js
-// ./demos/export-function/webpack.config.argv.js
-const path = require('path');
-
-module.exports = (env, argv) => ({
-    mode: argv.mode,
-    entry: './src/index2.js',
-    output: argv.mode === 'production' ? {
-        filename: 'bundle.js',
-        path: path.resolve(__dirname, 'build')
-    }: {}
-})
-```
-
-```js
-// ./demos/export-function/package.json
-{
-    ...
-  "scripts": {
-    "prod:argv": "webpack --mode production",
-    "dev:argv": "webpack --mode development"
-  },
-  ...
-}
-```
-
-可以將所有的配置放於同個檔案中，並且用 JavaScript 代碼判斷在哪個環境下以此來設定不同的屬性值，達到切換環境的建置目的。
-
-需要注意的是參數中的設定有可能跟配置物件發生衝突，盡量使用環境變數(`env`)、少用參數(`argv`)。
-
-### 配置模組傳回 Promise
-
-在取得配置時有些作業可能會是非同步的，因此 webpack 允許我們傳回 Promise 。
-
-```js
-// ./demos/export-promise/webpack.config.js
-const path = require('path');
-
-module.exports = (env, argv) => {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            resolve({
-                mode: env.production ? 'production' : 'development',
-                entry: './src/index2.js',
-                output: env.production ? {
-                    filename: 'bundle.js',
-                    path: path.resolve(__dirname, 'build')
-                }: {}
-            })
-        }, 5000)
-    })
-}
-```
-
-### 配置模組傳回陣列
-
-有些情況，我們需要同時建置多種環境，這時就可以使用陣列的方式：
-
-```js
-// ./demos/export-array/webpack.config.js
-const path = require('path');
-
-module.exports = [{
-    name: 'dev',
-    mode: 'development',
-    entry: './src/index2.js'
-},{
-    name: 'prod',
-    mode: 'production',
-    entry: './src/index2.js',
-    output: {
-        filename: 'bundle.js',
-        path: path.resolve(__dirname, 'build')
-    }
-}]
-```
-
-直接下 `webpack` 指令就可以建置 `development` 及 `production` 環境。
-
-如果只想要執行其中一個的話，可以使用 `--config-name` 來對應不同的配置：
-
-```js
-// ./demos/export-array/package.json
-{
-    ...
-  "scripts": {
-    "prod": "webpack --config-name prod",
-    "dev": "webpack --config-name dev"
-  },
-  ...
-}
-```
+> `webpack-cli init` 也可以使用[自製的腳手架](https://webpack.js.org/contribute/writing-a-scaffold/)來產生專案。
 
 ## 總結
 
-本文從開發者最常使用的 CLI 方式介紹了 webpack 的配置方式，分為 **CLI 參數**及**配置檔案**。 CLI 參數適合用在小型的 prototype 專案上，而配置檔案適合用在大型專案中，這兩個方法可以依照使用者的想法做搭配。
+webpack 是由配置物件做為主要的設定方式，配置物件可以由 webpack CLI 或是 Node.js API 所執行以使用配置建置專案。
 
-而配置檔案是個 Node.js CommonJS 模組，依照需求的不同，可以直接傳回配置物件，也可以用 Function 、 Promise 的方式在內部組合配置物件再回傳。甚至可以使用陣列回傳，讓 webpack 一次執行多個不同的建置。
+配置物件內的路徑應使用 Node.js 內建的模組 `path` 或是全域變數 `__dirname` 來處理以避免 POSIX 與 Windows 路徑不同的問題。
 
-只要掌握了配置，就掌握了 webpack 。本文入門了 webpack 的配置方式，之後我們將一步步的學習各個不同屬性，強化對 webpack 的理解，到可以運用自如的程度。
+接著簡單概述配置物件中的各個屬性的作用，可以看到種類豐富的設定，涵蓋了幾戶整個 webpack 的功能，讓我們可以用配置物件控制 webpack 的建置工作。
+
+最後介紹 **Generate Custom Webpack Configuration** 及 **Create App** 兩個線上工具幫忙建置專案的配置。除了線上的工具， `webpack-cli` 自己也提供了 `init` 指令，使用終端的問答，來建置使用者期望的專案配置。並且 `webpack-cli init` 也讓使用者可以自己建立腳手架，客製自己的 `init` 專案。
 
 ## 參考資料
 
-- [Configuration](https://webpack.js.org/concepts/configuration/)
 - [Configuration](https://webpack.js.org/configuration/)
-- [Command Line Interface](https://webpack.js.org/api/cli/)
-- [Configuration Types](https://webpack.js.org/configuration/configuration-types/)
-- [Node Interface](https://webpack.js.org/api/node/)
+- [webpack-cli](https://github.com/webpack/webpack-cli)
+- [Scaffolding](https://webpack.js.org/guides/scaffolding/)

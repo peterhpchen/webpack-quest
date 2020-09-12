@@ -1,0 +1,12 @@
+{
+  "name": "node-interface",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "node build.js"
+  },
+  "devDependencies": {
+    "webpack": "^4.44.1"
+  }
+}
