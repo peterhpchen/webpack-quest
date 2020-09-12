@@ -55,7 +55,7 @@ const callbackFunction = (err, stats) => {
     });
   }
 
-  console.log(stats.toString());
+  // console.log(stats.toString());
 };
 
 const compiler = webpack(configurationObject);

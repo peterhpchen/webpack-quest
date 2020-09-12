@@ -16,29 +16,29 @@ const callbackFunction = (err, stats) => {
     }
     return;
   }
-
+  console.log(stats);
   // info 是 Stats Data : https://webpack.js.org/api/stats/#root
-  const info = stats.toJson();
+  // const info = stats.toJson();
 
-  console.log(`Hash: ${info.hash}`);
-  console.log(`Version: ${info.version}`);
-  console.log(`Time: ${info.time}`);
-  console.log(`Bult at: ${info.builtAt}`);
-  console.log("\n");
+  // console.log(`Hash: ${info.hash}`);
+  // console.log(`Version: ${info.version}`);
+  // console.log(`Time: ${info.time}`);
+  // console.log(`Bult at: ${info.builtAt}`);
+  // console.log("\n");
 
-  if (stats.hasErrors()) {
-    // 編譯過程發生錯誤
-    info.errors.forEach((error) => {
-      console.error(error);
-    });
-  }
+  // if (stats.hasErrors()) {
+  //   // 編譯過程發生錯誤
+  //   info.errors.forEach((error) => {
+  //     console.error(error);
+  //   });
+  // }
 
-  if (stats.hasWarnings()) {
-    // 編譯過程發生警告
-    info.warnings.forEach((warning) => {
-      console.warn(warning);
-    });
-  }
+  // if (stats.hasWarnings()) {
+  //   // 編譯過程發生警告
+  //   info.warnings.forEach((warning) => {
+  //     console.warn(warning);
+  //   });
+  // }
 
   // console.log(stats.toString())
 };
