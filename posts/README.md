@@ -10,11 +10,11 @@
 5. [05 - 第一次使用 webpack 就上手](./05-first-webpack/README.md)
 6. [06 - 配置 webpack](./06-config-webpack/README.md)
 7. [07 - 使用 CLI 操作 webpack](./07-use-cli/README.md)
-8. [08 - 使用 Node.js API 操作 webpack](./07-use-node-api/README.md)
+8. [08 - 使用 Node.js API 操作 webpack](./08-use-node-api/README.md)
 
 ## 第二章：配置 webpack
 
-9. [09 - 入口 (entry) 與 context]()
+9. [09 - 入口 (entry) 與 context](./09-entry/README.md)
 10. [10 - 模組 (module)]()
 11. [11 - 輸出 (output) 與 target]()
 12. [12 - 插件 (plugins)]()

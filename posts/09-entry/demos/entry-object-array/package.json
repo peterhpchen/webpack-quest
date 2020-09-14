@@ -1,0 +1,14 @@
+{
+  "name": "entry-object-array",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build:argv": "webpack main2=./app/index.js main2=./app/index2.js",
+    "build:file": "webpack --config webpack.config.demo.js"
+  },
+  "dependencies": {
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12"
+  }
+}

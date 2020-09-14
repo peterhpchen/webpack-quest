@@ -1,0 +1,14 @@
+{
+  "name": "context",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build:argv": "webpack --context /Users/peterchen/Documents/webpack-quest/posts/09-entry/demos/context/frontend",
+    "build:file": "webpack --config webpack.config.demo.js"
+  },
+  "devDependencies": {
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12"
+  }
+}

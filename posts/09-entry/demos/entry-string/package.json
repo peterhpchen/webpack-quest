@@ -1,10 +1,11 @@
 {
-  "name": "entry",
+  "name": "entry-string",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build": "webpack --entry ./app/index.js"
+    "build:argv": "webpack --entry ./app/index.js",
+    "build:file": "webpack --config webpack.config.demo.js"
   },
   "devDependencies": {
     "webpack": "4.44.1",
