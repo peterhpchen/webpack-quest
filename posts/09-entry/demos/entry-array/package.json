@@ -1,0 +1,16 @@
+{
+  "name": "entry",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "webpack --entry app=./app/index.js --entry app2=./app/index2.js"
+  },
+  "devDependencies": {
+    "webpack": "4.44.1",
+    "webpack-cli": "3.3.12"
+  },
+  "dependencies": {
+    "lodash": "4.17.19"
+  }
+}
