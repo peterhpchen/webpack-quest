@@ -1,0 +1,14 @@
+{
+  "name": "export-promise",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "prod": "webpack --env.production",
+    "dev": "webpack --env.development"
+  },
+  "devDependencies": {
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12"
+  }
+}

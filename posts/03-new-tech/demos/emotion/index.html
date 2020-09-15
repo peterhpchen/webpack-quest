@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Webpack Demo: Emotion</title>
+    <script src="https://cdn.jsdelivr.net/npm/emotion@10.0.27/dist/emotion.umd.min.js"></script>
+  </head>
+  <body>
+    <div id="root">Hello Emotion</div>
+    <script>
+      const app = document.getElementById("root");
+      const color = "red";
+      const myClassName = emotion.css`
+  color: ${color};
+`;
+      app.classList.add(myClassName);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,16 @@
+{
+  "name": "diff-config",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "prod:env": "webpack --env.production --config webpack.config.env.js",
+    "dev:env": "webpack --env.development --config webpack.config.env.js",
+    "prod:argv": "webpack --mode production --config webpack.config.argv.js",
+    "dev:argv": "webpack --mode development --config webpack.config.argv.js"
+  },
+  "devDependencies": {
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12"
+  }
+}

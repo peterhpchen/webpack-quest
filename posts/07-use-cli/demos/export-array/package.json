@@ -1,0 +1,15 @@
+{
+  "name": "export-array",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "all": "webpack",
+    "prod": "webpack --config-name prod",
+    "dev": "webpack --config-name dev"
+  },
+  "devDependencies": {
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12"
+  }
+}
