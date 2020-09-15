@@ -5,6 +5,7 @@
   "license": "MIT",
   "scripts": {
     "build:argv": "webpack main=./app/index.js main2=./app/index2.js",
+    "build:argv2": "webpack --entry main=./app/index.js --entry main2=./app/index2.js",
     "build:file": "webpack --config webpack.config.demo.js"
   },
   "dependencies": {

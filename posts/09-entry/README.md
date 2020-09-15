@@ -49,6 +49,25 @@ module.exports = {
 
 > 因為沒有設定 `output` ，所以會在預設的 `dist` 目錄下，並且 `main` chunk 會輸出為 `main.js` ，在[輸出 Output](../10-output/README.md) 一文中會做說明。
 
+字串值的 `entry` 可以直接使用 CLI 設定：
+
+```json
+// ./demos/entry-string/package.json
+{
+  ...
+  "scripts": {
+    "build:argv": "webpack ./app/index.js",
+    "build:argv2": "webpack --entry ./app/index.js --output ./dist/main.js",
+    ...
+  },
+  ...
+}
+```
+
+`webpack` 指令的預設參數是 `entry` ，可以不需要使用特定的名稱參數。
+
+> 字串值的設定適合在單一入口配置的快速開發時使用。
+
 ## 陣列
 
 以陣列的方式設定 `entry` 會將複數個相依圖設定為 chunk `main` 入口。
@@ -68,6 +87,22 @@ module.exports = {
 - `index.js` 的相依圖中的模組與 `index2.js` 的相依圖中的模組都被打包在同一個 chunk `main` 中。
 
 使用陣列的 `entry` 使 webpack 將不相關的模組打包在同個 Chunk 中，稱為 **multi-main entry** 。
+
+陣列的 `entry` 可以直接用 CLI 設定：
+
+```json
+// ./demos/entry-array/package.json
+{
+  ...
+  "scripts": {
+    "build:argv": "webpack ./app/index.js ./app/index2.js",
+    ...
+  },
+  ...
+}
+```
+
+`webpack` 指令的預設參數是 `entry` ，複數個參數就代表使用多個起始模組的單一入口點配置。
 
 ## 物件
 
@@ -112,6 +147,25 @@ module.exports = {
 };
 ```
 
+物件的字串值設定可以使用 CLI ：
+
+```json
+// ./demos/entry-object/package.json
+{
+  ...
+  "scripts": {
+    "build:argv": "webpack main=./app/index.js main2=./app/index2.js",
+    "build:argv2": "webpack --entry main=./app/index.js --entry main2=./app/index2.js",
+    ...
+  },
+  ...
+}
+```
+
+使用 `{key}={字串值}` 的方式設定指定 Chunk 名稱的 `entry` ，除了預設參數外，還可以使用 `--entry` 做設定。
+
+> 由於字串值是物件字串值的縮寫，由此可知字串值的 CLI 設定 `webpack ./app/index.js` 是 `webpack --entry main=./app/index.js` 的縮寫。
+
 ### 物件值為陣列
 
 將陣列中的所有起始模組的相依圖中的組成合併在名稱為 `key` 的 Chunk 中。
@@ -141,6 +195,25 @@ module.exports = {
   }, // === entry: ['./app/index.js', './app/index2.js']
 };
 ```
+
+物件陣列可以用 CLI 設定：
+
+```json
+// ./demos/entry-object-array
+{
+  ...
+  "scripts": {
+    "build:argv": "webpack main2=./app/index.js main2=./app/index2.js",
+    "build:argv2": "webpack --entry main2=./app/index.js --entry main2=./app/index2.js",
+    ...
+  },
+  ...
+}
+```
+
+輸入多個同名的 `entry` ，就可以建立多個起始模組的特定名稱 Chunk 。
+
+> 由於陣列是物件陣列的縮寫，由此可知陣列的 CLI 設定 `webpack ./app/index.js ./app/index2.js` 是 `webpack --entry main=./app/index.js main=./app/index2.js` 的縮寫。
 
 ## 函式
 
@@ -231,7 +304,15 @@ root
 
 ## 總結
 
-本文講解 `entry` 的設定方式
+本文講解 `entry` 有三種設定方式，字串值、陣列、物件及函式。
+
+字串值是設定 `main` Chunk 的起始模組，它是物件 `{ main: '{字串值}'}` 的簡寫，在僅有單一入口的建置下可以快速地做設定。
+
+陣列是設定 `main` Chunk 擁有多個起始模組，陣列的 `entry` 會將多個不相關的模組相依圖組成單個 `main` Chunk 。
+
+物件是指定特定名稱 Chunk 的 `entry` ，使用物件的 `key` 當作 Chunk 的名稱，並且 `value` 設定此物件的入口配置， `value` 可以是字串值或是陣列，其定義與 `entry` 設定的定義相同，僅是 Chunk 名稱是 `key` 值。
+
+函式可以讓使用者在 Compiler `make` 事件鉤子時才決定 `entry` ，其也可以傳回 Promise 來取得遠端的資源。
 
 ## 參考資料
 
