@@ -8,7 +8,7 @@
 
 現代前端工程得益於 ES2015, HTML5, CSS3 標準的成熟， IE 的市佔率被新興的瀏覽器 Chrome, Firefox, Edge 超越，前端技術逐漸趨於穩定，並且出現了 [Electron](https://zh.wikipedia.org/wiki/Electron) 以及 [React Native](https://zh.wikipedia.org/wiki/React_Native) 這類的框架，使得前端工程跨出了瀏覽器到了本地端及移動端上，其重要性大大的增加，造就了整個前端蓬勃的發展。
 
-這樣劇烈的變動，使得設計簡單的網頁程式語言 HTML、JavaScript 及 CSS  變得不合時宜，因而產生了許多的問題，也因此造就了許多優秀的技術興起。
+這樣劇烈的變動，使得設計簡單的網頁程式語言 HTML、JavaScript 及 CSS 變得不合時宜，因而產生了許多的問題，也因此造就了許多優秀的技術興起。
 
 接下來我們將探討現代前端所遭遇的問題，並且說明其解決方案。
 
@@ -197,7 +197,7 @@ CSS 不像 JavaScript 可以使用程式對目標做變化，這造成 CSS 不�
 
 ### Emotion
 
-[Emotion](https://emotion.sh/docs/introduction) 可以直接用 JavaScript 寫元素的樣式，使開發者擁有完全操作 CSS 的能力。
+[Emotion](https://emotion.sh/docs/introduction) 可以直接用 JavaScript 寫元素的樣式，使開發者擁有完全操作 CSS 的能力。
 
 ```html
 <!DOCTYPE html>

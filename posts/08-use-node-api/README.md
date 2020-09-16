@@ -49,7 +49,7 @@ webpack(configurationObject, callbackFunction);
 
 此物件有兩個方法：
 
-- `run(callback)`:  執行建置
+- `run(callback)`: 執行建置
 - `watch(watchOptions, callback)`：執行並監聽檔案，發生變化後重新建置，它會傳回 `watching` 物件，用來操作監聽的動作
 
 ### `run(callback)`
@@ -268,7 +268,7 @@ Node.js API 在建置完成後會對 `callback` 傳入 `err` 及 `stats` 參數�
 
 - 基本資訊：版本、 hash 、執行時間...等
 - 模組資訊
-- Chunks 資訊
+- Chunks 資訊
 - Bundle 資訊
 
 webpack CLI 內部就是使用 `stats` 中的資訊輸出訊息的。

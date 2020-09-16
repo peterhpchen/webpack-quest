@@ -2,7 +2,7 @@
 
 > 本文以實作的方式展示 webpack 的各項主要功能。
 
- 前一篇的[介紹 webpack](../04-introduction/README.md) 一文中介紹了 webpack 各個核心的概念以及整個運作原理，現在終於可以來真的動手寫代碼了。
+前一篇的[介紹 webpack](../04-introduction/README.md) 一文中介紹了 webpack 各個核心的概念以及整個運作原理，現在終於可以來真的動手寫代碼了。
 
 接著就來寫我們的第一隻 webpack 程式吧。
 
@@ -173,7 +173,7 @@ document.body.appendChild(component());
 
 ## 使用 webpack
 
- 先將 `webpack` 指令加到 `package.json` 的 `scripts`：
+先將 `webpack` 指令加到 `package.json` 的 `scripts`：
 
 ```js
 // demos/zero-config/package.json
@@ -232,7 +232,7 @@ npm run build
 
 ![zero-config-result](./assets/zero-config-result.png)
 
- 恭喜你，你寫出了第一隻 webpack 建置的應用程式，現在的架構如下：
+恭喜你，你寫出了第一隻 webpack 建置的應用程式，現在的架構如下：
 
 ![zero-config](./assets/zero-config.png)
 
