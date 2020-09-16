@@ -2,9 +2,9 @@
 
 > 本文講述 JavaScript 模組化的發展，以及這樣的發展讓現代 JavaScript 開發遭遇了什麼樣的困難。
 
-我有一隻愛用的滑鼠，那是個無線滑鼠，在電腦上插上接收器就可以使用了，非常的方便。因為在家裡用習慣了，因此我去上班時都會帶著它，到公司後只要插上接收器就可以直接上工，讓我的工作效率大幅的提升。
+我有一隻愛用的滑鼠，那是個無線滑鼠，在電腦上插上接收器就可以使用了，非常的方便。因為在家裡用習慣了，因此我去上班時都會帶著它，到公司後只要插上接收器就可以直接上工，讓我的工作效率大幅的提升...。
 
-故事說到這裡，大家有沒有想過一個問題：為什麼我們可以在電腦上接上不同的滑鼠，而不需要把整台電腦換掉呢？這是因為電腦是以**模組化**的概念所設計的。那所謂的模組化又是什麼呢？
+大家有沒有想過一個問題：為什麼我們可以在電腦上接上不同的滑鼠，而不需要把整台電腦換掉呢？這是因為電腦是以**模組化**的概念所設計的。那所謂的模組化又是什麼呢？
 
 ## 模組化
 
@@ -58,7 +58,7 @@ Keyboard.addEventListener("click", () => {
 
 我只要改成引入 `newMouse` 就可以做到了。
 
- 這樣的編程方式就叫做[模組化編程](https://zh.wikipedia.org/wiki/%E6%A8%A1%E5%9D%97%E5%8C%96%E7%BC%96%E7%A8%8B)，模組化編程讓開發者可以把程式拆成多個模組，每個模組都負責一部分的功能，將全部的模組依照介面組合起來，就是一個完整的程式。如果寫得好，每個模組都會是高內聚，而對於模組間會是低耦合的。因此模組化編程可以[封裝](<https://zh.wikipedia.org/wiki/%E5%B0%81%E8%A3%9D_(%E7%89%A9%E4%BB%B6%E5%B0%8E%E5%90%91%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88)>)模組，讓除錯、測試、使用上更加容易。
+這樣的編程方式就叫做[模組化編程](https://zh.wikipedia.org/wiki/%E6%A8%A1%E5%9D%97%E5%8C%96%E7%BC%96%E7%A8%8B)，模組化編程讓開發者可以把程式拆成多個模組，每個模組都負責一部分的功能，將全部的模組依照介面組合起來，就是一個完整的程式。如果寫得好，每個模組都會是高內聚，而對於模組間會是低耦合的。因此模組化編程可以[封裝](<https://zh.wikipedia.org/wiki/%E5%B0%81%E8%A3%9D_(%E7%89%A9%E4%BB%B6%E5%B0%8E%E5%90%91%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88)>)模組，讓除錯、測試、使用上更加容易。
 
 有寫過程式的讀者應該都會發現到，自己有使用過模組化編程的的經驗。開發時，我們會借助第三方模組來減輕開發的負擔，或使用內建模組來處理底層的程序，而這樣的動作就代表你在做模組化編程。
 
@@ -66,10 +66,10 @@ Keyboard.addEventListener("click", () => {
 
 ## 沒有模組的 JavaScript
 
-在 webpack 這類的工具出現之前，開發者會直接在 `html` 檔案中藉由 `<script>`, `<link>` 標籤引入 JavaScript 以及 CSS 檔案:
+在 Webpack 這類的工具出現之前，開發者會直接在 `html` 檔案中藉由 `<script>`, `<link>` 標籤引入 JavaScript 以及 CSS 檔案:
 
 ```html
-<!-- demos/before-webpack/index.html -->
+<!-- ./demos/before-webpack/index.html -->
 <!DOCTYPE html>
 <html>
   <head>
@@ -93,7 +93,7 @@ JavaScript 被發明時，只是要做一些簡單的腳本工作而已，因此
 
 以前，在寫程式庫的時候，雖然內部變數可以使用 [IIFE](https://developer.mozilla.org/zh-TW/docs/Glossary/IIFE) 避免污染外部變數，但是當要匯出的時候，我們還是需要將變數放到 `window` 這個全域物件裡，使其他的 script 可以使用目標的變數。在 lodash, JQuery 之類的庫中看到這樣的注入方式。
 
-但是這時候如果其他的 js 代碼覆蓋了 window 中的變數，問題就會發生：
+但是這時候如果其他的 `js` 代碼覆蓋了 `window` 中的變數，問題就會發生：
 
 ```html
 <!-- demos/before-webpack/index.html -->
@@ -139,6 +139,8 @@ function component() {
 document.body.appendChild(component());
 ```
 
+這樣方式會造成就算工具庫沒有引入，我們只能在執行時才能發現錯誤。
+
 ### 引入順序
 
 腳本語言是由上而下執行的， JavaSctipt 也不例外，而由於都只是注入 `window` ，並沒有實際的相依關係，因此依賴的順序只能靠開發者手動調整，只要引入順序有誤，就會造成問題:
@@ -163,9 +165,9 @@ Uncaught ReferenceError: jQuery is not defined
 
 因為 JQuery UI 是相依於 JQuery 的，如果先引入 JQuery UI ，它會因為找不到 JQuery 而報錯。
 
-###  引入不必要的程式碼
+### 引入不必要的程式碼
 
-有的時候我們會引入外部庫去嘗試它的功能，但發現不符合需求就將檔案中相關的程式刪除，這時常常會忘記也去刪除 `<script>` 標籤，這時我們就會引入不必要的程式碼，增加載入的時間。
+有的時候我們會引入外部庫去嘗試它的功能，但發現不符合需求就將檔案中相關的程式刪除，但常常會忘記要去刪除 `<script>` 標籤，這時我們就會引入不必要的程式碼，增加載入的時間。
 
 ### 載入多個檔案
 
@@ -180,7 +182,7 @@ Uncaught ReferenceError: jQuery is not defined
 Node.js 是 JavaScript 伺服器端的執行環境，它使得 JavaScript 由網頁前端跨至後端的領域，成為一個網頁全端的程式語言。 Node.js 使用 [CommonJS](https://zh.wikipedia.org/wiki/CommonJS) (簡稱 CJS) 規格實作模組系統，作為 JavaScript 語言的模塊化解決方案。
 
 ```js
-// demos/common-js/add.js
+// ./demos/common-js/add.js
 function add(a, b) {
   return a + b;
 }
@@ -189,7 +191,7 @@ module.exports = add;
 ```
 
 ```js
-// demos/common-js/index.js
+// ./demos/common-js/index.js
 const add = require("./add");
 
 console.log(add(1, 2));
@@ -208,7 +210,7 @@ console.log(add(1, 2));
 [RequireJS](https://requirejs.org/) 做為前端模塊的解決方案，它實作了 [Asynchronous Module Definition](https://github.com/amdjs/amdjs-api/wiki/AMD) 規格，使模塊可以異步加載。
 
 ```html
-<!-- demos/require-js/index.html -->
+<!-- ./demos/require-js/index.html -->
 <!DOCTYPE html>
 <html>
   <head>
@@ -223,7 +225,7 @@ console.log(add(1, 2));
 ```
 
 ```js
-// demos/require-js/add.js
+// ./demos/require-js/add.js
 define(function () {
   return function (a, b) {
     return a + b;
@@ -232,7 +234,7 @@ define(function () {
 ```
 
 ```js
-// demos/require-js/index.js
+// ./demos/require-js/index.js
 requirejs(["add"], function (add) {
   console.log(add(1, 2));
   // 3
@@ -251,7 +253,7 @@ requirejs(["add"], function (add) {
 ESM 是 [ES2015](https://en.wikipedia.org/wiki/ECMAScript#6th_Edition_%E2%80%93_ECMAScript_2015) 中定義的模組化語意所實作的模組系統，各瀏覽器實作了 ES2015 標準後，使得 ESM 成為 JavaScript 在前端的原生模組系統，為 JavaScript 帶來真正模組話語意。
 
 ```html
-<!-- demos/es-module/index.html -->
+<!-- ./demos/es-module/index.html -->
 <!DOCTYPE html>
 <html>
   <head>
@@ -264,14 +266,14 @@ ESM 是 [ES2015](https://en.wikipedia.org/wiki/ECMAScript#6th_Edition_%E2%80%93_
 ```
 
 ```js
-// demos/es-module/add.js
+// ./demos/es-module/add.js
 export default function (a, b) {
   return a + b;
 }
 ```
 
 ```js
-// demos/es-module/index.js
+// ./demos/es-module/index.js
 import add from "./add.js";
 
 console.log(add(1, 2));
@@ -283,15 +285,15 @@ console.log(add(1, 2));
 - 異步加載模塊
 - 瀏覽器原生語意
 
-雖然瀏覽器擁有了原生的模塊系統，但是前端環境受制於終端(EX: Chrome、Firefox、Edge...)的實作程度，並不是全部都已經支援 ESM 。而因為歷史的關係， JavaScript 的模組實作方式多樣(CJS, AMD, ESM) ，這也造成模組整合的困難。
+雖然擁有了原生的模塊系統，但是前端環境受制於終端(EX: Chrome、Firefox、Edge...)的實作程度，並不是全部都已經支援 ESM 。而因為歷史的關係， JavaScript 的模組實作方式多樣(CJS, AMD, ESM) ，這也造成模組整合的困難。
 
 ## JavaScript 的模組化造成開發困難
 
-由於歷史的原因， JavaScript 的模組化語意有好幾種，由於實作方式及語法都不相同，因此如果要引用會需要個別處理。而如果是自己要開發工具庫讓別人使用的話，也需要分別轉換成不同的模組定義，才能確保使用者不會有引用上的問題發生。
+由於歷史的原因， JavaScript 的模組化語意有好幾種，由於實作方式及語法都不相同，因此要引用會需要個別處理。如果是自己要開發工具庫讓別人使用的話，也需要分別轉換成不同的模組定義，才能確保使用者不會有引用上的問題發生。
 
-ES Module 這個原生模組語意的出現，確實讓 JavaScript 的模組化問題出現了一道曙光，但是 JavaScript 的執行環境太過複雜，有前端，有後端，有瀏覽器、Electron、React Native...等不同的環境，各個環境對於 ES Module 的支援度都不一樣，造成使用 ES Module 時還是必須要經過轉換。
+ES Module 這個原生模組語意的出現，確實讓 JavaScript 的模組化問題出現了一道曙光，但是 JavaScript 的執行環境太過複雜，有前端，有後端，有瀏覽器、Electron、React Native...等不同的環境，各個環境對於 ES Module 的支援度都不一樣，造成使用 ES Module 時還是必須要經過轉換。
 
-JavaScript 的模組化之路坎坷，確實使得開發變得複雜困難，但是危機就是轉機， webpack 的發明就完美的解決了這些問題。
+JavaScript 的模組化之路坎坷，確實使得開發變得複雜困難，但是危機就是轉機， Webpack 的發明就完美的解決了這些問題，使前端工程迎來了全面的模組化時代。
 
 ## 參考資料
 

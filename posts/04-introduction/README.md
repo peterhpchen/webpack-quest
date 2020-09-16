@@ -8,7 +8,7 @@
 
 ## 核心概念 - webpack 中任何東西皆為模組
 
-在 webpack 中，任何的東西都被當作模組，所以 `.js` 、 `.css` 、 `.png` 、 `.svg` ...等各種檔案在 webpack 內都是一個個的模組。
+在 webpack 中，任何的東西都被當作模組，所以 `.js` 、 `.css` 、 `.png` 、 `.svg` ...等各種檔案在 webpack 內都是一個個的模組。
 
 ![modules](./assets/modules.png)
 
@@ -32,7 +32,7 @@ webpack 的最終目標是將模組打包成 bundle ，其運作流程如下：
 
 ![procss](./assets/process.png)
 
-- 啟動 webpack ， 執行 Mode 對應的最佳化方案
+- 啟動 webpack ， 執行 Mode 對應的最佳化方案
 - 找到起始模組入口(Entry)
 - 繪製相依圖(Dependency Graph)
   - 解析模組(Loaders)
@@ -76,7 +76,7 @@ webpack 本身只看得懂 JavaScript 與 Json 檔，對於其他的模組，需
 
 ### Plugins
 
-webpack 在建置的過程中，會依序觸發不同的事件鉤子，藉以完成各個時期的工作 ，而 Plugins 可以**藉著這些事件鉤子執行其所設定的工作**。
+webpack 在建置的過程中，會依序觸發不同的事件鉤子，藉以完成各個時期的工作 ，而 Plugins 可以**藉著這些事件鉤子執行其所設定的工作**。
 
 ![plugins](./assets/plugins.png)
 

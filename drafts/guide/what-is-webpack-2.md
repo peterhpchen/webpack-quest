@@ -1,6 +1,6 @@
 # 什麼是 webpack
 
-webpack 是 **JavaScript 應用程式的靜態模塊綑綁器**。它將應用程式中的模塊組織成較大的 bundle ，在瀏覽器中引入 bundle 執行應用程式。
+webpack 是 **JavaScript 應用程式的靜態模塊綑綁器**。它將應用程式中的模塊組織成較大的 bundle ，在瀏覽器中引入 bundle 執行應用程式。
 
 ## 好處
 

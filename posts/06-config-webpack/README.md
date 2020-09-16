@@ -113,7 +113,7 @@ module.exports = {
 
 ### webpack CLI init
 
-webpack-cli 有個 [init](https://github.com/webpack/webpack-cli/blob/next/packages/init/README.md#webpack-cli-init) 的指令，它可以幫我們產生 webpack 為基底的起始專案 。
+webpack-cli 有個 [init](https://github.com/webpack/webpack-cli/blob/next/packages/init/README.md#webpack-cli-init) 的指令，它可以幫我們產生 webpack 為基底的起始專案 。
 
 要使用 `webpack-cli init` 需要另外安裝 `@webpack-cli/init`：
 

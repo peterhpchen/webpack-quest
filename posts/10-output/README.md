@@ -23,7 +23,7 @@ module.exports = {
 - `path` 定義了 bundle 輸出的路徑，預設是在執行建置工作目錄下的 `dist` 目錄中。
 - `filename` 定義生成的檔名，預設值使用了 template string `[name]` ，這樣可以依照 Chunk 名稱生成對應的檔案。
 
->  由於 `path` 設定複雜，每個屬性都有各自的預設值，本文只說明了 `path` 及 `filename` 兩個常用的屬性預設值，其他的預設值可以參考 [webpack 代碼](https://github.com/webpack/webpack/blob/master/lib/config/defaults.js#L499)。
+> 由於 `path` 設定複雜，每個屬性都有各自的預設值，本文只說明了 `path` 及 `filename` 兩個常用的屬性預設值，其他的預設值可以參考 [webpack 代碼](https://github.com/webpack/webpack/blob/master/lib/config/defaults.js#L499)。
 
 ## 配置方式
 
