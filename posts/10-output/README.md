@@ -96,8 +96,8 @@ root
 
 `filename` 設定 bundle 輸出的檔案名稱，它有兩種設定方式：
 
-* 字串值
-* 函式
+- 字串值
+- 函式
 
 下面我們依序介紹字串值及函式的設定方式。
 
@@ -115,7 +115,7 @@ const path = require("path");
 
 module.exports = {
   output: {
-    filename: "bundle.js"
+    filename: "bundle.js",
   },
 };
 ```
@@ -147,7 +147,7 @@ CLI 也可以配置 `filename` ：
 // ./demos/output-filename-path/webpack.config.demo.js
 module.exports = {
   output: {
-    filename: "js/bundle.js"
+    filename: "js/bundle.js",
   },
 };
 ```
@@ -196,11 +196,11 @@ root
 // ./demos/output-filename-multi/webpack.config.demo.js
 module.exports = {
   entry: {
-    main: './src/index.js',
-    main2: './src/index2.js'
+    main: "./src/index.js",
+    main2: "./src/index2.js",
   },
   output: {
-    filename: "bundle.[name].js"
+    filename: "bundle.[name].js",
   },
 };
 ```
@@ -219,13 +219,15 @@ module.exports = {
 // ./demos/output-filename-func/webpack.config.demo.js
 module.exports = {
   entry: {
-    main: './src/index.js',
-    main2: './src/index2.js'
+    main: "./src/index.js",
+    main2: "./src/index2.js",
   },
   output: {
     filename(chunkData) {
-      return chunkData.chunk.name === 'main' ? 'main.js' : `bundle.${chunkData.chunk.name}.js`
-    }
+      return chunkData.chunk.name === "main"
+        ? "main.js"
+        : `bundle.${chunkData.chunk.name}.js`;
+    },
   },
 };
 ```
@@ -242,27 +244,27 @@ Template String 可以將 Chunk 的資料帶入字串值中以產生不同名稱
 
 Template String 是藉由 Webpack 內建的 [TemplatePathPlugin](https://github.com/webpack/webpack/blob/28bafbec7f5e91dbbeccb82e2c0f6ddfb0e3a51b/lib/TemplatedPathPlugin.js) 驅動的功能，它擁有下面的 template ：
 
-* `[name]` : Chunk 名稱
-* `[id]` : Chunk ID
-* `[hash]` : Compilation 的 hash 值，只要建置有改變， hash 值就會變化
-* `[contenthash]` : 每個 bundle 的 hash 值，只有 bundle 改變時才會變化
-* `[chunkhash]` : 每個 chunk 的 hash 值，只有在 chunk 改變時才會變化
+- `[name]` : Chunk 名稱
+- `[id]` : Chunk ID
+- `[hash]` : Compilation 的 hash 值，只要建置有改變， hash 值就會變化
+- `[contenthash]` : 每個 bundle 的 hash 值，只有 bundle 改變時才會變化
+- `[chunkhash]` : 每個 chunk 的 hash 值，只有在 chunk 改變時才會變化
 
 接下來會用例子說明各個 template 的定義。
 
 ### `[name]`
 
-在上面有多個例子使用了 `[name]` template ，它表示的是對應的 Chunk 名稱：
+在上面有多個例子使用了 `[name]` template ，它表示的是對應的 Chunk 名稱：
 
 ```js
 // ./demos/output-filename-template/webpack.config.name.js
 module.exports = {
   entry: {
-    main: './src/index.js',
-    main2: './src/index2.js'
+    main: "./src/index.js",
+    main2: "./src/index2.js",
   },
   output: {
-    filename: "[name].js"
+    filename: "[name].js",
   },
 };
 ```
@@ -281,11 +283,11 @@ module.exports = {
 // ./demos/output-filename-template/webpack.config.id.js
 module.exports = {
   entry: {
-    main: './src/index.js',
-    main2: './src/index2.js'
+    main: "./src/index.js",
+    main2: "./src/index2.js",
   },
   output: {
-    filename: "[id].js"
+    filename: "[id].js",
   },
 };
 ```
@@ -300,15 +302,15 @@ module.exports = {
 
 `[hash]`, `[chunkhash]`, `[chunkhash]` 都是輸出 hash 值，但每個都有不同的構成機制，依照情況有些會變動有些可以保持原本的值，大致可以分為下面這樣：
 
-Actions|`[hash]`|`[chunkhash]`|`[contenthash]`
--|-|-|-
-modify webpack config|change|no change|no change
-modify program file|change|only bundle which file change|only bundle which file change
-modify extract file|change|bundle and extract file change|only extract file change
+| Actions               | `[hash]` | `[chunkhash]`                  | `[contenthash]`               |
+| --------------------- | -------- | ------------------------------ | ----------------------------- |
+| modify webpack config | change   | no change                      | no change                     |
+| modify program file   | change   | only bundle which file change  | only bundle which file change |
+| modify extract file   | change   | bundle and extract file change | only extract file change      |
 
 #### `[hash]`
 
-`[hash]` 比較好理解，在整個建置過程中唯一的一隻 hash 值，因此不管是配置還是程式變化，它的值就會變化。
+`[hash]` 比較好理解，在整個建置過程中唯一的一隻 hash 值，因此不管是配置還是程式變化，它的值就會變化。
 
 由於 `[hash]` 是唯一的，因此如果有多個 bundle 時，它們會唯一的檔名而合併。
 
@@ -326,20 +328,20 @@ modify extract file|change|bundle and extract file change|only extract file chan
 
 ```js
 // ./demos/output-filename-hash/src/index.js
-import './style/style.css'
+import "./style/style.css";
 
-console.log('index')
+console.log("index");
 
 // ./demos/output-filename-hash/src/index2.js
-import './style/style.css'
+import "./style/style.css";
 
-console.log('index2')
+console.log("index2");
 ```
 
 ```css
 /* ./demos/output-filename-hash/src/style/style.css */
 .hello-world {
-    color: green;
+  color: green;
 }
 ```
 
@@ -347,35 +349,35 @@ console.log('index2')
 
 ```js
 // ./demos/output-filename-hash/webpack.config.js
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
-    entry: {
-        main: './src/index.js',
-        main2: './src/index2.js',
-    },
-    output: {
-        filename: '[contenthash].js'
-    },
-    plugins: [
-        new MiniCssExtractPlugin({
-            filename: '[contenthash].css'
-        })
-    ],
-    module: {
-        rules: [
+  entry: {
+    main: "./src/index.js",
+    main2: "./src/index2.js",
+  },
+  output: {
+    filename: "[contenthash].js",
+  },
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: "[contenthash].css",
+    }),
+  ],
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: [
           {
-            test: /\.css$/,
-            use: [
-              {
-                loader: MiniCssExtractPlugin.loader,
-              },
-              'css-loader',
-            ],
+            loader: MiniCssExtractPlugin.loader,
           },
+          "css-loader",
         ],
       },
-}
+    ],
+  },
+};
 ```
 
 這裡使用 `MiniCssExtractPlugin` 將引入的 `.css` 拉出來另外產生 `.css` 檔案。
@@ -398,11 +400,11 @@ module.exports = {
 // ./demos/output-filename-template/webpack.config.escape.js
 module.exports = {
   entry: {
-    main: './src/index.js',
-    main2: './src/index2.js'
+    main: "./src/index.js",
+    main2: "./src/index2.js",
   },
   output: {
-    filename: "[name].[\\id\\].js"
+    filename: "[name].[\\id\\].js",
   },
 };
 ```
@@ -413,14 +415,84 @@ module.exports = {
 
 ![output-filename-template-escape-result](./assets/output-filename-template-escape-result.png)
 
+## `publicPath`
+
+`publicPath` 是處理在部署時候，建置檔案在伺服器中的路徑，以此路徑設定 Chunk 在載入時所需要請求的位置。
+
+我們直接來看個例子：
+
+```js
+// ./demos/output-publicpath/webpack.config.js
+const path = require("path");
+
+module.exports = {
+  output: {
+    path: path.resolve(__dirname, "build/js"),
+  },
+};
+```
+
+產生出來的目錄如下：
+
+```plaintext
+root
+|- build
+  |- /js
+    |- 1.js
+    |- main.js
+  |- index.html
+```
+
+- `index.html` 中使用 `./js/main.js` 引入 `main.js`
+- `1.js` 會在 `main.js` 中被延遲載入
+
+將 `build` 目錄傳至伺服器上看結果：
+
+![output-publicpath-fail](./assets/output-publicpath-fail.png)
+
+這時在載入 `1.js` 時發生了 404 的錯誤，這是因為載入 `1.js` 的 `index.html` 目錄在 `build` ，而 `1.js` 是在 `build/js` ， 因此對於 `index.html` 來說， `1.js` 的路徑應該要是 `./js/1.js` 才能正確的載入。
+
+這種情況下就必須要使用 `publicPath` :
+
+```js
+// ./demos/output-publicpath/webpack.config.js
+const path = require("path");
+
+module.exports = {
+  output: {
+    path: path.resolve(__dirname, "build/js"),
+    publicPath: "./js/",
+  },
+};
+```
+
+這樣的設定使得 `index.html` 知道要在 `./js/` 中尋找 `1.js` 資源。
+
+## `chunkFilename`
+
+之前介紹的 `filename` 是設定 `entry` 所產生出來的 bundle ，這類的 Chunk 叫做 `initial` ，而像是上面例子的 `1.js` 這種延遲載入的 Chunk 叫做 `non-initial` ，這類 `non-initial` 的輸出檔名就交給 `chunkFilename` 做設定。
+
+### `chunkFilename` 的設定方式
+
+`chunkFilename` 的預設值為 `[id].js` ：
+
+![output-chunkfilename-default-result](./assets/output-chunkfilename-default-result.png)
+
+可以看到建置結果檔名為 `1.js` 。
+
+看到這邊大家應該發現了， `chunkFilename` 一樣可以使用 template string 做設置。
+
 ## 總結
 
+`output` 擁有許多複雜的配置，本文講了四個比較常用的屬性：`path`, `filename`, `publicPath` 以及 `chunkFilename` 。
 
+這中間也介紹了一個重要的設定方式： Template String 。在 `webpack` 中配置所有的輸出檔案時，不管是用 plugin 建立的或是 loader 創建的還是一般 chunk 輸出的檔案，所有的檔名幾乎都可以使用 Template String 來設定，使用正確的 Template 可以大大地增加快取的效能，加快應用程式的運行。
 
 ## 參考資料
 
 - [Concept](https://webpack.js.org/concepts/#output)
 - [Concept](https://webpack.js.org/concepts/output/)
 - [Output](https://webpack.js.org/configuration/output/)
-- [webpack4系列教程，对比识别hash/chunkhash/conenthash](https://newsn.net/say/webpack-hash.html)
+- [webpack4 系列教程，对比识别 hash/chunkhash/conenthash](https://newsn.net/say/webpack-hash.html)
 - [Hash vs chunkhash vs ContentHash](https://medium.com/@sahilkkrazy/hash-vs-chunkhash-vs-contenthash-e94d38a32208)
+- [Under The Hood](https://webpack.js.org/concepts/under-the-hood/#chunks)
