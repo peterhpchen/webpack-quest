@@ -1,11 +1,10 @@
 {
-  "name": "output-default",
+  "name": "output-filename-func",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build": "webpack",
-    "build:file": "webpack --config webpack.config.demo.js"
+    "build": "webpack --config webpack.config.demo.js"
   },
   "devDependencies": {
     "webpack": "^4.44.1",

@@ -1,10 +1,10 @@
 {
-  "name": "output-default",
+  "name": "output-filename",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build": "webpack",
+    "build:argv": "webpack --output-filename bundle.js",
     "build:file": "webpack --config webpack.config.demo.js"
   },
   "devDependencies": {
