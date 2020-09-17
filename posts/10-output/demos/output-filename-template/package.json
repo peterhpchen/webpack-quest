@@ -1,0 +1,18 @@
+{
+  "name": "output-filename",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build:name": "webpack --config webpack.config.name.js",
+    "build:id": "webpack --config webpack.config.id.js",
+    "build:hash": "webpack --config webpack.config.hash.js",
+    "build:contenthash": "webpack --config webpack.config.contenthash.js",
+    "build:chunkhash": "webpack --config webpack.config.chunkhash.js",
+    "build:escape": "webpack --config webpack.config.escape.js"
+  },
+  "devDependencies": {
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12"
+  }
+}

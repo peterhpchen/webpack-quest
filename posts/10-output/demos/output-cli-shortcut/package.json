@@ -1,11 +1,11 @@
 {
-  "name": "output-default",
+  "name": "output-cli-shortcut",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build": "webpack",
-    "build:file": "webpack --config webpack.config.demo.js"
+    "build": "webpack -output ./build/bundle.js",
+    "build:short": "webpack -o ./build/bundle.js"
   },
   "devDependencies": {
     "webpack": "^4.44.1",

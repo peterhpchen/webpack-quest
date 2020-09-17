@@ -1,6 +1,8 @@
 # 新技術的崛起
 
-> 本文講述網頁工程對於新技術的導入，對開發流程造成了什麼樣的影響。
+> 本文講述網頁工程因為新技術的導入，對開發流程造成了什麼樣的影響。
+
+> 本文的範例程式放在 [peterhpchen/webpack-quest](https://github.com/peterhpchen/webpack-quest/tree/master/posts/02-history-of-js-module/demos) 中，每個程式碼區塊的第一行都會標注檔案的位置，請搭配文章作參考。
 
 語言總是隨著時代的需求改變，自然語言是這樣，近代才出現的電腦語言也是這樣，甚至變遷得更加迅速。而網頁相關的程式語言 HTML、JavaScript 及 CSS 也因為時間的波瀾而產生了巨大的變化。
 
@@ -18,12 +20,12 @@
 
 ### Babel
 
-JavaScript 規格名為 [ECMA-262](https://www.ecma-international.org/publications/standards/Ecma-262.htm) (以此規格實作的語言名為 ECMAScript)，由 Ecma International 所制定，目前每年會出一個新的版本。但是在各家瀏覽器上，新語法的相容性並不一致， [Babel](https://babeljs.io/) 借助轉譯器以及 Polyfill 將新語法轉為目標環境可以讀懂的舊語法。
+JavaScript 規格名為 [ECMA-262](https://www.ecma-international.org/publications/standards/Ecma-262.htm) (以此規格實作的語言名為 ECMAScript ， JavaScript 就是其中一種 ECMAScript )，由 Ecma International 所制定，目前每年會出一個新的版本。但是在各家瀏覽器上，新語法的相容性並不一致， [Babel](https://babeljs.io/) 借助轉譯器以及 Polyfill 將新語法轉為目標環境可以讀懂的舊語法。
 
 使用了 Babel 後，開發者可以使用新語法進行開發，在部署前利用 Babel 轉譯為目標瀏覽器可支援的語法，使各個功能可以在目標環境中正常執行。
 
 ```js
-// demos/babel/src/index.js
+// ./demos/babel/src/index.js
 const add = (a, b) => {
   // ES2015: Arrow Function
   return a + b;
@@ -55,7 +57,7 @@ CSS 的標準是由 [W3C](https://www.w3.org/Style/CSS/) 所制定，與 JavaScr
 其中 [postcss-preset-env](https://preset-env.cssdb.org/) Plugin 可以將開發者的 CSS 新語法轉換為目標瀏覽器可以辨識的舊語法。
 
 ```css
-/* demos/postcss/src/style.css */
+/* ./demos/postcss/src/style.css */
 
 /* https://www.w3.org/TR/css-variables-1/ */
 :root {
@@ -99,14 +101,14 @@ console.log(add("I", 2));
 
 我們期望 `add` 是輸入兩個數字，但如果使用者輸入了字串， JavaScript 並不會出錯，造成了 Bug 的產生。
 
-為了解決 JavaScript 型別問題， 出現了 [TypeScript](https://www.typescriptlang.org/), [flow](https://flow.org/) 這類的 JavaScript 超集語言。
+為了解決 JavaScript 型別問題， 出現了 [TypeScript](https://www.typescriptlang.org/), [flow](https://flow.org/) 這類的 JavaScript 超集語言，使開發時可以使用強型別語言的特性，編譯時再轉為原生的 JavaScript 語意。
 
 ### TypeScript
 
-TypeScript 由微軟開發，是目前最流行的 JavaScript 超集，它支援靜態型別檢查，使其可以在開發階段發現型別問題，而不用等到執行時才發現錯誤。
+TypeScript 由微軟開發，是目前最流行的 JavaScript 超集語言，它支援**靜態型別檢查**，使其可以在開發階段發現型別問題，而不用等到執行時才發現錯誤。
 
 ```ts
-// demos/type-script/index.ts
+// ./demos/type-script/index.ts
 function add(a: number, b: number): number {
   return a + b;
 }
@@ -121,9 +123,7 @@ console.log(add("I", 2));
 
 CSS 的語法是由多個選擇器搭配屬性定義的規則所組成，使用起來就像是寫一個清單一樣，簡單易懂。
 
-CSS 的清單式語意，語法單純，使開發者很容易可以入門。
-
-但是在開發大型專案時，結構死板的 CSS 會遇到無法復用規則而必須一再重複定義的問題。
+CSS 的清單式語意，語法單純，使開發者很容易可以入門。但是在開發大型專案時，結構死板的 CSS 會遇到無法復用規則而必須一再重複定義的問題。
 
 為解決這個問題，各路大神開發了 CSS 預處理器，為 CSS 增加了好用的語法，使用預處理器的語法做開發，然後編譯為原生的 CSS ，使其可以跑在瀏覽器上。
 
@@ -132,7 +132,7 @@ CSS 的清單式語意，語法單純，使開發者很容易可以入門。
 這裡介紹其中一個 CSS 預處理器：[SASS](https://sass-lang.com/)，它使得 CSS 可以使用 Variables, Mixins, Extend/Inheritance 及 Nesting 等豐富的功能。
 
 ```scss
-// demos/03-new-tech/src/style.scss
+// ./demos/03-new-tech/src/style.scss
 
 // Variables
 $demoColor: blue;
@@ -235,7 +235,7 @@ HTML 負責定義網頁的元素配置，在靜態網頁中，由於資料是固
 [Pug](https://pugjs.org/api/getting-started.html) 是一個模板引擎，它使用更簡潔的語法取代原本的 HTML ，增加開發者的效率，同時也提供動態的方式產生結構。
 
 ```pug
-//- demos/pug/src/index.pug
+//- ./demos/pug/src/index.pug
 html
   head
     title Webpack Demo: #{name}
@@ -249,7 +249,7 @@ html
 在現今的框架中，像是 [Angular](https://angular.io/guide/template-syntax) 及 [Vue.js](https://vuejs.org/v2/guide/syntax.html) 則是使用模板語法搭配資料綁定來操作畫面。
 
 ```html
-<!-- demos/vue-template-syntax/index.html -->
+<!-- ./demos/vue-template-syntax/index.html -->
 
 <!-- Vue.js Template Syntax -->
 <span>Message: {{ msg }}</span>
@@ -262,7 +262,7 @@ html
 [React](https://zh-hant.reactjs.org/) 的 [JSX](https://zh-hant.reactjs.org/docs/introducing-jsx.html) 將原本是由 HTML 控制畫面配置帶入了 JavaScript 中，使開發者可以直接使用 JavaScript 決定如何生成元素。
 
 ```html
-<!-- demos/react-jsx/index.html -->
+<!-- ./demos/react-jsx/index.html -->
 <!DOCTYPE html>
 <html>
   <head>
@@ -294,14 +294,13 @@ html
 - HTML
   - 是靜態的：Pug, Template Syntax
 
-雖然前端工程因為語言的限制產生了許多的問題，但是也都有了對應的方案可以解決，但這些方案都有一個共通的問題，那就是**需要配置相對應得轉譯器才能在瀏覽器上執行**。
+雖然前端工程因為語言的限制產生了許多的問題，但是也都有了對應的方案可以解決，但這些方案都有一個共通的問題，那就是**需要配置相對應的轉譯器才能在瀏覽器上執行**。
 
-原本這些解決方案的目的是要加速開發的，但每次要執行時都要手動啟動編譯器，反而會降低開發速度，這時候還好有像是 webpack 這類 bundler 工具的出現，才能順利地將這些工具帶入開發鍊中。
+原本這些解決方案的目的是要加速開發的，但每次要執行時都要手動啟動編譯器，反而會降低開發速度，這時候還好有像是 Webpack 這類 bundler 工具的出現，才能順利地將這些工具帶入開發鍊中。
 
-## 延伸閱讀
+## 參考資料
 
 - [core-js](https://github.com/zloirock/core-js)
-
 - [10 Reasons to Use a CSS Preprocessor in 2018](https://raygun.com/blog/10-reasons-css-preprocessor/)
 - [CSS preprocessor](https://developer.mozilla.org/en-US/docs/Glossary/CSS_preprocessor)
 - [elm](https://elm-lang.org/)

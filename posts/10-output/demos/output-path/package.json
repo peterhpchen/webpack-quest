@@ -5,6 +5,7 @@
   "license": "MIT",
   "scripts": {
     "build:argv": "webpack --output-path $PWD/build",
+    "build:argv2": "webpack --output-path build",
     "build:file": "webpack --config webpack.config.demo.js"
   },
   "devDependencies": {
