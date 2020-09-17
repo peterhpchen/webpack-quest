@@ -2,7 +2,7 @@
 
 > 本文講述網頁工程因為新技術的導入，對開發流程造成了什麼樣的影響。
 
-> 本文的範例程式放在 [peterhpchen/webpack-quest](https://github.com/peterhpchen/webpack-quest/tree/master/posts/02-history-of-js-module/demos) 中，每個程式碼區塊的第一行都會標注檔案的位置，請搭配文章作參考。
+> 本文的範例程式放在 [peterhpchen/webpack-quest](https://github.com/peterhpchen/webpack-quest/tree/master/posts/03-new-tech/demos) 中，每個程式碼區塊的第一行都會標注檔案的位置，請搭配文章作參考。
 
 語言總是隨著時代的需求改變，自然語言是這樣，近代才出現的電腦語言也是這樣，甚至變遷得更加迅速。而網頁相關的程式語言 HTML、JavaScript 及 CSS 也因為時間的波瀾而產生了巨大的變化。
 
