@@ -1,0 +1,14 @@
+{
+  "name": "loader-css-inline",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "webpack"
+  },
+  "devDependencies": {
+    "css-loader": "4.2.1",
+    "webpack": "4.44.1",
+    "webpack-cli": "3.3.12"
+  }
+}

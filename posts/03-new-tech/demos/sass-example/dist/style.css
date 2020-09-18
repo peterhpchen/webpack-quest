@@ -1,0 +1,16 @@
+.example .example__input,
+.demo .demo__input {
+  border-radius: 30px;
+}
+
+.demo .demo__input {
+  border-color: blue;
+  color: blue;
+}
+
+.example .example__input {
+  border-color: green;
+  color: green;
+}
+
+/*# sourceMappingURL=style.css.map */
