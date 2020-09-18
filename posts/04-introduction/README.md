@@ -42,7 +42,7 @@ webpack 的最終目標是將模組打包成 bundle ，其運作流程如下：
 - 建置 bundle(s)
 - 輸出(Output)
 
-> 在運作流程的每個步驟都有事件鉤子，這些鉤子會觸發並執行對應的 Plugins
+> 在運作流程的每個步驟都有事件鉤子，這些鉤子會觸發並執行對應的 Plugins 。
 
 webpack 從起始點開始往下找尋相依模組，當所有的模組都被解析完成後就會輸出 bundles 並且輸出在目標資料夾中。
 
@@ -93,9 +93,11 @@ webpack 在建置時會依照 `mode` 設定的不同而進行不同的最佳化�
 
 ### Module, Chunk and Bundle(Asset)
 
-Module 是工程師開發的模組，這些模組進入 webpack 建置流程中經過一系列的處理會轉變為 Chunk ，而最後做輸出處理後呈現在輸出目錄中的叫做 Bundle( 在某些地方稱為 Asset)。
+Module 是工程師所撰寫的模組，這些模組進入 webpack 建置流程中經過一系列的處理會轉變為 Chunk ，而最後做輸出處理後呈現在輸出目錄中的叫做 Bundle( 在某些地方稱為 Asset)。
 
 ![module-chunk-bundle](./../05-first-webpack/assets/module-chunk-bundle.png)
+
+可以將它們都想成是程式區塊，在建置過程中這些區塊可能會經過拆解、重組的步驟，因此才需要在各個時期有不同的名稱表示。
 
 ## webpack 解決了什麼問題
 
@@ -131,6 +133,6 @@ webpack 利用了整個打包流程解決了現代前端工程的模組化及新
 
 ## 參考資料
 
-- [Modules](https://webpack.js.org/concepts/modules/)
-- [Concepts](https://webpack.js.org/concepts/)
-- [Under The Hood](https://webpack.js.org/concepts/under-the-hood/)
+- [Webpack Documentation: Concepts - Modules](https://webpack.js.org/concepts/modules/)
+- [Webpack Documentation: Concepts - Concepts](https://webpack.js.org/concepts/)
+- [Webpack Documentation: Concepts - Under The Hood](https://webpack.js.org/concepts/under-the-hood/)

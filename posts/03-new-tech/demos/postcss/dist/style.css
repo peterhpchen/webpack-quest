@@ -1,0 +1,8 @@
+:root {
+  --demoColor: blue;
+}
+
+.demo {
+  color: blue;
+  color: var(--demoColor);
+}
