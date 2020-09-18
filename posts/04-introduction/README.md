@@ -52,7 +52,7 @@ webpack 從起始點開始往下找尋相依模組，當所有的模組都被解
 
 開發者要跟 webpack 說明哪個模組是**建置相依圖時的起點**，因此需要配置 `entry` 屬性。
 
-![webpack](./assets/entry.png)
+![entry](./assets/entry.png)
 
 啟動 webpack 時，會先解析起始模組，找出起始模組是否有相依其他的模組，接著再往下一個模組搜尋，一直到找不到相依模組時，如此一來就形成了相依圖。
 
@@ -62,7 +62,7 @@ webpack 從起始點開始往下找尋相依模組，當所有的模組都被解
 
 在 webpack 建立 bundle 時，他會需要知道 **bunlde 要放在哪個路徑**以及**每個 bundle 要取什麼名字**，因此我們需要設定 `output` 屬性。
 
-![webpack](./assets/output.png)
+![output](./assets/output.png)
 
 > `output` 的預設路徑是 `./dist` ，而主要的 bundle 名稱會是 `./dist/main.js` 。
 

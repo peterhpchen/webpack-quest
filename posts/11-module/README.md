@@ -71,3 +71,43 @@ import css from "css-loader!./style.css";
 如此一來我們的應用程式就可以載入 `.css` 了：
 
 ![loader-css-inline-view](./assets/loader-css-inline-view.png)
+
+#### 使用 `style-loader` 將內容自動插入 DOM
+
+剛剛我們使用了 `css-loader` 成功將 `style.css` 內容載入至 `index.js` ，但是我們還是必須要自己將內容寫進 DOM 裡，如果每次引入 `.css` 時就要做一次插入 DOM 的處理，會變得十分麻煩。而 `style-loader` 可以幫我們將 CSS 的內容自動插入 DOM 中。
+
+首先也需要先安裝 `style-loader`:
+
+```bash
+npm install style-loader -D
+```
+
+再來我們將 `index.js` 改為下面這樣：
+
+```js
+// ./demos/loader-style-inline/src/index.js
+import "style-loader!css-loader!./style.css";
+```
+
+建置結果如下：
+
+![loader-style-inline-result](./assets/loader-style-inline-result.png)
+
+我們的 pipe 上面多了一個 `style-loader` ，資料傳輸的方向從右開始，所以 `style-loader` 會承接 `css-loader` 的結果在做轉換。
+
+![style-css-loader-pipe](./assets/style-css-loader-pipe.png)
+
+#### 從載入 `.css` 的範例中學到
+
+從這個範例中我們學習到了：
+
+- webpack 載入 JS, JSON 外的格式會發生錯誤
+- Loaders 會幫助 webpack 看懂 JS, JSON 外其他格式的模組
+- 使用 Loaders 解析目標資源的方法是使用 `!` 串接 Loaders 與資源，形成 pipe
+- Pipe 的流向是由右向左
+- 同個資源(例如上例的 `style.css`)中可以使用多個 Loaders
+- 多個 Loaders 執行的順序同 Pipe 的流向由右向左
+
+現在我們對於 Loaders 已經有初步的概念的，接下來會說明配置 Loaders 的幾種方式。
+
+## 配置 Loaders 的方式
