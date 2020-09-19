@@ -12,7 +12,7 @@ webpack 從 `entry` 開始依序掃描各個模組，在掃描的過程中會用
 
 圖中提到了兩個 `module` 屬性(藍色粗體)， `rules` 及 `noParse`：
 
-- `rules`:  設定模組要使用何種的 Loaders 及要啟用或停用哪些解析器(ex: AMD, CJS or ES2015)。
+- `rules`: 設定模組要使用何種的 Loaders 及要啟用或停用哪些解析器(ex: AMD, CJS or ES2015)。
 - `noParse`: 哪些模組不做解析的動作。
 
 接下來會依序介紹 `rules` 及 `noParse` 的使用方式。
@@ -56,7 +56,7 @@ module.exports = {
 
 - RegExp: 如果正規表達式判斷為真則條件成立
 - 字串值: 如果是以此字串值開頭的路徑則條件成立
-- 函式: 叫用函式帶有**目前路徑(path)**的參數，如果此函式回傳為真則條件成立
+- 函式: 叫用函式帶有**目前路徑(`path`)**的參數(`resourceQuery` 是帶 `query`)，如果此函式回傳為真則條件成立
 - 陣列: 每個元素都一個匹配方式(RegExp, 字串值及函式)，只要其中一個為真，此條件成立
 
 > 雖然每個屬性都可以使用上面所有的設定方式，但是依照不同的屬性的定義，開發者在慣例上會頃向特定的設定方式，下面介紹時會做說明。
@@ -121,8 +121,7 @@ module.exports = {
 
 ```js
 // ./demos/rules-exclude/webpack.config.js
-const path = require("path");
-
+...
 module.exports = {
   module: {
     rules: [
@@ -140,6 +139,37 @@ module.exports = {
 ![rules-exclude-result](./assets/rules-exclude-result.png)
 
 由於排除了 `.js` 的檔案，因此只有 `/{absolute-path}/style.css` 觸發 Loaders 的執行。
+
+### `resourceQuery`
+
+如果 `resourecQuery` 所設定的判斷式匹配目標資源的 query 時，則條件成立。
+
+我們將上面的例子改一下：
+
+```js
+// ./demos/rules-resource-query/src/index.js
+import "./style.css?yoho";
+...
+```
+
+讓引入檔案路徑後面加上 `yoho` 的 query parameter ，再將配置改為 `resourceQuery`:
+
+```js
+// ./demos/rules-resource-query/webpack.config.js
+...
+module.exports = {
+  module: {
+    rules: [
+      {
+        resourceQuery: (query) => query.match(/yo/),
+        ...
+      },
+    ],
+  },
+};
+```
+
+`resourceQuery` 使用函式時帶入了 query 的參數，因此 `?yoho` 會被帶入，由於符合判斷，因此 `./style.css` 觸發了 Loaders 。
 
 ### 多種條件的配合
 
