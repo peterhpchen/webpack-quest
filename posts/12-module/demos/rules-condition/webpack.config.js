@@ -6,6 +6,7 @@ module.exports = {
     app: "./app/index.js",
   },
   module: {
+    jj: "",
     rules: [
       {
         resource: {
@@ -13,6 +14,13 @@ module.exports = {
         },
         loader: path.resolve(__dirname, "loader"),
         options: { rule: "test: /.js/" },
+      },
+      {
+        resource: {
+          test: path.resolve(__dirname, "src"),
+        },
+        loader: path.resolve(__dirname, "loader"),
+        options: { rule: "test: ./src" },
       },
       {
         include: path.resolve(__dirname, "src"),

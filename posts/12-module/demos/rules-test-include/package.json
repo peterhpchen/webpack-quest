@@ -1,0 +1,14 @@
+{
+  "name": "rules-test-include",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build:test": "webpack --config webpack.config.test.js",
+    "build:include": "webpack --config webpack.config.include.js"
+  },
+  "devDependencies": {
+    "webpack": "^4.44.2",
+    "webpack-cli": "^3.3.12"
+  }
+}
