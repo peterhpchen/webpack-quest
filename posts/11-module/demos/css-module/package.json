@@ -1,0 +1,18 @@
+{
+  "name": "css-module",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build:argv": "webpack --module-bind css=style-loader!css-loader?modules",
+    "build:argv2": "webpack --module-bind css=style-loader!css-loader?modules=true",
+    "build:argv3": "webpack --module-bind css=style-loader!css-loader?{\"modules\":true}",
+    "build:bind": "webpack --config webpack.config.demo.js"
+  },
+  "devDependencies": {
+    "css-loader": "4.2.1",
+    "style-loader": "1.2.1",
+    "webpack": "4.44.1",
+    "webpack-cli": "3.3.12"
+  }
+}

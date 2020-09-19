@@ -111,3 +111,98 @@ import "style-loader!css-loader!./style.css";
 現在我們對於 Loaders 已經有初步的概念的，接下來會說明配置 Loaders 的幾種方式。
 
 ## 配置 Loaders 的方式
+
+Loaders 的配置除了上面說明的 Inline 方式外，還有 CLI 及配置檔總共三種的設定方式：
+
+- Inline: 在模組路徑上使用 `!` 串接 Loaders 與路徑。
+- CLI: 使用 `--module-bind` 參數設定特定檔案的 Loaders 。
+- 配置檔: 使用 `module` 屬性設定配置檔。
+
+接著一一介紹不同的設定方式。
+
+## 使用 Inline
+
+Inline 的方式是在程式中的引入語法中加上對應 Loaders 的設定，使得此引入可以被特定 Loaders 處理。
+
+```js
+// ./demos/loader-style-inline/src/index.js
+import "style-loader!css-loader!./style.css";
+```
+
+使用 `!` 串接 Loaders 及模組路徑。
+
+我們也可以使用 `?` 設定 Loaders 的配置：
+
+```js
+// ./demos/css-module-inline/src/index.js
+
+import style from "style-loader!css-loader?modules!./style.css"; // query paramter
+import style from "style-loader!css-loader?modules=true!./style.css"; // query parameter
+import style from 'style-loader!css-loader?{"modules":true}!./style.css'; // JSON object
+```
+
+有 query 參數及 JSON 物件兩種設定方式，兩個方式效果都相同，依照的你的需求使用即可。
+
+## 使用 CLI
+
+使用 CLI 配置 `--module-bind` 參數即可設定 Loaders :
+
+```json
+// ./demos/loader-style/package.json
+{
+  ...
+  "scripts": {
+    "build:argv": "webpack --module-bind css=style-loader!css-loader",
+    ...
+  },
+  ...
+}
+```
+
+`--module-bind` 設定的 key 是欲處理目標模組的副檔名（`css`）， value 是 Inline 的設定方式，以 `!` 串接 Loaders（`style-loader!css-loader`）。
+
+同樣的 CLI 也可以使用 Inline 設定方式配置參數：
+
+```json
+// ./demos/css-module/package.json
+{
+  ...
+  "scripts": {
+    "build:argv": "webpack --module-bind css=style-loader!css-loader?modules",
+    "build:argv2": "webpack --module-bind css=style-loader!css-loader?modules=true",
+    "build:argv3": "webpack --module-bind css=style-loader!css-loader?{\"modules\":true}",
+    ...
+  },
+  ...
+}
+
+```
+
+使用 `?` 加在 Loaders 後面，可以設定參數。
+
+## 使用配置檔中的 `module` 屬性
+
+`module` 屬性用於告訴 webpack 模組應該怎麼被解析，因此我們可以使用 `module` 配置各模組對應的 Loaders 讓 webpack 可以讀懂特定的模組。
+
+下面是個簡單的例子：
+
+```js
+// ./demos/css-module/webpack.config.demo.js
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.css$/i,
+        use: [
+          "style-loader",
+          { loader: "css-loader", options: { modules: true } },
+        ],
+      },
+    ],
+  },
+};
+```
+
+`module.rules` 屬性中配置如何解析模組，基本的配置有 `test` 及 `use` 兩個屬性：
+
+- `test`:
