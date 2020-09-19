@@ -7,7 +7,7 @@
     "build:argv": "webpack --module-bind css=style-loader!css-loader?modules",
     "build:argv2": "webpack --module-bind css=style-loader!css-loader?modules=true",
     "build:argv3": "webpack --module-bind css=style-loader!css-loader?{\"modules\":true}",
-    "build:bind": "webpack --config webpack.config.demo.js"
+    "build:file": "webpack --config webpack.config.demo.js"
   },
   "devDependencies": {
     "css-loader": "4.2.1",
