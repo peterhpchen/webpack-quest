@@ -2,6 +2,8 @@
 
 > 本文以實作的方式展示 webpack 的各項主要功能。
 
+> 本文的範例程式放在 [peterhpchen/webpack-quest](https://github.com/peterhpchen/webpack-quest/tree/master/posts/05-first-webpack/demos) 中，每個程式碼區塊的第一行都會標注檔案的位置，請搭配文章作參考。
+
 前一篇的[介紹 webpack](../04-introduction/README.md) 一文中介紹了 webpack 各個核心的概念以及整個運作原理，現在終於可以來真的動手寫代碼了。
 
 接著就來寫我們的第一隻 webpack 程式吧。
