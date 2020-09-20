@@ -17,7 +17,7 @@
 9. [入口 (entry) 與 context](./09-entry/README.md)
 10. [輸出 (output)](./10-output/README.md)
 11. [載入器 (loaders)](./11-loaders/README.md)
-12. [模組 (module)](./12-module/README.md)
+12. [模組 Module 的規則判定](./12-module/README.md)
 13. [插件 (plugins)]()
 14. [解析 (resolve)]()
 15. [模式 (mode)]()

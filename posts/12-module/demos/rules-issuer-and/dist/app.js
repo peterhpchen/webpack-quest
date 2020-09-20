@@ -50,17 +50,15 @@
       return Object.prototype.hasOwnProperty.call(e, t);
     }),
     (n.p = ""),
-    n((n.s = 0));
+    n((n.s = 2));
 })([
+  ,
+  ,
   function (e, t, n) {
     "use strict";
     n.r(t);
-    n(1), n(2);
+    n(3);
+    console.log("index");
   },
-  function (e, t) {
-    console.log("./src/alpha.js");
-  },
-  function (e, t) {
-    console.log("./src/beta.js");
-  },
+  function (e, t) {},
 ]);

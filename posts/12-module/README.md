@@ -1,6 +1,8 @@
-# 模組 Module
+# 模組 Module 的規則判定
 
-> 本文講解 Webpack 中 `module` 屬性的設定方式。
+> 本文為 `module` 屬性的設定方式解說的第一篇，講解 `module` 屬性中的規則如何匹配。
+
+> 本文的範例程式放在 [peterhpchen/webpack-quest](https://github.com/peterhpchen/webpack-quest/tree/master/posts/12-module/demos) 中，每個程式碼區塊的第一行都會標注檔案的位置，請搭配文章作參考。
 
 `module` 屬性告訴 webpack 應該如何處理各個模組。
 
@@ -10,12 +12,7 @@ webpack 從 `entry` 開始依序掃描各個模組，在掃描的過程中會用
 
 ![graph](./assets/graph.png)
 
-圖中提到了兩個 `module` 屬性(藍色粗體)， `rules` 及 `noParse`：
-
-- `rules`: 設定模組要使用何種的 Loaders 及要啟用或停用哪些解析器(ex: AMD, CJS or ES2015)。
-- `noParse`: 哪些模組不做解析的動作。
-
-接下來會依序介紹 `rules` 及 `noParse` 的使用方式。
+本文會講解如何配置 webpack 使特定模組適用指定規則，就是圖中藍色的 `Need Loaders?` 與 `Need Parse?` 這兩個部分。
 
 ## 設定一個 `rules`
 
@@ -71,38 +68,26 @@ module.exports = {
 
 ```js
 // ./demos/rules-test-include/webpack.test.js
-const path = require("path");
-
+...
 module.exports = {
   module: {
     rules: [
       {
         test: /\.js$/,
-        use: [
-          {
-            loader: path.resolve(__dirname, "loader"),
-            options: { rule: "test" },
-          },
-        ],
+        ...
       },
     ],
   },
 };
 
 // ./demos/rules-test-include/webpack.include.js
-const path = require("path");
-
+...
 module.exports = {
   module: {
     rules: [
       {
         include: /\.js$/,
-        use: [
-          {
-            loader: path.resolve(__dirname, "loader"),
-            options: { rule: "include" },
-          },
-        ],
+        ...
       },
     ],
   },
@@ -287,6 +272,8 @@ module.exports = {
 
 而 `issuer` 並沒有縮寫的用法，因此請直接使用 `issuer.test`, `issuer.include` 與 `issuer.exclude` 設定。
 
+只要使用了縮寫的 `test`, `include` 與 `exclude` 就不能在使用 `resource` 做設定，反之亦然。
+
 ## `and`, `or` 與 `not`
 
 除了上述的三個判斷(`test`, `include`, `exclude`)外，另外還有 `and`, `or` 與 `not` 三個沒有縮寫的判斷，它們的說明如下：
@@ -295,6 +282,164 @@ module.exports = {
 - `or`: 包含匹配任意規則的模組，須在 `resource`, `issuer` 中使用。
 - `not`: 排除匹配任一規則的模組，須在 `resource`, `issuer` 屬性中使用。
 
+這三個需要明確寫出是在 `resource` 還是 `issuer` 中做設定。
+
+以例子來說明用法，範例的資料結構如下：
+
+```plaintext
+root
+|- src
+  |- index.js
+  |- style.css
+|- app
+  |- index.js
+  |- style.css
+```
+
+配置如下：
+
+```js
+// ./demos/rules-issuer-and/webpack.config.js
+...
+
+module.exports = {
+  entry: {
+    main: './src/index.js',
+    app: './app/index.js'
+  },
+  module: {
+    rules: [
+      {
+        issuer: {
+          and: [
+            path.resolve(__dirname, 'src'),
+            /\.js$/
+          ]
+        },
+        ...
+      },
+    ],
+  },
+};
+```
+
+執行結果為：
+
+![rules-issuer-and](./assets/rules-issuer-and.png)
+
+結果中可以看到只有 `./src/style.css` 觸發規則，因為`issuer` 的判斷目標為請求資源的模組 ，而 `and` 判斷需要所有的條件為真，所以此設定的意義是：請求資源的模組路徑要在 `./src` 下，並且要是 `.js` 檔案。
+
+`./app/index.js` 雖然是 `.js` 檔案，但並不在 `./src` 目錄下，因此 `./app/style.css` 並不符合條件。
+
+## 多規則配置
+
+上面的例子都是單個規則，其實 webpack 是可以讓同個資源使用多個規則做設定。
+
+以下面例子來說：
+
+```js
+// ./demos/rules-multiple/webpack.config.js
+const path = require("path");
+
+module.exports = {
+  module: {
+    rules: [
+      {
+        // 0
+      },
+      {
+        test: /\.js$/, // a
+        rules: [
+          {
+            include: path.resolve(__dirname, "src"), // a-a
+          },
+          {
+            include: path.resolve(__dirname, "src"), // a-b
+          },
+        ],
+      },
+      {
+        test: /\.js$/, //b
+      },
+    ],
+  },
+};
+```
+
+執行結果如下：
+
+![rules-multiple](./assets/rules-multiple.png)
+
+還記得 Loaders 的觸發順序是由後往前嗎？因此這裡 Loader `b` 會先被觸發，到 `a` 的時候因為它是巢狀規則，在巢狀結構下，是由內向外觸發，因此依序是 `a-b`, `a-a` 到 `a` ，最後執行的是第一個規則 `0` ，這是一個無條件的規則，代表任何模組都會符合此規則而觸發其設定的規則。
+
+### `oneOf`
+
+一般的設定是只要符合條件就適用規則，而在 `oneOf` 條件下的規則是**只要有一個規則成立，其他規則就會忽略**，是當你只想要讓模組符合其中一個規則時使用的。
+
+我們將剛剛的例子加上 `oneOf`:
+
+```js
+const path = require("path");
+
+module.exports = {
+  module: {
+    rules: [
+      {
+        oneOf: [
+          {
+            // 0
+          },
+          {
+            test: /\.js$/, // a
+            rules: [
+              {
+                include: path.resolve(__dirname, "src"), // a-a
+              },
+              {
+                include: path.resolve(__dirname, "src"), // a-b
+              },
+            ],
+          },
+          {
+            test: /\.js$/, // b
+          },
+        ],
+      },
+    ],
+  },
+};
+```
+
+執行結果如下：
+
+![rules-oneof](./assets/rules-oneof.png)
+
+可以看到因為第一個規則就已經命中了，所以只有 `0` 觸發了 Loaders ，其他都沒有執行。
+
+從 `oneOf` 的例子可以知道，判斷是由前往後的，而執行是由後往前的。
+
+可以用下面的圖來說明判斷及執行的順序：
+
+![rule-condition-execution](./assets/rule-condition-execution.png)
+
+- 判斷是由前往後，由淺到深
+- 執行是由後往前，由深到淺
+
+## 總結
+
+本文講解 rules 的匹配方式，其目標有 `resource` 與 `issuer` 兩種，`resource` 代表請求的資源，而 `issuer` 則是請求資源的模組。
+
+webpack 提供了 `test`, `include`, `exclude`, `and`, `or`, `not` 判斷方式供 `resource` 與 `issuer` 目標使用，其中 `resource.test`, `resource.include` 與 `resource.exclude` 都可以省略 `resource` 這一層。
+
+在多規則的情況下，只要符合條件的模組都會觸發規則，其判斷的順序是由前到後、由外到內，而執行順序是由後到前、由內到外。
+
+多規則情況下，如果只想讓模組只觸發一次規則，可以使用 `oneOf` 做設定。
+
+下篇是 `module` 的第二篇文章，會說明在規則內如何配置想要的處理。
+
 ## 參考資料
 
 - [Webpack Docuementation: Configuration - Module](https://v4.webpack.js.org/configuration/module/)
+- [Webpack Contribute: Writing a Loader](https://v4.webpack.js.org/contribute/writing-a-loader/)
+- [Webpack Documentation: API - Loader Interface](https://v4.webpack.js.org/api/loaders/)
+- [Webpack - Behind the Scenes](https://medium.com/@imranhsayed/webpack-behind-the-scenes-85333a23c0f6)
