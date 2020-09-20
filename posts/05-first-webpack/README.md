@@ -2,6 +2,8 @@
 
 > 本文以實作的方式展示 webpack 的各項主要功能。
 
+> 本文的範例程式放在 [peterhpchen/webpack-quest](https://github.com/peterhpchen/webpack-quest/tree/master/posts/05-first-webpack/demos) 中，每個程式碼區塊的第一行都會標注檔案的位置，請搭配文章作參考。
+
 前一篇的[介紹 webpack](../04-introduction/README.md) 一文中介紹了 webpack 各個核心的概念以及整個運作原理，現在終於可以來真的動手寫代碼了。
 
 接著就來寫我們的第一隻 webpack 程式吧。
@@ -29,7 +31,7 @@ mkdir public
 再來建立 `index.html` 及 `index.js` ：
 
 ```html
-<!-- demos/simple-app/public/index.html -->
+<!-- ./demos/simple-app/public/index.html -->
 <!DOCTYPE html>
 <html>
   <head>
@@ -43,7 +45,7 @@ mkdir public
 ```
 
 ```js
-// demos/simple-app/public/index.js
+// ./demos/simple-app/public/index.js
 const demoName = "Simple App";
 
 function component() {
@@ -57,7 +59,7 @@ function component() {
 document.body.appendChild(component());
 ```
 
-再來先用 `http-server` 讓程式跑起來吧：
+我們使用 `http-server` 當我們測試用的伺服器，要先安裝：
 
 ```bash
 npm install http-server --save-dev
@@ -66,7 +68,7 @@ npm install http-server --save-dev
 在 `package.json` 中的 `scripts` 中加上 `start`：
 
 ```js
-// demos/simple-app/package.json
+// ./demos/simple-app/package.json
 {
     "scripts": {
         "start": "http-server"
@@ -100,7 +102,7 @@ root
   |- index.js
 ```
 
-到目前為止，我們已經完成應用程式了，但是以傳統的方式開發的應用程式會引發**變數衝突**、**不明確的引入**、**引入順序**、**引入不必要的程式碼**以及**載入多個檔案的問題**(可以參考 [JavaScript 的模組化之路](../02-history-of-js-module/README.md) 一文)。
+現在我們已經完成應用程式了，但是以傳統的方式開發的應用程式會引發**變數衝突**、**不明確的引入**、**引入順序**、**引入不必要的程式碼**以及**載入多個檔案...** 等問題(可以參考 [JavaScript 的模組化之路](../02-history-of-js-module/README.md) 一文)。
 
 接下來，我們將利用模組化編程解決這些問題，並且使用 webpack 建置專案。
 
@@ -112,11 +114,11 @@ root
 npm install webpack webpack-cli --save-dev
 ```
 
-需要安裝核心庫以及 CLI 以便操作 webpack 的相關指令。
+需要安裝**核心庫**以及 **CLI** 以便操作 webpack 的相關指令。
 
 ## 配置 webpack 專案
 
-在使用 webpack 時，因為有建置過程，因此專案會分為原始檔案以及建置過的檔案兩個部分，因此我們需要先將檔案放到適當的路徑下。
+在使用 webpack 時，因為有建置過程，因此專案會分為**原始檔案**以及**建置過的檔案**兩個部分，因此我們需要先將檔案放到適當的路徑下。
 
 webpack 預設的起始模組是 `./src/index.js` ，因此需要將原本的 `public` 資料夾名稱改為 `src` ，這個 `src` 就是放原始檔案的目錄。
 
@@ -135,10 +137,16 @@ root
 
 ### 改為模組化編程
 
-原本 Lodash 是用 CDN 載入的，現在改為用 `npm` 安裝，再用 `import` 語法引入：
+原本 Lodash 是用 CDN 載入的，現在改為用 `npm` 安裝：
 
 ```js
-// demos/zero-config/src/index.js
+npm install lodash -D
+```
+
+再用 `import` 語法引入：
+
+```js
+// ./demos/zero-config/src/index.js
 import _ from "lodash";
 
 const demoName = "Zero Config";
@@ -157,7 +165,7 @@ document.body.appendChild(component());
 記得要把 `index.html` 的 `<script>` 刪除：
 
 ```html
-<!-- demos/zero-config/dist/index.html -->
+<!-- ./demos/zero-config/dist/index.html -->
 <!DOCTYPE html>
 <html>
   <head>
@@ -176,7 +184,7 @@ document.body.appendChild(component());
 先將 `webpack` 指令加到 `package.json` 的 `scripts`：
 
 ```js
-// demos/zero-config/package.json
+// ./demos/zero-config/package.json
 {
     "scripts": {
         "build": "webpack"
@@ -196,16 +204,14 @@ npm run build
 
 ![zero-config-build](./assets/zero-config-build.png)
 
-因為預設的起始模組是 `./src/index.js` ，
-
-建置依照 webpack 的內建值，輸出到了 `./dist` 目錄下， bundle 會是一個名為 `main.js` 的檔案。
+因為預設的起始模組是 `./src/index.js` ，由於我們的設定有符合 webpack 的預設值，因此不用在自行配置。建置依照 webpack 的內建值，輸出到了 `./dist` 目錄下， bundle 會是一個名為 `main.js` 的檔案。
 
 > WARNING 是提醒沒有配置 `mode` ，預設會以 `production` 處理。 `mode` 會在之後的章節說明。
 
 由於 JavaScript 檔名變為 `main.js`，因此要去修改 `index.html` ：
 
 ```html
-<!-- demos/zero-config/dist/index.html -->
+<!-- ./demos/zero-config/dist/index.html -->
 <!DOCTYPE html>
 <html>
   <head>
@@ -220,7 +226,7 @@ npm run build
 現在建置後的檔案在 `./dist` 目錄下，因此需要修改 `start` 指令中 `http-server` 的目標目錄：
 
 ```js
-// demos/zero-config/package.json
+// ./demos/zero-config/package.json
 {
     "scripts": {
       "start": "http-server ./dist"
@@ -245,7 +251,7 @@ npm run build
 現在我們來加張圖片吧，把 `webpack-logo.png` 放到 `./src` ，並且在 `index.js` 中寫程式將圖片加到畫面上：
 
 ```js
-// demos/load-image/src/index.js
+// ./demos/load-image/src/index.js
 import _ from "lodash";
 
 import WebpackLogo from "./webpack-logo.png";
@@ -312,7 +318,7 @@ import WebpackLogo from "file-loader!./webpack-logo.png";
 
 ## 自動產生 dist 內所有的內容
 
-`index.html` 目前是直接放在 `./dist` 目錄下，但是大部分常規專案的 `./dist` 的內容都是自動產生的，這樣的好處是可以讓自己撰寫的有邏輯的代碼與一般人較難理解的機器產生的代碼做區分，在 `commit` 代碼時也會避免將 `./dist` 的代碼 `push` 到代碼庫中。
+`index.html` 目前是直接放在 `./dist` 目錄下，但是大部分常規專案的 `./dist` 的內容都是自動產生的，這樣的好處是可以讓自己撰寫的有邏輯的代碼與機器所產生的建置後的代碼做區分，在 `commit` 代碼時也會避免將 `./dist` 的代碼 `push` 到代碼庫中。
 
 為了方便管理，我們建立一個 `./public` 目錄並將 `index.html` 放到這目錄下：
 
@@ -369,16 +375,16 @@ module.exports = {
 
 ![copy-html](./assets/copy-html.png)
 
-結果雖然與之前的相同，但是整個建置流程變得很通暢。
+結果雖然與之前的相同，但是整個建置流程變得更加流暢了呢！
 
 ## 總結
 
 我們剛開始創建一個沒有使用 webpack 的應用程式，接著將 webpack 帶入專案建立建置流程，並且使用 `file-loader` 載入圖片檔，最後使用 `CopyWebpackPlugin` 複製 `index.html` 到 `./dist` 目錄中。
 
-這個範例讓我們了解到， webpack **處理模組**、**使用 loader 引入非 JavaScript 代碼**及**藉由 plugin 處理打包模組外的其他事情**，充分地展示了 webpack 的能力，也讓我們對 webpack 有粗略的了解。
+這個範例讓我們了解到 webpack 的**開箱即用**、**處理模組**、**使用 loader 引入非 JavaScript 代碼**及**藉由 plugin 處理打包模組外的其他事情**，充分地展示了 webpack 的能力，也讓我們對 webpack 有粗略的了解。
 
 ## 參考資料
 
-- [Getting Started](https://webpack.js.org/guides/getting-started/)
-- [file-loader](https://webpack.js.org/loaders/file-loader/)
-- [CopyWebpackPlugin](https://webpack.js.org/plugins/copy-webpack-plugin/)
+- [Webpack Documentation: Guides - Getting Started](https://webpack.js.org/guides/getting-started/)
+- [Webpack Documentation: Loaders - file-loader](https://webpack.js.org/loaders/file-loader/)
+- [Webpack Documentation: Plugins - CopyWebpackPlugin](https://webpack.js.org/plugins/copy-webpack-plugin/)
