@@ -2,13 +2,15 @@
 
 > 本文會講解 webpack 的配置檔。
 
+> 本文的範例程式放在 [peterhpchen/webpack-quest](https://github.com/peterhpchen/webpack-quest/tree/master/posts/06-config-webpack/demos) 中，每個程式碼區塊的第一行都會標注檔案的位置，請搭配文章作參考。
+
 webpack 開箱即用(out of the box)，不用任何配置就可以使用。只要將起始模組放於 `./src/index.js` ，輸入 `webpack` 指令就可以在 `./dist/main.js` 中產生適用於生產環境( `production` )的 bundle 。
 
 但開箱即用的功能僅占了 webpack 的極小部分，如果想要完全掌握 webpack ，首先最重要的就是學會如何配置它。
 
 ## 配置 webpack
 
-webpack 主要的配置方式是利用 CLI 或是 Node.js API 引入配置物件，引入的方式會在下一篇[使用 webpack](../07-use-webpack/README.md) 中詳細說明，本文主要說明配置物件本身的設定方式。
+webpack 主要的配置方式是利用 CLI 或是 Node.js API 引入配置物件，引入的方式會在下一篇[使用 CLI 操作 webpack](../07-use-cli/README.md) 中詳細說明，本文主要說明配置物件本身的設定方式。
 
 ## 配置物件(Configuration Object)
 
@@ -29,6 +31,8 @@ webpack 主要的配置方式是利用 CLI 或是 Node.js API 引入配置物件
 ```
 
 這配置物件配置了 `mode`, `entry` 及 `output` 。
+
+> 如果不清楚各個設定的意義，可以參考[介紹 webpack](../04-introduction/README.md)一文的說明。
 
 ## 使用配置物件
 
@@ -135,12 +139,12 @@ webpack 是由配置物件做為主要的設定方式，配置物件可以由 we
 
 配置物件內的路徑應使用 Node.js 內建的模組 `path` 或是全域變數 `__dirname` 來處理以避免 POSIX 與 Windows 路徑不同的問題。
 
-接著簡單概述配置物件中的各個屬性的作用，可以看到種類豐富的設定，涵蓋了幾戶整個 webpack 的功能，讓我們可以用配置物件控制 webpack 的建置工作。
+本文簡單概述配置物件中的各個屬性的作用，可以看到種類豐富的設定，涵蓋了幾乎整個 webpack 的功能，讓我們可以用配置物件控制 webpack 的建置工作。
 
 最後介紹 **Generate Custom Webpack Configuration** 及 **Create App** 兩個線上工具幫忙建置專案的配置。除了線上的工具， `webpack-cli` 自己也提供了 `init` 指令，使用終端的問答，來建置使用者期望的專案配置。並且 `webpack-cli init` 也讓使用者可以自己建立腳手架，客製自己的 `init` 專案。
 
 ## 參考資料
 
-- [Configuration](https://webpack.js.org/configuration/)
-- [webpack-cli](https://github.com/webpack/webpack-cli)
-- [Scaffolding](https://webpack.js.org/guides/scaffolding/)
+- [Webpack Documentation: Configuration - Configuration](https://webpack.js.org/configuration/)
+- [GitHub: webpack/webpack-cli](https://github.com/webpack/webpack-cli)
+- [Webpack Documentation: Guides - Scaffolding](https://webpack.js.org/guides/scaffolding/)

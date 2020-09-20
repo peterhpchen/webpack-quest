@@ -2,7 +2,7 @@
 
 > 本文講述 JavaScript 模組化的發展，以及這樣的發展讓現代 JavaScript 開發遭遇了什麼樣的困難。
 
-> 本文範例放於 [GitHub](https://github.com/peterhpchen/webpack-quest/tree/master/posts/02-history-of-js-module/demos) 。
+> 本文的範例程式放在 [peterhpchen/webpack-quest](https://github.com/peterhpchen/webpack-quest/tree/master/posts/02-history-of-js-module/demos) 中，每個程式碼區塊的第一行都會標注檔案的位置，請搭配文章作參考。
 
 我有一隻愛用的滑鼠，那是個無線滑鼠，在電腦上插上接收器就可以使用了，非常的方便。因為在家裡用習慣了，因此我去上班時都會帶著它，到公司後只要插上接收器就可以直接上工，讓我的工作效率大幅的提升...。
 
