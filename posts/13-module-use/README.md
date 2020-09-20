@@ -19,9 +19,9 @@
 
 接下來會從如何設定 Loaders 說起，之後再說明 Parser 的設定。
 
-##  使用 Loaders
+## 使用 Loaders
 
-Loaders 的設定可以使用 `loader`, `options` 與 `use` 三種屬性做設定。
+Loaders 的設定可以使用 `loader`, `options` 與 `use` 三種屬性做設定。
 
 `loader` 與 `options` 都是屬於縮寫，因此我們從擁有完整功能的 `use` 開始講起吧。
 
@@ -121,7 +121,7 @@ module.exports = function (source) {
 
 ##### `ident` 屬性
 
-webpack 會用全部的 Loaders 包括 `options` 與資源模組建立一組唯一的 ID ， 在轉換時會用 `JSON.stringify` 處理 Loader 的 `options` ，但有時因為錯誤而轉換失敗(例如: [circular JSON](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Cyclic_object_value))。
+webpack 會用全部的 Loaders 包括 `options` 與資源模組建立一組唯一的 ID ， 在轉換時會用 `JSON.stringify` 處理 Loader 的 `options` ，但有時因為錯誤而轉換失敗(例如: [circular JSON](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Cyclic_object_value))。
 
 為了解決轉換失敗的問題， webpack 提供了 `ident` 屬性，讓使用者自己定義 `options` 的 ID ，如此一來就可以避免轉換錯誤了。
 
