@@ -327,7 +327,7 @@ module.exports = {
 
 ![rules-issuer-and](./assets/rules-issuer-and.png)
 
-結果中可以看到只有 `./src/style.css` 觸發規則，因為`issuer` 的判斷目標為請求資源的模組 ，而 `and` 判斷需要所有的條件為真，所以此設定的意義是：請求資源的模組路徑要在 `./src` 下，並且要是 `.js` 檔案。
+結果中可以看到只有 `./src/style.css` 觸發規則，因為`issuer` 的判斷目標為請求資源的模組 ，而 `and` 判斷需要所有的條件為真，所以此設定的意義是：請求資源的模組路徑要在 `./src` 下，並且要是 `.js` 檔案。
 
 `./app/index.js` 雖然是 `.js` 檔案，但並不在 `./src` 目錄下，因此 `./app/style.css` 並不符合條件。
 
