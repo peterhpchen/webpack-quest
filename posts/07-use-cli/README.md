@@ -2,6 +2,8 @@
 
 > 本文將會學到如何使用 CLI 來操作 webpack 。
 
+> 本文的範例程式放在 [peterhpchen/webpack-quest](https://github.com/peterhpchen/webpack-quest/tree/master/posts/07-use-cli/demos) 中，每個程式碼區塊的第一行都會標注檔案的位置，請搭配文章作參考。
+
 操作 webpack 的方法有兩種，一種是之前有使用到的 CLI ，另一種是直接使用 Node.js API 來控制。本文會先講解大部分的人都有機會接觸的 CLI 方法。
 
 ## CLI
@@ -69,7 +71,7 @@ webpack --entry ./src/index2.js --output ./build/bundle.js
 
 輸入從預設的 `./src/index.js` 改為 `./src/index2.js` 。
 
-> CLI 如果已經設定了 `entry` 選項，但沒設定 `output` 的話，會造成輸出 bunlde 檔名變為 `null.js` ，因此此例子加上 `output` 設定避免此問題。
+> CLI 如果已經設定了字串值的 `entry` 選項，但沒設定 `output` 的話，會造成輸出 bunlde 檔名變為 `null.js` ，因此此例子加上 `output` 設定避免此問題。
 
 - 使用 CLI 設定開發模式
 
@@ -84,7 +86,7 @@ webpack --mode development
 
 指令參數在像是 demo 或 prototype 的專案上，可以較配置檔來的節省配置的時間，加快開發的速度。
 
-但指令參數並不能設定太複雜的 配置，因此某先功能無法再 CLI 中設定(例如： Plugins)，所以在大型專案上，還是使用配置檔會是更好的選擇。
+但指令參數並不能設定太複雜的 配置，因此某些功能無法在 CLI 中設定(例如： Plugins)，所以在大型專案上，還是使用配置檔會是更好的選擇。
 
 ### 使用配置檔
 
@@ -114,7 +116,7 @@ webpack --config webpack.config.prod.js
 
 #### 配置檔的優缺點
 
-配置檔可以完全控制 webpack ，但如此細部的控制讓 webpack 的配置檔變得十分的複雜，配置時需要耗費大量的精力做研究與設定，因此在小型專案或講求快速開發時，應盡量避免使用配置檔。
+配置檔可以完全控制 webpack ，但如此細部的控制讓 webpack 的配置檔變得十分的複雜，配置時需要耗費大量的精力做研究與設定，因此在小型專案或講求快速開發時，可以使用 CLI 參數做配置以節省時間。
 
 ## 配置檔在多環境下的配置方式
 
@@ -245,7 +247,7 @@ module.exports = (env, argv) => ({
 
 可以將所有的配置放於同個檔案中，並且用 JavaScript 代碼判斷在哪個環境下以此來設定不同的屬性值，達到切換環境的建置目的。
 
-需要注意的是參數中的設定有可能跟配置物件發生衝突，盡量使用環境變數(`env`)、少用參數(`argv`)。
+需要注意的是可能會不小心在 CLI 參數跟配置物件中設定到相同的屬性，這時 CLI 參數會被採納造成配置檔中的設定失效，因此盡量使用環境變數(`env`)、少用參數(`argv`)。
 
 ### 配置模組傳回 Promise
 
@@ -301,7 +303,7 @@ module.exports = [
 
 直接下 `webpack` 指令就可以建置 `development` 及 `production` 環境。
 
-如果只想要執行其中一個的話，可以使用 `--config-name` 來對應不同的配置：
+如果只想要執行其中一個的話，可以使用 `--config-name` 來對應屬性 `name` 做不同的配置：
 
 ```js
 // ./demos/export-array/package.json
@@ -321,6 +323,6 @@ module.exports = [
 
 ## 參考資料
 
-- [Configuration](https://webpack.js.org/concepts/configuration/)
-- [Configuration Types](https://webpack.js.org/configuration/configuration-types/)
-- [Command Line Interface](https://webpack.js.org/api/cli/)
+- [Webpack Documentation: Concepts - Configuration](https://webpack.js.org/concepts/configuration/)
+- [Webpack Documentation: Configuration - Configuration Types](https://webpack.js.org/configuration/configuration-types/)
+- [Webpack Documentation: API - Command Line Interface](https://webpack.js.org/api/cli/)
