@@ -16,12 +16,12 @@
 
 9. [入口 Entry](./09-entry/README.md)
 10. [輸出 Output](./10-output/README.md)
-11. [載入器(Loaders)](./11-loaders/README.md)
-12. [模組 Module 的規則判定](./12-module/README.md)
-13. [模組 Module 的處理](./13-module-use/README.md)
+11. [解析 Resolve](./11-resolve/README.md)
+12. [載入器(Loaders)](./12-loaders/README.md)
+13. [模組 Module 的規則判定](./13-module/README.md)
+14. [模組 Module 的處理](./14-module-use/README.md)
 
-14. [插件 (plugins)]()
-15. [解析 (resolve)]()
+15. [插件 (plugins)]()
 16. [模式 (mode)]()
 17. [監聽 (watch) 與 watchOptions]()
 18. [Source Map (devTool)]()

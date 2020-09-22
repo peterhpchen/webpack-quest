@@ -2,6 +2,8 @@
 
 > 本文將會學到如何使用 Node.js API 來操作 webpack 。
 
+> 本文的範例程式放在 [peterhpchen/webpack-quest](https://github.com/peterhpchen/webpack-quest/tree/master/posts/08-use-node-api/demos) 中，每個程式碼區塊的第一行都會標注檔案的位置，請搭配文章作參考。
+
 Node.js API 是除了 CLI 外另一個操作 webpack 的方法。由於 CLI 會以自己的方式產生輸出資訊與錯誤訊息及 Log ，因此對於有客製建置流程資訊的使用者來說， Node.js API 就是個很好的選擇。
 
 ## 安裝
@@ -45,7 +47,7 @@ webpack(configurationObject, callbackFunction);
 
 ## 使用 `webpack(configObj)` 產生 Compiler 實體
 
-沒有第二個參數時， `webpack()` 會傳回編譯器物件，可以用它操作 webpack 的建置。
+沒有第二個參數時， `webpack()` 會傳回編譯器物件(Compiler)，可以用它操作 webpack 的建置。
 
 此物件有兩個方法：
 
@@ -55,6 +57,7 @@ webpack(configurationObject, callbackFunction);
 ### `run(callback)`
 
 ```js
+// ./demos/node-interface-run/build.js
 const webpack = require("webpack");
 const path = require("path");
 
@@ -76,6 +79,7 @@ compiler.run(callbackFunction);
 ### `watch(watchOptions, callback)`
 
 ```js
+// ./demos/node-interface-watch/build.js
 const webpack = require("webpack");
 const path = require("path");
 
@@ -118,7 +122,7 @@ watching.invalidate();
 下面這裡例子展示了 Compiler 的使用方式：
 
 ```js
-// ./demos/node-interface-watch
+// ./demos/node-interface-watch/build.js
 const webpack = require("webpack");
 const path = require("path");
 
@@ -196,6 +200,7 @@ setTimeout(() => {
 `webpack()` 與 CLI 的配置檔一樣只要給予陣列的格式，就可以同時編譯多種配置：
 
 ```js
+// ./demos/node-interface-multiple/build.js
 const webpack = require("webpack");
 const path = require("path");
 
@@ -335,7 +340,7 @@ Stats 物件提供不同的方法以便使用者取得想要的資料，而 Stat
 
 ## 參考資料
 
-- [Node Interface](https://webpack.js.org/api/node/)
-- [Stats Data](https://webpack.js.org/api/stats/)
-- [Watch and WatchOptions](https://webpack.js.org/configuration/watch/)
-- [Stats](https://webpack.js.org/configuration/stats/)
+- [Webpack Documentation: API - Node Interface](https://webpack.js.org/api/node/)
+- [Webpack Documentation: API - Stats Data](https://webpack.js.org/api/stats/)
+- [Webpack Documentation: Configuration - Watch and WatchOptions](https://webpack.js.org/configuration/watch/)
+- [Webpack Documentation: Configuration - Stats](https://webpack.js.org/configuration/stats/)

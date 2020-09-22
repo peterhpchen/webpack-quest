@@ -272,7 +272,7 @@ module.exports = {
 
 ## Loaders 的順序
 
-在[模組 Module 的規則判定](../12-module/README.md)一文中有提到規則執行的順序是由後往前的，但其實執行順序是可以被 `enforce` 屬性更改，或是使用 Inline 的前置符排除特定的 Loaders 執行。
+在[模組 Module 的規則判定](../13-module/README.md)一文中有提到規則執行的順序是由後往前的，但其實執行順序是可以被 `enforce` 屬性更改，或是使用 Inline 的前置符排除特定的 Loaders 執行。
 
 ### Loaders 的類型
 
