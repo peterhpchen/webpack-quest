@@ -55,6 +55,6 @@
   function (e, t, r) {
     "use strict";
     r.r(t);
-    console.log("Hello hello");
+    console.log("Page alpha");
   },
 ]);
