@@ -2,6 +2,10 @@
 
 > 本文講解 webpack 配置項 `entry` 的使用方式。
 
+> 本文的範例程式放在 [peterhpchen/webpack-quest](https://github.com/peterhpchen/webpack-quest/tree/master/posts/09-entry/demos) 中，每個程式碼區塊的第一行都會標注檔案的位置，請搭配文章作參考。
+
+![entry](./assets/entry.png)
+
 `entry` 屬性設定整個 bundle 的起點， webpack 會由 `entry` 開始尋找相依模組來組成相依圖，本文將介紹 `entry` 的各種設定方式。
 
 ## 預設值
@@ -102,7 +106,7 @@ module.exports = {
 }
 ```
 
-`webpack` 指令的預設參數是 `entry` ，複數個參數就代表使用多個起始模組的單一入口點配置。
+`webpack` 指令的預設參數是 `entry` ，複數個參數就代表使用多個起始模組的單一入口點配置，當執行包有多個入口的 bundle 時，入口模組會依序被執行。
 
 ## 物件
 
@@ -316,7 +320,7 @@ root
 
 ## 參考資料
 
-- [Concepts](https://webpack.js.org/concepts/#entry)
-- [Entry Points](https://webpack.js.org/concepts/entry-points/)
-- [Entry and Context](https://webpack.js.org/configuration/entry-context/)
+- [Webpack Documentation: Concepts - Concepts - entry](https://webpack.js.org/concepts/#entry)
+- [Webpack Documentation: Concepts - Entry Points](https://webpack.js.org/concepts/entry-points/)
+- [Webpack Documentation: Configuration - Entry and Context](https://webpack.js.org/configuration/entry-context/)
 - [令人困惑的 webpack 之 entry](https://juejin.im/entry/6844903463818625037)
