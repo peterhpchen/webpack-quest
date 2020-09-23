@@ -20,8 +20,8 @@
 12. [載入器(Loaders)](./12-loaders/README.md)
 13. [模組 Module 的規則判定](./13-module/README.md)
 14. [模組 Module 的處理](./14-module-use/README.md)
+15. [插件 Plugins](./15-plugins/README.md)
 
-15. [插件 (plugins)]()
 16. [模式 (mode)]()
 17. [監聽 (watch) 與 watchOptions]()
 18. [Source Map (devTool)]()
