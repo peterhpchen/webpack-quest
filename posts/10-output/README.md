@@ -2,6 +2,8 @@
 
 > 本文講解 webpack 配置項 `output` 的使用方式。
 
+> 本文的範例程式放在 [peterhpchen/webpack-quest](https://github.com/peterhpchen/webpack-quest/tree/master/posts/10-output/demos) 中，每個程式碼區塊的第一行都會標注檔案的位置，請搭配文章作參考。
+
 `output` 屬性是設定建置完成的 bundle 要放在哪個目錄以及如何命名。
 
 ## 預設值
