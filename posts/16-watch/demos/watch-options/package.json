@@ -1,0 +1,16 @@
+{
+  "name": "watch-options",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev:aggregate-timeout": "webpack --info-verbosity verbose --config webpack.config.aggregate-timeout.js",
+    "dev:ignored": "webpack --info-verbosity verbose --config webpack.config.ignored.js",
+    "dev:poll": "webpack --info-verbosity verbose --config webpack.config.poll.js"
+  },
+  "devDependencies": {
+    "http-server": "^0.12.3",
+    "webpack": "^4.44.2",
+    "webpack-cli": "^3.3.12"
+  }
+}

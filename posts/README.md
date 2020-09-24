@@ -21,10 +21,10 @@
 13. [模組 Module 的規則判定](./13-module/README.md)
 14. [模組 Module 的處理](./14-module-use/README.md)
 15. [插件 Plugins](./15-plugins/README.md)
+16. [監聽 Watch](./16-watch/README.md)
 
-16. [模式 (mode)]()
-17. [監聽 (watch) 與 watchOptions]()
-18. [Source Map (devTool)]()
+17. [Source Map (devTool)]()
+18. [模式 (mode)]()
 
 ## 第三章：真實世界的 webpack
 
