@@ -1,0 +1,16 @@
+{
+  "name": "simple-watch",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev:argv": "webpack --watch --info-verbosity verbose",
+    "dev:file": "webpack",
+    "start-server": "http-server ./dist"
+  },
+  "devDependencies": {
+    "http-server": "^0.12.3",
+    "webpack": "^4.44.2",
+    "webpack-cli": "^3.3.12"
+  }
+}
