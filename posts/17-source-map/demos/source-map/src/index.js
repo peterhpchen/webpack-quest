@@ -10,4 +10,4 @@ function component() {
   return element;
 }
 
-document.body.apendChild(component());
+document.body.appenChild(component());
