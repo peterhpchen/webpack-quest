@@ -65,6 +65,111 @@ Source Map 會產生一份 map 檔案，用以對應建置後的代碼到來源�
 
 ## Source Map 原理
 
+Source Map 會為每個檔案產生一個對應資料的檔案，它的內容會像下面這樣：
+
+```json
+{
+  "version": 3,
+  "sources": ["../src/index.js"],
+  "names": ["add", "a", "b"],
+  "mappings": ";;AAAA,IAAMA,GAAG,GAAG,SAANA,GAAM,CAACC,CAAD,EAAIC,CAAJ;AAAA,SAAUD,CAAC,GAAGC,CAAd;AAAA,CAAZ",
+  "sourceRoot": "/",
+  "sourcesContent": ["const add = (a, b) => a + b;\n"],
+  "file": "index.js"
+}
+```
+
+對應檔是個 JSON 格式的資料檔，副檔名為 `.map` ，主要的屬性有：
+
+- `version`: Source Map 的版本，目前是 `3`
+- `sources`: 組成此建置檔案的原始檔案位置
+- `names`: 原始檔案內代碼的名詞(變數、屬性名...等)表
+- `mappings`: 建置與原始檔案的代碼對應資料
+- `sourceRoot`: 原始檔案的根目錄
+- `sourceContent`: 原始檔案的代碼內容
+- `file`: 此對應檔的目標檔案(建置檔案)
+
+有了這個檔案後，我們需要告知瀏覽器要使用此對應檔，因此要在建置後的檔案中加上資訊：
+
+```js
+"use strict";
+
+var add = function add(a, b) {
+  return a + b;
+};
+//# sourceMappingURL=index.js.map
+```
+
+最後一行的 `//# sourceMappingURL=index.js.map` 告訴瀏覽器此檔案的對應檔為 `index.js.map` 檔。
+
+如此一來，在瀏覽器開啟此檔案時，會發現有對應檔，從而使用 Source Map 對應原始檔案的內容。
+
+![process](./assets/process.png)
+
+大部分的屬性都很直覺的可以知道使用的方式，除了 `mappings` 外，而這也是對應檔中最重要的資訊，接著我們就來解釋 `mappings` 資訊的使用方式吧。
+
+## `mappings` 的對應方式
+
+`mappings` 內的資料規則如下：
+
+- `;` : 分號用以區隔建置代碼中的每一行。
+- `,` : 逗號用以區隔每個代碼段。
+- `AAAA` : 代碼段對應資訊的編碼，此編碼包含 1 或 4 或 5 個值，每個值都以 [VLQ 編碼](https://en.wikipedia.org/wiki/Variable-length_quantity)而成。
+
+使用 `;` 對應建置後代碼的行， `,` 分隔行中的各個代碼段，最後使用對應編碼還原代碼段在原始資料中的內容與位置，接著來看要如何看懂對應編碼。
+
+## 對應編碼的定義
+
+對應編碼的值都是使用 VLQ 編碼，總共由五個值所組成：
+
+- 第一個值：此代碼段位於建置後代碼中的第幾欄
+- 第二個值：此代碼段的原始檔案位於 map 檔中 `sources` 陣列的第幾個元素
+- 第三個值：此代碼段位於原始檔案中的第幾行
+- 第四個值：此代碼段位於原始檔案中的第幾欄
+- 第五個值：此代碼段的名稱位於 map 檔中 `names` 陣列的第幾個元素
+
+## 以例子說明 Source Map 對應方式
+
+這節會以 Babel 代碼轉換的 Source Map 為例子來說明其對應的方法。
+
+原始代碼為：
+
+```js
+// ./demos/babel-source-map/src/index.js
+const add = (a, b) => a + b;
+```
+
+建置代碼為：
+
+```js
+// ./demos/babel-source-map/lib/index.js
+"use strict";
+
+var add = function add(a, b) {
+  return a + b;
+};
+//# sourceMappingURL=index.js.map
+```
+
+`//# sourceMappingURL=index.js.map` 告訴瀏覽器此建置檔案的對應檔位置。
+
+對應檔為：
+
+```json
+// ./demos/babel-source-map/lib/index.js.map
+{
+  "version": 3,
+  "sources": ["../src/index.js"],
+  "names": ["add", "a", "b"],
+  "mappings": ";;AAAA,IAAMA,GAAG,GAAG,SAANA,GAAM,CAACC,CAAD,EAAIC,CAAJ;AAAA,SAAUD,CAAC,GAAGC,CAAd;AAAA,CAAZ",
+  "sourceRoot": "/",
+  "sourcesContent": ["const add = (a, b) => a + b;\n"],
+  "file": "index.js"
+}
+```
+
+ 檔案都介紹完了，接著我們試著對應
+
 ## Source Map 種類
 
 eval: 可以對應檔名

@@ -1,1 +1,1 @@
-{"version":3,"sources":["../src/index.js"],"names":["add","a","b"],"mappings":";;AAAA,IAAMA,GAAG,GAAG,SAANA,GAAM,CAACC,CAAD,EAAIC,CAAJ;AAAA,SAAUD,CAAC,GAAGC,CAAd;AAAA,CAAZ","sourcesContent":["const add = (a, b) => a + b;"],"file":"index.js"}
+{"version":3,"sources":["../src/index.js"],"names":["add","a","b"],"mappings":";;AAAA,IAAMA,GAAG,GAAG,SAANA,GAAM,CAACC,CAAD,EAAIC,CAAJ;AAAA,SAAUD,CAAC,GAAGC,CAAd;AAAA,CAAZ","sourceRoot":"/","sourcesContent":["const add = (a, b) => a + b;\n"],"file":"index.js"}
