@@ -33,6 +33,9 @@ module.exports = devtools.map((devtool) => ({
     filename: `${devtool || "[name]"}.js`,
   },
   devtool,
+  // optimization: {
+  //   moduleIds: 'named'
+  // },
   module: {
     rules: [
       {

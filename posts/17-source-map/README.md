@@ -63,13 +63,24 @@ document.body.appenChild(component());
 
 Source Map 會產生一份 map 檔案，用以對應建置後的代碼到來源代碼的位置，瀏覽器看到有 Source Map 的設定就會自動將 Source 轉為 Mapped 後的代碼。
 
+## Source Map 原理
+
 ## Source Map 種類
 
 eval: 可以對應檔名
 eval-source-map: 可以對應檔名、loader 處理前的行數、欄數
 eval-cheap-source-map: 可以對應檔名、loader 處理後的行數
 eval-module-source-map: 可以對應檔名、loader 處理前的行數
+inline: 用 DataUrl 載入 map 檔，不產生 map 檔案
+hidden: 不會有 sourceMappingURL 的註解在 bundle 中
+nosource: 不會產生 sourceContent 的內容，但依然可以看到錯誤堆疊
+cheap: 不會對應列數
+cheap-module: 不會對應列數但會對應 loader 轉換前的行數
 
 ## 參考資料
 
 - [Webpack Documentation: Guides - Development # Using source maps](https://webpack.js.org/guides/development/#using-source-maps)
+- [Webpack Documentation: Configuration - Devtool](https://webpack.js.org/configuration/devtool/)
+- [SurvieJS Webpack: Source Maps](https://survivejs.com/webpack/building/source-maps/)
+- [阮一峰的网络日志: JavaScript Source Map 详解](https://www.ruanyifeng.com/blog/2013/01/javascript_source_map.html)
+- [Babel Options: sourceMaps](https://babeljs.io/docs/en/options#sourcemaps)

@@ -119,7 +119,7 @@
     /***/ function (module, __webpack_exports__, __webpack_require__) {
       "use strict";
       eval(
-        "__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _const_alpha_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);\n/* harmony import */ var _const_beta_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2);\n\n\n\nvar output = function output(mainTitle, subTitle) {\n  return ['index', mainTitle, subTitle].joi(' - ');\n};\n\nconsole.log(output(_const_alpha_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"], _const_beta_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"]));\n\n//# sourceURL=webpack:///./src/index.js?"
+        '__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _const_alpha_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);\n/* harmony import */ var _const_beta_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2);\n\n\n\nvar output = function output(mainTitle, subTitle) {\n  return ["index", mainTitle, subTitle].joi(" - ");\n};\n\nconsole.log(output(_const_alpha_js__WEBPACK_IMPORTED_MODULE_0__["default"], _const_beta_js__WEBPACK_IMPORTED_MODULE_1__["default"]));\n\n//# sourceURL=webpack:///./src/index.js?'
       );
 
       /***/
@@ -128,7 +128,7 @@
     /***/ function (module, __webpack_exports__, __webpack_require__) {
       "use strict";
       eval(
-        "__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = ('alpha');\n\n//# sourceURL=webpack:///./src/const/alpha.js?"
+        '__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__["default"] = ("alpha");\n\n//# sourceURL=webpack:///./src/const/alpha.js?'
       );
 
       /***/
@@ -137,7 +137,7 @@
     /***/ function (module, __webpack_exports__, __webpack_require__) {
       "use strict";
       eval(
-        "__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = ('beta');\n\n//# sourceURL=webpack:///./src/const/beta.js?"
+        '__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__["default"] = ("beta");\n\n//# sourceURL=webpack:///./src/const/beta.js?'
       );
 
       /***/
