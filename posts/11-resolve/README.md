@@ -4,7 +4,7 @@
 
 > 本文的範例程式放在 [peterhpchen/webpack-quest](https://github.com/peterhpchen/webpack-quest/tree/master/posts/11-resolve/demos) 中，每個程式碼區塊的第一行都會標注檔案的位置，請搭配文章作參考。
 
-在開發 webpack 應用程式時，我們很自然地用**相對路徑**引用專案內的模組(`import hello from './hello.js'`)，對於從 npm 安裝的第三方庫直接用名稱引用(`import _ from 'lodash'`)。你有想過為什麼 webpack 懂要去哪裡抓這些你設定的模組嗎？讓我娓娓道來這段可歌可泣的找尋模組之旅。
+在開發 webpack 應用程式時，我們很自然地用**相對路徑**引用專案內的模組(`import hello from './hello.js'`)，對於從 npm 安裝的第三方庫直接用名稱引用(`import _ from 'lodash'`)。你有想過為什麼 webpack 知道要去哪裡抓這些你設定的模組嗎？讓我娓娓道來這段可歌可泣的找尋模組之旅。
 
 ## webpack 尋找模組的方式
 
@@ -34,7 +34,7 @@ import helloWINDOWS from "C:\\Users\\PeterChen\\Documents\\codewebpack-quest\\po
 import "./utils/sayHi.js";
 ```
 
-`./` 會將請求資源所在的目錄(`./demos/relative`) 與模組路徑(`utils/sayHi.js`)結合組成絕對路徑，以此找到對應的模組。
+`./` 會將請求資源檔案所在的目錄(`./demos/relative`) 與被請求的資源路徑(`utils/sayHi.js`)結合組成絕對路徑，以此找到對應的模組。
 
 ```js
 // ./demos/relative/utils/sayHi.js
@@ -43,7 +43,7 @@ import name from "../name.js";
 console.log(`Hello ${name}`);
 ```
 
-`../` 會將請求資源所在的目錄上層(`./demos/relative`) 與模組目錄(`name.js`)結合組成絕對路徑，以此找到對應的模組。
+`../` 會將請求資源檔案所在的目錄上層(`./demos/relative`) 與被請求的資源目錄(`name.js`)結合組成絕對路徑，以此找到對應的模組。
 
 ### 模組路徑
 
@@ -68,10 +68,10 @@ import _ from "lodash";
 
 ## 使用 `resolve` 找出模組
 
-webpack 發現模組引入的語法(ex: `import`, `require`)時，會使用這個引入的字串值確認是否有在 `resolve.alias` 屬性中設定別名，接著如果是模組路徑的話，找尋 `resolve.modules` 中的目錄，發現目標後，是目標為檔案或是目錄而定：
+webpack 發現模組引入的語法(ex: `import`, `require`)時，會使用這個引入的字串值確認是否有在 `resolve.alias` 屬性中設定別名，接著如果是模組路徑的話，找尋 `resolve.modules` 中的目錄，發現目標後，視目標為檔案或是目錄會有不同的處理方式：
 
 - 檔案：確認是否有附檔名，如果沒有則使用 `resolve.extensions` 屬性所設定的副檔名尋找。
-- 目錄：確認是否有 `package.json` ，如果有則使用 `resolve.mainFileds` 找出目標檔案，如果沒有則使用 `resolve.mainFiles` 找出目標檔案，照到目標檔案後，再依照檔案的方式處理。
+- 目錄：確認是否有 `package.json` ，如果有則使用 `resolve.mainFileds` 找出目標檔案，如果沒有則使用 `resolve.mainFiles` 找出目標檔案，找到目標檔案後，再依照檔案的方式處理。
 
 整個流程圖如下所示：
 
@@ -81,7 +81,7 @@ webpack 發現模組引入的語法(ex: `import`, `require`)時，會使用這�
 
 ## `resolve.alias`
 
-`alias` 屬性是設定模組路徑的別名，讓我們在開發時可以更簡單的指定目標的模組。
+`alias` 屬性是**設定模組路徑的別名**，讓我們在開發時可以更簡單的指定目標的模組。
 
 ### 解決相對路徑設定的麻煩
 
@@ -149,9 +149,9 @@ module.exports = {
 
 ## `resolve.modules`
 
-`resolve.modules` 屬性告訴 webpack 該去哪個目錄下找模組。它的預設值為 `['node_modules']` 。
+`resolve.modules` 屬性告訴 webpack **該去哪個目錄下找模組**。
 
-這也是為什麼前面的例子在引入 `lodash` 時， webpack 會知道要從 `node_modules` 底下尋找目標。
+由於 `resolve.modules` 的預設值為 `['node_modules']` ，這也是為什麼前面的例子在引入 `lodash` 時， webpack 會知道要從 `node_modules` 底下尋找目標。
 
 我們可以自己調整成自己的目錄：
 
@@ -190,6 +190,7 @@ module.exports = {
 `resolve.mainFields` 會依照 webpack 的 [`target` 屬性](https://v4.webpack.js.org/configuration/target/#target)知道要部署的環境。而 `package.json` 中會設定不同環境所要使用的檔案，我們來看 vue.js 的 `package.json`:
 
 ```json
+// vue/package.json
 {
     ...
 
@@ -216,7 +217,7 @@ module.exports = {
 };
 ```
 
-優先級由前往後遞減，以 vue.js 來說，因為沒有設定 `browser` ，因此使用了第二順位的 `module`，因此 webpack 會將 `import 'vue'` 轉換為 `import './node_modules/vue/dist/vue.runtime.esm.js'` 。
+優先級由前往後遞減，以 vue.js 來說，因為沒有設定 `browser` ，因此使用了第二順位的 `module`，所以 webpack 會將 `import 'vue'` 轉換為 `import './node_modules/vue/dist/vue.runtime.esm.js'` 。
 
 | `target`                   | `resolve.mainFields`            |
 | -------------------------- | ------------------------------- |
