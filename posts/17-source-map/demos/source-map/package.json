@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build": "webpack --mode none --devtool inline-source-map"
+    "dev": "http-server ./dist & webpack --mode production --watch --devtool source-map"
   },
   "devDependencies": {
     "webpack": "4.44.1",
