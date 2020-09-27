@@ -110,20 +110,49 @@
   /******/ /******/ __webpack_require__.p = ""; // Load entry module and return exports
   /******/
   /******/
-  /******/ /******/ return __webpack_require__((__webpack_require__.s = 0));
+  /******/ /******/ return __webpack_require__(
+    (__webpack_require__.s = "./src/index.js")
+  );
   /******/
 })(
   /************************************************************************/
-  /******/ [
-    /* 0 */
-    /***/ function (module, __webpack_exports__, __webpack_require__) {
+  /******/ {
+    /***/ "./src/const/alpha.js": /***/ function (
+      module,
+      __webpack_exports__,
+      __webpack_require__
+    ) {
+      "use strict";
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony default export */ __webpack_exports__["default"] = "alpha";
+
+      /***/
+    },
+
+    /***/ "./src/const/beta.js": /***/ function (
+      module,
+      __webpack_exports__,
+      __webpack_require__
+    ) {
+      "use strict";
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony default export */ __webpack_exports__["default"] = "beta";
+
+      /***/
+    },
+
+    /***/ "./src/index.js": /***/ function (
+      module,
+      __webpack_exports__,
+      __webpack_require__
+    ) {
       "use strict";
       __webpack_require__.r(__webpack_exports__);
       /* harmony import */ var _const_alpha_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-        1
+        "./src/const/alpha.js"
       );
       /* harmony import */ var _const_beta_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
-        2
+        "./src/const/beta.js"
       );
 
       var output = function output(mainTitle, subTitle) {
@@ -139,23 +168,8 @@
 
       /***/
     },
-    /* 1 */
-    /***/ function (module, __webpack_exports__, __webpack_require__) {
-      "use strict";
-      __webpack_require__.r(__webpack_exports__);
-      /* harmony default export */ __webpack_exports__["default"] = "alpha";
 
-      /***/
-    },
-    /* 2 */
-    /***/ function (module, __webpack_exports__, __webpack_require__) {
-      "use strict";
-      __webpack_require__.r(__webpack_exports__);
-      /* harmony default export */ __webpack_exports__["default"] = "beta";
-
-      /***/
-    },
     /******/
-  ]
+  }
 );
-//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vd2VicGFjay9ib290c3RyYXAiLCJ3ZWJwYWNrOi8vLy4vc3JjL2luZGV4LmpzIiwid2VicGFjazovLy8uL3NyYy9jb25zdC9hbHBoYS5qcyIsIndlYnBhY2s6Ly8vLi9zcmMvY29uc3QvYmV0YS5qcyJdLCJuYW1lcyI6WyJvdXRwdXQiLCJtYWluVGl0bGUiLCJzdWJUaXRsZSIsImpvaSIsImNvbnNvbGUiLCJsb2ciLCJhbHBoYSIsImJldGEiXSwibWFwcGluZ3MiOiI7UUFBQTtRQUNBOztRQUVBO1FBQ0E7O1FBRUE7UUFDQTtRQUNBO1FBQ0E7UUFDQTtRQUNBO1FBQ0E7UUFDQTtRQUNBO1FBQ0E7O1FBRUE7UUFDQTs7UUFFQTtRQUNBOztRQUVBO1FBQ0E7UUFDQTs7O1FBR0E7UUFDQTs7UUFFQTtRQUNBOztRQUVBO1FBQ0E7UUFDQTtRQUNBLDBDQUEwQyxnQ0FBZ0M7UUFDMUU7UUFDQTs7UUFFQTtRQUNBO1FBQ0E7UUFDQSx3REFBd0Qsa0JBQWtCO1FBQzFFO1FBQ0EsaURBQWlELGNBQWM7UUFDL0Q7O1FBRUE7UUFDQTtRQUNBO1FBQ0E7UUFDQTtRQUNBO1FBQ0E7UUFDQTtRQUNBO1FBQ0E7UUFDQTtRQUNBLHlDQUF5QyxpQ0FBaUM7UUFDMUUsZ0hBQWdILG1CQUFtQixFQUFFO1FBQ3JJO1FBQ0E7O1FBRUE7UUFDQTtRQUNBO1FBQ0EsMkJBQTJCLDBCQUEwQixFQUFFO1FBQ3ZELGlDQUFpQyxlQUFlO1FBQ2hEO1FBQ0E7UUFDQTs7UUFFQTtRQUNBLHNEQUFzRCwrREFBK0Q7O1FBRXJIO1FBQ0E7OztRQUdBO1FBQ0E7Ozs7Ozs7O0FDbEZBO0FBQUE7QUFBQTtBQUFBO0FBQ0E7O0FBRUEsSUFBTUEsTUFBTSxHQUFHLFNBQVRBLE1BQVMsQ0FBQ0MsU0FBRCxFQUFZQyxRQUFaO0FBQUEsU0FDYixDQUFDLE9BQUQsRUFBVUQsU0FBVixFQUFxQkMsUUFBckIsRUFBK0JDLEdBQS9CLENBQW1DLEtBQW5DLENBRGE7QUFBQSxDQUFmOztBQUdBQyxPQUFPLENBQUNDLEdBQVIsQ0FBWUwsTUFBTSxDQUFDTSx1REFBRCxFQUFRQyxzREFBUixDQUFsQixFOzs7Ozs7O0FDTkE7QUFBZSxzRUFBZixFOzs7Ozs7O0FDQUE7QUFBZSxxRUFBZixFIiwiZmlsZSI6ImlubGluZS1ub3NvdXJjZXMtc291cmNlLW1hcC5qcyIsInNvdXJjZVJvb3QiOiIifQ==
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vd2VicGFjay9ib290c3RyYXAiLCJ3ZWJwYWNrOi8vLy4vc3JjL2NvbnN0L2FscGhhLmpzIiwid2VicGFjazovLy8uL3NyYy9jb25zdC9iZXRhLmpzIiwid2VicGFjazovLy8uL3NyYy9pbmRleC5qcyJdLCJuYW1lcyI6WyJvdXRwdXQiLCJtYWluVGl0bGUiLCJzdWJUaXRsZSIsImpvaSIsImNvbnNvbGUiLCJsb2ciLCJhbHBoYSIsImJldGEiXSwibWFwcGluZ3MiOiI7UUFBQTtRQUNBOztRQUVBO1FBQ0E7O1FBRUE7UUFDQTtRQUNBO1FBQ0E7UUFDQTtRQUNBO1FBQ0E7UUFDQTtRQUNBO1FBQ0E7O1FBRUE7UUFDQTs7UUFFQTtRQUNBOztRQUVBO1FBQ0E7UUFDQTs7O1FBR0E7UUFDQTs7UUFFQTtRQUNBOztRQUVBO1FBQ0E7UUFDQTtRQUNBLDBDQUEwQyxnQ0FBZ0M7UUFDMUU7UUFDQTs7UUFFQTtRQUNBO1FBQ0E7UUFDQSx3REFBd0Qsa0JBQWtCO1FBQzFFO1FBQ0EsaURBQWlELGNBQWM7UUFDL0Q7O1FBRUE7UUFDQTtRQUNBO1FBQ0E7UUFDQTtRQUNBO1FBQ0E7UUFDQTtRQUNBO1FBQ0E7UUFDQTtRQUNBLHlDQUF5QyxpQ0FBaUM7UUFDMUUsZ0hBQWdILG1CQUFtQixFQUFFO1FBQ3JJO1FBQ0E7O1FBRUE7UUFDQTtRQUNBO1FBQ0EsMkJBQTJCLDBCQUEwQixFQUFFO1FBQ3ZELGlDQUFpQyxlQUFlO1FBQ2hEO1FBQ0E7UUFDQTs7UUFFQTtRQUNBLHNEQUFzRCwrREFBK0Q7O1FBRXJIO1FBQ0E7OztRQUdBO1FBQ0E7Ozs7Ozs7OztBQ2xGQTtBQUFlLHNFQUFmLEU7Ozs7Ozs7O0FDQUE7QUFBZSxxRUFBZixFOzs7Ozs7OztBQ0FBO0FBQUE7QUFBQTtBQUFBO0FBQ0E7O0FBRUEsSUFBTUEsTUFBTSxHQUFHLFNBQVRBLE1BQVMsQ0FBQ0MsU0FBRCxFQUFZQyxRQUFaO0FBQUEsU0FDYixDQUFDLE9BQUQsRUFBVUQsU0FBVixFQUFxQkMsUUFBckIsRUFBK0JDLEdBQS9CLENBQW1DLEtBQW5DLENBRGE7QUFBQSxDQUFmOztBQUdBQyxPQUFPLENBQUNDLEdBQVIsQ0FBWUwsTUFBTSxDQUFDTSx1REFBRCxFQUFRQyxzREFBUixDQUFsQixFIiwiZmlsZSI6ImlubGluZS1ub3NvdXJjZXMtc291cmNlLW1hcC5qcyIsInNvdXJjZVJvb3QiOiIifQ==

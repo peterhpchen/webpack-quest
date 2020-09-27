@@ -110,22 +110,18 @@
   /******/ /******/ __webpack_require__.p = ""; // Load entry module and return exports
   /******/
   /******/
-  /******/ /******/ return __webpack_require__((__webpack_require__.s = 0));
+  /******/ /******/ return __webpack_require__(
+    (__webpack_require__.s = "./src/index.js")
+  );
   /******/
 })(
   /************************************************************************/
-  /******/ [
-    /* 0 */
-    /***/ function (module, __webpack_exports__, __webpack_require__) {
-      "use strict";
-      eval(
-        '__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _const_alpha_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);\n/* harmony import */ var _const_beta_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2);\n\n\n\nvar output = function output(mainTitle, subTitle) {\n  return ["index", mainTitle, subTitle].joi(" - ");\n};\n\nconsole.log(output(_const_alpha_js__WEBPACK_IMPORTED_MODULE_0__["default"], _const_beta_js__WEBPACK_IMPORTED_MODULE_1__["default"]));\n\n//# sourceURL=webpack:///./src/index.js?'
-      );
-
-      /***/
-    },
-    /* 1 */
-    /***/ function (module, __webpack_exports__, __webpack_require__) {
+  /******/ {
+    /***/ "./src/const/alpha.js": /***/ function (
+      module,
+      __webpack_exports__,
+      __webpack_require__
+    ) {
       "use strict";
       eval(
         '__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__["default"] = ("alpha");\n\n//# sourceURL=webpack:///./src/const/alpha.js?'
@@ -133,8 +129,12 @@
 
       /***/
     },
-    /* 2 */
-    /***/ function (module, __webpack_exports__, __webpack_require__) {
+
+    /***/ "./src/const/beta.js": /***/ function (
+      module,
+      __webpack_exports__,
+      __webpack_require__
+    ) {
       "use strict";
       eval(
         '__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__["default"] = ("beta");\n\n//# sourceURL=webpack:///./src/const/beta.js?'
@@ -142,6 +142,20 @@
 
       /***/
     },
+
+    /***/ "./src/index.js": /***/ function (
+      module,
+      __webpack_exports__,
+      __webpack_require__
+    ) {
+      "use strict";
+      eval(
+        '__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _const_alpha_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("./src/const/alpha.js");\n/* harmony import */ var _const_beta_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("./src/const/beta.js");\n\n\n\nvar output = function output(mainTitle, subTitle) {\n  return ["index", mainTitle, subTitle].joi(" - ");\n};\n\nconsole.log(output(_const_alpha_js__WEBPACK_IMPORTED_MODULE_0__["default"], _const_beta_js__WEBPACK_IMPORTED_MODULE_1__["default"]));\n\n//# sourceURL=webpack:///./src/index.js?'
+      );
+
+      /***/
+    },
+
     /******/
-  ]
+  }
 );

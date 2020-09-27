@@ -110,20 +110,49 @@
   /******/ /******/ __webpack_require__.p = ""; // Load entry module and return exports
   /******/
   /******/
-  /******/ /******/ return __webpack_require__((__webpack_require__.s = 0));
+  /******/ /******/ return __webpack_require__(
+    (__webpack_require__.s = "./src/index.js")
+  );
   /******/
 })(
   /************************************************************************/
-  /******/ [
-    /* 0 */
-    /***/ function (module, __webpack_exports__, __webpack_require__) {
+  /******/ {
+    /***/ "./src/const/alpha.js": /***/ function (
+      module,
+      __webpack_exports__,
+      __webpack_require__
+    ) {
+      "use strict";
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony default export */ __webpack_exports__["default"] = "alpha";
+
+      /***/
+    },
+
+    /***/ "./src/const/beta.js": /***/ function (
+      module,
+      __webpack_exports__,
+      __webpack_require__
+    ) {
+      "use strict";
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony default export */ __webpack_exports__["default"] = "beta";
+
+      /***/
+    },
+
+    /***/ "./src/index.js": /***/ function (
+      module,
+      __webpack_exports__,
+      __webpack_require__
+    ) {
       "use strict";
       __webpack_require__.r(__webpack_exports__);
       /* harmony import */ var _const_alpha_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-        1
+        "./src/const/alpha.js"
       );
       /* harmony import */ var _const_beta_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
-        2
+        "./src/const/beta.js"
       );
 
       var output = function output(mainTitle, subTitle) {
@@ -139,23 +168,8 @@
 
       /***/
     },
-    /* 1 */
-    /***/ function (module, __webpack_exports__, __webpack_require__) {
-      "use strict";
-      __webpack_require__.r(__webpack_exports__);
-      /* harmony default export */ __webpack_exports__["default"] = "alpha";
 
-      /***/
-    },
-    /* 2 */
-    /***/ function (module, __webpack_exports__, __webpack_require__) {
-      "use strict";
-      __webpack_require__.r(__webpack_exports__);
-      /* harmony default export */ __webpack_exports__["default"] = "beta";
-
-      /***/
-    },
     /******/
-  ]
+  }
 );
-//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5saW5lLW5vc291cmNlcy1jaGVhcC1tb2R1bGUtc291cmNlLW1hcC5qcyIsInNvdXJjZXMiOlsid2VicGFjazovLy93ZWJwYWNrL2Jvb3RzdHJhcCIsIndlYnBhY2s6Ly8vLi9zcmMvaW5kZXguanMiLCJ3ZWJwYWNrOi8vLy4vc3JjL2NvbnN0L2FscGhhLmpzIiwid2VicGFjazovLy8uL3NyYy9jb25zdC9iZXRhLmpzIl0sIm1hcHBpbmdzIjoiO0FBQUE7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTs7Ozs7Ozs7QUNsRkE7QUFBQTtBQUFBO0FBQUE7QUFDQTtBQUNBO0FBQ0E7QUFBQTtBQUFBO0FBQ0E7QUFFQTs7Ozs7OztBQ05BO0FBQUE7Ozs7Ozs7QUNBQTtBQUFBOzs7QSIsInNvdXJjZVJvb3QiOiIifQ==
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5saW5lLW5vc291cmNlcy1jaGVhcC1tb2R1bGUtc291cmNlLW1hcC5qcyIsInNvdXJjZXMiOlsid2VicGFjazovLy93ZWJwYWNrL2Jvb3RzdHJhcCIsIndlYnBhY2s6Ly8vLi9zcmMvY29uc3QvYWxwaGEuanMiLCJ3ZWJwYWNrOi8vLy4vc3JjL2NvbnN0L2JldGEuanMiLCJ3ZWJwYWNrOi8vLy4vc3JjL2luZGV4LmpzIl0sIm1hcHBpbmdzIjoiO0FBQUE7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTs7Ozs7Ozs7O0FDbEZBO0FBQUE7Ozs7Ozs7O0FDQUE7QUFBQTs7Ozs7Ozs7QUNBQTtBQUFBO0FBQUE7QUFBQTtBQUNBO0FBQ0E7QUFDQTtBQUFBO0FBQUE7QUFDQTtBQUVBOzs7O0EiLCJzb3VyY2VSb290IjoiIn0=

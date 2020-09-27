@@ -1,3 +1,5 @@
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+
 const devtools = [
   false,
   "source-map",
@@ -28,14 +30,14 @@ const devtools = [
 ];
 
 module.exports = devtools.map((devtool) => ({
-  mode: "development",
+  mode: "none",
   output: {
     filename: `${devtool || "[name]"}.js`,
   },
   devtool,
-  // optimization: {
-  //   moduleIds: 'named'
-  // },
+  optimization: {
+    moduleIds: "named",
+  },
   module: {
     rules: [
       {
@@ -47,4 +49,9 @@ module.exports = devtools.map((devtool) => ({
       },
     ],
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      filename: `${devtool}.html`,
+    }),
+  ],
 }));

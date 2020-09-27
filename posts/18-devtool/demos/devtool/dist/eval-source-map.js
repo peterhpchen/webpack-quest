@@ -110,38 +110,52 @@
   /******/ /******/ __webpack_require__.p = ""; // Load entry module and return exports
   /******/
   /******/
-  /******/ /******/ return __webpack_require__((__webpack_require__.s = 0));
+  /******/ /******/ return __webpack_require__(
+    (__webpack_require__.s = "./src/index.js")
+  );
   /******/
 })(
   /************************************************************************/
-  /******/ [
-    /* 0 */
-    /***/ function (module, __webpack_exports__, __webpack_require__) {
+  /******/ {
+    /***/ "./src/const/alpha.js": /***/ function (
+      module,
+      __webpack_exports__,
+      __webpack_require__
+    ) {
       "use strict";
       eval(
-        '__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _const_alpha_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);\n/* harmony import */ var _const_beta_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2);\n\n\n\nvar output = function output(mainTitle, subTitle) {\n  return ["index", mainTitle, subTitle].joi(" - ");\n};\n\nconsole.log(output(_const_alpha_js__WEBPACK_IMPORTED_MODULE_0__["default"], _const_beta_js__WEBPACK_IMPORTED_MODULE_1__["default"]));//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9zcmMvaW5kZXguanM/YjYzNSJdLCJuYW1lcyI6WyJvdXRwdXQiLCJtYWluVGl0bGUiLCJzdWJUaXRsZSIsImpvaSIsImNvbnNvbGUiLCJsb2ciLCJhbHBoYSIsImJldGEiXSwibWFwcGluZ3MiOiJBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQ0E7O0FBRUEsSUFBTUEsTUFBTSxHQUFHLFNBQVRBLE1BQVMsQ0FBQ0MsU0FBRCxFQUFZQyxRQUFaO0FBQUEsU0FDYixDQUFDLE9BQUQsRUFBVUQsU0FBVixFQUFxQkMsUUFBckIsRUFBK0JDLEdBQS9CLENBQW1DLEtBQW5DLENBRGE7QUFBQSxDQUFmOztBQUdBQyxPQUFPLENBQUNDLEdBQVIsQ0FBWUwsTUFBTSxDQUFDTSx1REFBRCxFQUFRQyxzREFBUixDQUFsQiIsImZpbGUiOiIwLmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IGFscGhhIGZyb20gXCIuL2NvbnN0L2FscGhhLmpzXCI7XG5pbXBvcnQgYmV0YSBmcm9tIFwiLi9jb25zdC9iZXRhLmpzXCI7XG5cbmNvbnN0IG91dHB1dCA9IChtYWluVGl0bGUsIHN1YlRpdGxlKSA9PlxuICBbXCJpbmRleFwiLCBtYWluVGl0bGUsIHN1YlRpdGxlXS5qb2koXCIgLSBcIik7XG5cbmNvbnNvbGUubG9nKG91dHB1dChhbHBoYSwgYmV0YSkpO1xuIl0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///0\n'
+        '__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__["default"] = ("alpha");//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9zcmMvY29uc3QvYWxwaGEuanM/ZWU4NCJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtBQUFlLHNFQUFmIiwiZmlsZSI6Ii4vc3JjL2NvbnN0L2FscGhhLmpzLmpzIiwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0IGRlZmF1bHQgXCJhbHBoYVwiO1xuIl0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./src/const/alpha.js\n'
       );
 
       /***/
     },
-    /* 1 */
-    /***/ function (module, __webpack_exports__, __webpack_require__) {
+
+    /***/ "./src/const/beta.js": /***/ function (
+      module,
+      __webpack_exports__,
+      __webpack_require__
+    ) {
       "use strict";
       eval(
-        '__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__["default"] = ("alpha");//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9zcmMvY29uc3QvYWxwaGEuanM/ZWU4NCJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtBQUFlLHNFQUFmIiwiZmlsZSI6IjEuanMiLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgZGVmYXVsdCBcImFscGhhXCI7XG4iXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///1\n'
+        '__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__["default"] = ("beta");//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9zcmMvY29uc3QvYmV0YS5qcz9kN2YwIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0FBQWUscUVBQWYiLCJmaWxlIjoiLi9zcmMvY29uc3QvYmV0YS5qcy5qcyIsInNvdXJjZXNDb250ZW50IjpbImV4cG9ydCBkZWZhdWx0IFwiYmV0YVwiO1xuIl0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./src/const/beta.js\n'
       );
 
       /***/
     },
-    /* 2 */
-    /***/ function (module, __webpack_exports__, __webpack_require__) {
+
+    /***/ "./src/index.js": /***/ function (
+      module,
+      __webpack_exports__,
+      __webpack_require__
+    ) {
       "use strict";
       eval(
-        '__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__["default"] = ("beta");//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9zcmMvY29uc3QvYmV0YS5qcz9kN2YwIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0FBQWUscUVBQWYiLCJmaWxlIjoiMi5qcyIsInNvdXJjZXNDb250ZW50IjpbImV4cG9ydCBkZWZhdWx0IFwiYmV0YVwiO1xuIl0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///2\n'
+        '__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _const_alpha_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("./src/const/alpha.js");\n/* harmony import */ var _const_beta_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("./src/const/beta.js");\n\n\n\nvar output = function output(mainTitle, subTitle) {\n  return ["index", mainTitle, subTitle].joi(" - ");\n};\n\nconsole.log(output(_const_alpha_js__WEBPACK_IMPORTED_MODULE_0__["default"], _const_beta_js__WEBPACK_IMPORTED_MODULE_1__["default"]));//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9zcmMvaW5kZXguanM/YjYzNSJdLCJuYW1lcyI6WyJvdXRwdXQiLCJtYWluVGl0bGUiLCJzdWJUaXRsZSIsImpvaSIsImNvbnNvbGUiLCJsb2ciLCJhbHBoYSIsImJldGEiXSwibWFwcGluZ3MiOiJBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQ0E7O0FBRUEsSUFBTUEsTUFBTSxHQUFHLFNBQVRBLE1BQVMsQ0FBQ0MsU0FBRCxFQUFZQyxRQUFaO0FBQUEsU0FDYixDQUFDLE9BQUQsRUFBVUQsU0FBVixFQUFxQkMsUUFBckIsRUFBK0JDLEdBQS9CLENBQW1DLEtBQW5DLENBRGE7QUFBQSxDQUFmOztBQUdBQyxPQUFPLENBQUNDLEdBQVIsQ0FBWUwsTUFBTSxDQUFDTSx1REFBRCxFQUFRQyxzREFBUixDQUFsQiIsImZpbGUiOiIuL3NyYy9pbmRleC5qcy5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBhbHBoYSBmcm9tIFwiLi9jb25zdC9hbHBoYS5qc1wiO1xuaW1wb3J0IGJldGEgZnJvbSBcIi4vY29uc3QvYmV0YS5qc1wiO1xuXG5jb25zdCBvdXRwdXQgPSAobWFpblRpdGxlLCBzdWJUaXRsZSkgPT5cbiAgW1wiaW5kZXhcIiwgbWFpblRpdGxlLCBzdWJUaXRsZV0uam9pKFwiIC0gXCIpO1xuXG5jb25zb2xlLmxvZyhvdXRwdXQoYWxwaGEsIGJldGEpKTtcbiJdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./src/index.js\n'
       );
 
       /***/
     },
+
     /******/
-  ]
+  }
 );

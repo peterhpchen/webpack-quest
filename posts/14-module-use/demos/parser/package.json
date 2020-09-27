@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build": "webpack -d",
+    "build:orignal": "webpack --mode none",
     "build:parser": "webpack --config webpack.config.parser.js"
   },
   "devDependencies": {

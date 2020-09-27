@@ -1,10 +1,12 @@
-## 模組 Module 的處理
+# 模組 Module 的處理
 
 > 本文為 `module` 屬性的設定方式解說的第二篇，講解 `module` 屬性如何設定處理程序。
 
-> 本文的範例程式放在 [peterhpchen/webpack-quest](https://github.com/peterhpchen/webpack-quest/tree/master/posts/13-module-process/demos) 中，每個程式碼區塊的第一行都會標注檔案的位置，請搭配文章作參考。
+> 本文的範例程式放在 [peterhpchen/webpack-quest](https://github.com/peterhpchen/webpack-quest/tree/master/posts/14-module-use/demos) 中，每個程式碼區塊的第一行都會標注檔案的位置，請搭配文章作參考。
 
 前一篇說明了 `module` 如何匹配各個規則，本文接著講解如何處理被匹配的模組。
+
+> 本文某些範例會使用自製的 Loader ，可以參考各個範例目錄中的 `loader` 資料夾。
 
 ## 模組的處理
 
@@ -38,7 +40,7 @@ Loaders 的設定可以使用 `loader`, `options` 與 `use` 三種屬性做設�
 
 #### 使用字串值設定 `use`
 
-字串值可以直接設定 Loader 的**名稱**或是**路徑**， webpack 會依照 [`context`](../09-entry/README.md#context) 與 [`resolveLoader`]() 屬性找出對應的 Loader 。
+字串值可以直接設定 Loader 的**名稱**或是**路徑**， webpack 會依照 [`context`](../09-entry/README.md#context) 與 `resolveLoader` 屬性找出對應的 Loader 。
 
 ```js
 // ./demos/use-string/webpack.config.js
@@ -69,7 +71,7 @@ module.exports = {
 
 物件會是一個 `RuleSetUseItem` ，它設定 Loader 的使用，它有三個屬性：
 
-- `loader`: 設定使用哪一個 Loader ，使用上節所提到的字串值設定。
+- `loader`: 設定使用哪一個 Loader ，使用上節所提到的字串值（Loader 名或是 Loader 路徑）設定。
 - `options`: Loader 的選項，每個 Loader 會提供不同的設定選項供使用者選用。
 - `ident`: Loader 選項的 ID 。
 
@@ -199,7 +201,7 @@ module.exports = {
 
 使用陣列的 `use` 時， Loaders 的執行順序是由後往前，因此依序執行 `sass-loader`, `css-loader` 再到最後的 `style-loader` 。
 
-陣列的設定與同樣的條件設定多個規則相等，因此上面的配置與下面的有相同的作用：
+陣列的設定與**同樣的條件設定多個規則**相等，因此上面的配置與下面的有相同的作用：
 
 ```js
 // ./demos/use-array/webpack.config.multiple-rules.js
@@ -368,7 +370,7 @@ import "../loader/index.js?name=c2!../loader/index.js?name=c1!./hello.js";
 
 ![loader-order](./assets/loader-order.png)
 
-按照 `pre`, `normal`, `inline`, `post` 的順序執行，並且在相同類型的情況下，會保持由後往前執行的機制。
+按照 `pre`, `normal`, `inline`, `post` 的順序執行，並且在**相同類型的情況下，會保持由後往前執行**的機制。
 
 ### Disable Loaders
 
@@ -381,6 +383,7 @@ Loaders 的執行可以被 inline 的特定的前置符所取消：
 可以將剛剛的例子加上各個前置符看看輸出來比對結果：
 
 ```js
+// ./demos/loader-order/src/index.js
 import "../loader/index.js?name=c2!../loader/index.js?name=c1!./hello.js"; // a1 a2 b1 b2 c1 c2 d1 d2
 // import '!../loader/index.js?name=c2!../loader/index.js?name=c1!./hello.js' // a1 a2 c1 c2 d1 d2
 // import '-!../loader/index.js?name=c2!../loader/index.js?name=c1!./hello.js' // c1 c2 d1 d2
@@ -451,7 +454,7 @@ module.exports = {
 ```js
 // ./demos/parser/webpack.config.parser.js
 module.exports = {
-  mode: "development",
+  mode: "none",
   output: {
     filename: "bundle.js",
   },
@@ -476,7 +479,9 @@ module.exports = {
 // ./demos/parser/dist/bundle.js
 ...
 
-eval("import hello from './hello.js'\n\nconsole.log(hello)\n\n//# sourceURL=webpack:///./src/index.js?");
+import hello from "./hello.js";
+
+console.log(hello);
 
 ...
 ```
