@@ -110,19 +110,66 @@
   /******/ /******/ __webpack_require__.p = ""; // Load entry module and return exports
   /******/
   /******/
-  /******/ /******/ return __webpack_require__((__webpack_require__.s = 0));
+  /******/ /******/ return __webpack_require__(
+    (__webpack_require__.s = "./src/index.js")
+  );
   /******/
 })(
   /************************************************************************/
-  /******/ [
-    /* 0 */
-    /***/ function (module, exports) {
-      import hello from "./hello.js";
-
-      console.log(hello);
+  /******/ {
+    /***/ "./src/const/alpha.js": /***/ function (
+      module,
+      __webpack_exports__,
+      __webpack_require__
+    ) {
+      "use strict";
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony default export */ __webpack_exports__["default"] = "alpha";
 
       /***/
     },
+
+    /***/ "./src/const/beta.js": /***/ function (
+      module,
+      __webpack_exports__,
+      __webpack_require__
+    ) {
+      "use strict";
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony default export */ __webpack_exports__["default"] = "beta";
+
+      /***/
+    },
+
+    /***/ "./src/index.js": /***/ function (
+      module,
+      __webpack_exports__,
+      __webpack_require__
+    ) {
+      "use strict";
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony import */ var _const_alpha_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+        "./src/const/alpha.js"
+      );
+      /* harmony import */ var _const_beta_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+        "./src/const/beta.js"
+      );
+
+      var output = function output(mainTitle, subTitle) {
+        return ["index", mainTitle, subTitle].joi(" - ");
+      };
+
+      console.log(
+        output(
+          _const_alpha_js__WEBPACK_IMPORTED_MODULE_0__["default"],
+          _const_beta_js__WEBPACK_IMPORTED_MODULE_1__["default"]
+        )
+      );
+
+      /***/
+    },
+
     /******/
-  ]
+  }
 );
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5saW5lLW5vc291cmNlcy1jaGVhcC1zb3VyY2UtbWFwLmpzIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vL3dlYnBhY2svYm9vdHN0cmFwIiwid2VicGFjazovLy8uL3NyYy9jb25zdC9hbHBoYS5qcyIsIndlYnBhY2s6Ly8vLi9zcmMvY29uc3QvYmV0YS5qcyIsIndlYnBhY2s6Ly8vLi9zcmMvaW5kZXguanMiXSwibWFwcGluZ3MiOiI7QUFBQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBOzs7Ozs7Ozs7QUNsRkE7QUFBQTs7Ozs7Ozs7QUNBQTtBQUFBOzs7Ozs7OztBQ0FBO0FBQUE7QUFBQTtBQUFBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7Ozs7QSIsInNvdXJjZVJvb3QiOiIifQ==

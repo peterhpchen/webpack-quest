@@ -110,19 +110,66 @@
   /******/ /******/ __webpack_require__.p = ""; // Load entry module and return exports
   /******/
   /******/
-  /******/ /******/ return __webpack_require__((__webpack_require__.s = 0));
+  /******/ /******/ return __webpack_require__(
+    (__webpack_require__.s = "./src/index.js")
+  );
   /******/
 })(
   /************************************************************************/
-  /******/ [
-    /* 0 */
-    /***/ function (module, exports) {
-      import hello from "./hello.js";
-
-      console.log(hello);
+  /******/ {
+    /***/ "./src/const/alpha.js": /***/ function (
+      module,
+      __webpack_exports__,
+      __webpack_require__
+    ) {
+      "use strict";
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony default export */ __webpack_exports__["default"] = "alpha";
 
       /***/
     },
+
+    /***/ "./src/const/beta.js": /***/ function (
+      module,
+      __webpack_exports__,
+      __webpack_require__
+    ) {
+      "use strict";
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony default export */ __webpack_exports__["default"] = "beta";
+
+      /***/
+    },
+
+    /***/ "./src/index.js": /***/ function (
+      module,
+      __webpack_exports__,
+      __webpack_require__
+    ) {
+      "use strict";
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony import */ var _const_alpha_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+        "./src/const/alpha.js"
+      );
+      /* harmony import */ var _const_beta_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+        "./src/const/beta.js"
+      );
+
+      var output = function output(mainTitle, subTitle) {
+        return ["index", mainTitle, subTitle].joi(" - ");
+      };
+
+      console.log(
+        output(
+          _const_alpha_js__WEBPACK_IMPORTED_MODULE_0__["default"],
+          _const_beta_js__WEBPACK_IMPORTED_MODULE_1__["default"]
+        )
+      );
+
+      /***/
+    },
+
     /******/
-  ]
+  }
 );
+//# sourceMappingURL=cheap-module-source-map.js.map
