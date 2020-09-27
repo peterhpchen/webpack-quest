@@ -2,6 +2,8 @@
 
 > 本文講解載入器 Loaders 的概念與使用方式。
 
+> 本文的範例程式放在 [peterhpchen/webpack-quest](https://github.com/peterhpchen/webpack-quest/tree/master/posts/12-loaders/demos) 中，每個程式碼區塊的第一行都會標注檔案的位置，請搭配文章作參考。
+
 Webpack 本身只能解析 JavaScript 與 JSON 格式的模組，對於其他的模組像是 CSS 、 Image 等都不知道如何解析。為此 Webpack 需要使用 Loaders 載入器幫助解析其他格式的模組。
 
 ## 載入器(Loaders)的用途
@@ -93,7 +95,7 @@ import "style-loader!css-loader!./style.css";
 
 ![loader-style-inline-result](./assets/loader-style-inline-result.png)
 
-我們的 pipe 上面多了一個 `style-loader` ，資料傳輸的方向從右開始，所以 `style-loader` 會承接 `css-loader` 的結果在做轉換。
+我們的 pipe 上面多了一個 `style-loader` ，資料傳輸的方向從右開始，所以 `style-loader` 會承接 `css-loader` 的結果再做轉換。
 
 ![style-css-loader-pipe](./assets/style-css-loader-pipe.png)
 
@@ -207,7 +209,7 @@ module.exports = {
 
 - `test`: 判斷模組是否適用此規則，以此例來說 `/\.css$/` 是個正則表達式(RegExp)，所有 `.css` 的檔案都會適用此規則。
 - `use`: 設定此規則要使用什麼 Loaders 做處理，以此例來說，會使用 `css-loader` 及 `style-loader` 做處理。
-- `use.option`: 設定特定 loader 的配置，以此例來說 `css-loader` 開啟了 `modules` 配置，將 css module 的功能開啟。
+- `use.options`: 設定特定 loader 的配置，以此例來說 `css-loader` 開啟了 `modules` 配置，將 css module 的功能開啟。
 
 在 `use` 設定中， Loaders 的引用順序是由後往前：
 
