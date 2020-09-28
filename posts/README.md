@@ -23,8 +23,8 @@
 15. [插件 Plugins](./15-plugins/README.md)
 16. [監聽 Watch](./16-watch/README.md)
 17. [Source Map](./17-source-map/README.md)
-
-18. [模式 (mode)]()
+18. [Dev Tool](./18-devtool/README.md)
+19. [最佳化 Optimization 與模式 Mode](./19-optimization/README.md)
 
 ## 第三章：真實世界的 webpack
 
