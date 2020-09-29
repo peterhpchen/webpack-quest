@@ -123,8 +123,10 @@
 
       // CONCATENATED MODULE: ./modules/used-exports-module/alpha.js
       /* harmony default export */ var alpha = "alpha";
+
       // CONCATENATED MODULE: ./modules/used-exports-module/beta.js
       /* harmony default export */ var beta = "beta";
+
       // CONCATENATED MODULE: ./modules/used-exports-module/index.js
 
       // CONCATENATED MODULE: ./src/index.js
