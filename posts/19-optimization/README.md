@@ -177,7 +177,7 @@ module.exports = [false, true].map((sideEffects) => ({
 }));
 ```
 
- 建置後的在 `sideEffects` 啟用的狀況下， `beta` 會被刪除：
+建置後的在 `sideEffects` 啟用的狀況下， `beta` 會被刪除：
 
 ![side-effects-compare](./assets/side-effects-compare.png)
 
