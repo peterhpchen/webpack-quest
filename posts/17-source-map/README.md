@@ -2,6 +2,8 @@
 
 > 本文講解 Source Map 的功用及原理。
 
+> 本文的範例程式放在 [peterhpchen/webpack-quest](https://github.com/peterhpchen/webpack-quest/tree/master/posts/17-source-map/demos) 中，每個程式碼區塊的第一行都會標注檔案的位置，請搭配文章作參考。
+
 在這個時代中的前端代碼很少在使用直譯的開發方式，通常會用優化工具(ex: [terser](https://github.com/terser/terser))產生生產環境的代碼，也會在開發時使用非原生語法(ex: TypeScript, Babel)或是預處理器(ex: SASS)加速開發，而建置時會使用像是 webpack 等建置工具，這使得當 Bug 發生時，瀏覽器指向的是建置後代碼的錯誤所在位置，而非原本的代碼位置，造成了極大的問題。為了解決此問題， Source Map 技術被發明了，接著我們來了解什麼是 Source Map 吧。
 
 ## 除錯時遇到的大麻煩
