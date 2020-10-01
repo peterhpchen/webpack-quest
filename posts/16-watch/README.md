@@ -4,9 +4,11 @@
 
 > 本文的範例程式放在 [peterhpchen/webpack-quest](https://github.com/peterhpchen/webpack-quest/tree/master/posts/16-watch/demos) 中，每個程式碼區塊的第一行都會標注檔案的位置，請搭配文章作參考。
 
-瀏覽器只看得懂 webpack 建置後的檔案，因此使用者要知道執行結果必須執行 webpack 的建置程序，完成後才能在瀏覽器上看到結果，每次修改了代碼都需要下指令重新建置實在麻煩，所幸 webpack 擁有監聽模式 `watch` ，在此模式下 webpack 可以感知檔案是否變化，只要一變化就會啟動建置，以產生新的輸出，讓開發變得更為迅速、簡單。
+瀏覽器只看得懂 webpack 建置後的檔案，因此使用者要知道執行結果必須執行 webpack 的建置程序，完成後才能在瀏覽器上看到結果。
 
 ![normal-build](./assets/normal-build.png)
+
+每次修改了代碼都需要下指令重新建置實在麻煩，所幸 webpack 擁有監聽模式 `watch` ，在此模式下 webpack 可以感知檔案是否變化，只要一變化就會啟動建置，以產生新的輸出，讓開發變得更為迅速、簡單。
 
 ## 開啟監聽功能
 
@@ -141,7 +143,7 @@ module.exports = {
 
 在開發工作的一開始，我們要記得開啟測試用的伺服器，並在每次修改代碼後要去按下瀏覽器的重新整理按鈕，才能看到更新的結果，真的是很惱人。
 
-為了廣大懶惰的工程師們， webpack 貼心的開發了 webpack 用的 Dev Server ，並內建伺服器及監聽的功能。
+為了造福廣大懶惰的工程師們， webpack 貼心的開發了 webpack 用的 Dev Server ，並內建伺服器及監聽的功能。
 
 由於 Dev Server 是另一個庫，因此需要先做安裝：
 
