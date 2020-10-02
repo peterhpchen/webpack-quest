@@ -1,0 +1,16 @@
+{
+  "name": "babel-cli",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "babel src -d dist",
+    "build:with-plugin": "babel src -d dist-with-plugin --plugins=@babel/plugin-transform-arrow-functions,@babel/plugin-transform-block-scoping"
+  },
+  "devDependencies": {
+    "@babel/cli": "7.10.5",
+    "@babel/core": "7.11.4",
+    "@babel/plugin-transform-arrow-functions": "^7.10.4",
+    "@babel/plugin-transform-block-scoping": "^7.11.1"
+  }
+}
