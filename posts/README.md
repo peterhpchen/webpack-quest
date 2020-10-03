@@ -29,6 +29,8 @@
 ## 第三章：真實世界的 webpack
 
 20. [建立 webpack 開發環境](./20-development/README.md)
-21. [使用 webpack 開發 JavaScript 應用](./21-javascript/README.md)
+21. [使用 JavaScript](./21-javascript/README.md)
+22. [使用 Style](./22-style/README.md)
+23. [使用 Image](./23-image/README.md)
 
 ## 第四章：解構 webpack

@@ -1,0 +1,11 @@
+/* https://www.w3.org/TR/css-variables-1/ */
+:root {
+  --demoColor: blue;
+}
+
+.demo {
+  color: blue;
+  color: var(--demoColor);
+}
+
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uL3NyYy9zdHlsZS5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsMkNBQTJDO0FBQzNDO0lBQ0ksaUJBQWlCO0VBQ25COztFQUVBO0lBQ0UsV0FBdUI7SUFBdkIsdUJBQXVCO0VBQ3pCIiwiZmlsZSI6InN0eWxlLmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi8qIGh0dHBzOi8vd3d3LnczLm9yZy9UUi9jc3MtdmFyaWFibGVzLTEvICovXG46cm9vdCB7XG4gICAgLS1kZW1vQ29sb3I6IGJsdWU7XG4gIH1cbiAgXG4gIC5kZW1vIHtcbiAgICBjb2xvcjogdmFyKC0tZGVtb0NvbG9yKTtcbiAgfVxuICAiXX0= */

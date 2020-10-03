@@ -318,8 +318,9 @@ Plugins 只會轉換語法，對於新的語意並不會轉換，這時需要藉
 
 ## 參考資料
 
-- [](https://www.valentinog.com/blog/preset-env/)
-- [](https://survivejs.com/webpack/loading/javascript/)
-- [](https://babeljs.io/docs/en/usage)
-- [](https://babeljs.io/docs/en/configuration)
-- [](https://github.com/browserslist/browserslist)
+- [VALENTINO GAGLIARDI: How babel preset-env, core-js, and browserslistrc work together](https://www.valentinog.com/blog/preset-env/)
+- [SurviveJS Webpack: Loading JavaScript](https://survivejs.com/webpack/loading/javascript/)
+- [Babel Docs: Usage Guide](https://babeljs.io/docs/en/usage)
+- [Babel Docs: Configure Babel](https://babeljs.io/docs/en/configuration)
+- [Babel Docs: Config Files](https://babeljs.io/docs/en/config-files)
+- [GitHub: browserslist/browserslist](https://github.com/browserslist/browserslist)
