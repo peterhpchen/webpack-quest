@@ -22,7 +22,7 @@ module.exports = {
 
 ## `optimization.namedModules`
 
-`namedModules` 是個布林值，設定為 `true` 的時候，會將輸出 bundle 中的模組加上名稱。
+`namedModules` 是個布林值，設定為 `true` 的時候，會將**輸出 bundle 中的模組加上名稱**。
 
 我們使用下面的範例，個別產生出 `namedModules` 為 `true` 與 `false` 的結果。
 
@@ -45,7 +45,7 @@ module.exports = [true, false].map((namedModules) => ({
 
 ## `optimization.namedChunks`
 
-`namedChunks` 為布林值，如果為 `true` 會將輸出 Chunks 時的 ID 改為名稱。
+`namedChunks` 為布林值，如果為 `true` 會將**輸出 Chunks 時的 ID 改為名稱**。
 
 ```js
 // ./demos/named-chunks/webpack.config.js
@@ -69,7 +69,7 @@ module.exports = [false, true].map((namedChunks) => ({
 
 ## `optimization.nodeEnv`
 
-`nodeEnv` 可以設定環境變數。
+`nodeEnv` 可以設定**環境變數**。
 
 ```js
 // ./demos/node-env/webpack.config.js
@@ -195,7 +195,7 @@ module.exports = [false, true].map((sideEffects) => ({
 
 ## `optimization.occurrenceOrder`
 
-`occurrenceOrder` 會將 modules 依照引用的次序產生 index 。
+`occurrenceOrder` 會將 modules **依照引用的次序產生 index** 。
 
 配置如下：
 
@@ -235,7 +235,7 @@ module.exports = [false, true].map((occurrenceOrder) => ({
 
 ## `optimization.concatenateModules`
 
-`concatenateModules` 會經由模組圖 module graph 的分析，安全地將模組盡量做合併，以達到較好的效能。
+`concatenateModules` 會經由模組圖 module graph 的分析，安全地**將模組盡量做合併**，以達到較好的效能。
 
 配置如下：
 

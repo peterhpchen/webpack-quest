@@ -14,8 +14,6 @@
 npm install -D file-loader
 ```
 
-
-
 ## 參考資料
 
-* [file-loader](https://webpack.js.org/loaders/file-loader/)
+- [file-loader](https://webpack.js.org/loaders/file-loader/)
