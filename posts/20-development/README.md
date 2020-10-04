@@ -2,7 +2,9 @@
 
 > 使用 webpack 建立大型專案的開發環境。
 
-在做一件事時，第一要務就是要把環境弄得舒適，只有舒適的環境，我們才能有好的產出，創造偉大的事物。而開發程式的第一件事也是如此，本文會講解如何使用 webpack 創造出舒適有效率的開發環境，增加開發者的效率。
+> 本文的範例程式放在 [peterhpchen/webpack-quest](https://github.com/peterhpchen/webpack-quest/tree/master/posts/20-development/demos) 中，每個程式碼區塊的第一行都會標注檔案的位置，請搭配文章作參考。
+
+在做一件事時，第一要務就是要把環境弄得舒適，只有舒適的環境，我們才能有好的產出。開發程式的第一件事也是如此，本文會講解如何使用 webpack 創造出舒適有效率的開發環境，增加開發者的效率。
 
 ## 使用 `development` 模式
 
@@ -27,7 +29,7 @@ module.exports = {
 
 ![without-source-map](./assets/without-source-map.png)
 
-可以看到上面沒有使用 Source Map 時會直接拿 bundle 的內容檔做除錯的依據，這對於除錯來說非常的困難。
+可以看到上面沒有使用 Source Map 時瀏覽器會直接拿 bundle 的內容檔做除錯的依據，這對於除錯來說非常的困難。
 
 現在我們在配置中加入 `devtool` 設置 Source Map：
 
@@ -39,7 +41,7 @@ module.exports = {
 }
 ```
 
-現在再看瀏覽器的 Dev Tool 中的抱錯及代碼內容：
+現在再看瀏覽器的 Dev Tool 中的報錯及代碼內容：
 
 ![with-source-map](./assets/with-source-map.png)
 
