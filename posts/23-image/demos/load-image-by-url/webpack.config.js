@@ -1,14 +1,14 @@
 module.exports = {
+  mode: "none",
   module: {
     rules: [
       {
-        test: /\.(png|jpe?g|gif)$/i,
+        test: /\.png$/,
         use: [
           {
             loader: "url-loader",
             options: {
               limit: 10240,
-              publicPath: "./dist",
             },
           },
         ],
