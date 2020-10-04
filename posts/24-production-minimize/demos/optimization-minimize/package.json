@@ -1,0 +1,16 @@
+{
+  "name": "production-mode",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "webpack"
+  },
+  "devDependencies": {
+    "closure-webpack-plugin": "^2.3.0",
+    "google-closure-compiler": "^20200927.0.0",
+    "terser-webpack-plugin": "^4.2.2",
+    "webpack": "^4.44.2",
+    "webpack-cli": "^3.3.12"
+  }
+}
