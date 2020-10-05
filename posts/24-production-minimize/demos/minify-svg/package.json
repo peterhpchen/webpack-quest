@@ -1,0 +1,20 @@
+{
+  "name": "minify-image",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "webpack"
+  },
+  "devDependencies": {
+    "file-loader": "^6.1.0",
+    "image-webpack-loader": "^6.0.0",
+    "mini-svg-data-uri": "^1.2.3",
+    "url-loader": "4.1.0",
+    "webpack": "4.44.1",
+    "webpack-cli": "3.3.12"
+  },
+  "dependencies": {
+    "lodash": "4.17.19"
+  }
+}

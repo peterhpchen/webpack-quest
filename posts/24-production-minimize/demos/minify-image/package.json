@@ -7,6 +7,7 @@
     "build": "webpack"
   },
   "devDependencies": {
+    "file-loader": "^6.1.0",
     "image-webpack-loader": "^6.0.0",
     "url-loader": "4.1.0",
     "webpack": "4.44.1",
