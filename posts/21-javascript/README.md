@@ -2,6 +2,8 @@
 
 > 本文說明如何配置 webpack 用來開發 JavaScript 應用程式。
 
+> 本文的範例程式放在 [peterhpchen/webpack-quest](https://github.com/peterhpchen/webpack-quest/tree/master/posts/21-javascript/demos) 中，每個程式碼區塊的第一行都會標注檔案的位置，請搭配文章作參考。
+
 webpack 可以解析 ES2015 版本的 JavaScript ，並將其轉為 bundle ，這是原生支援的功能，因此不需要任何的配置就可以開發 JavaScript 應用程式。
 
 但是依照目標的瀏覽器不同，所支援的 JavaScript 語法可能會有所差別，在較舊的瀏覽器上執行（例如 IE）會無法識別新的語法而造成錯誤。
