@@ -4,7 +4,7 @@
 
 > 本文的範例程式放在 [peterhpchen/webpack-quest](https://github.com/peterhpchen/webpack-quest/tree/master/posts/23-image/demos) 中，每個程式碼區塊的第一行都會標注檔案的位置，請搭配文章作參考。
 
-網頁載入圖片的方式有很多，可以直接用路徑載入，或是轉為 data URL 載入， svg 格式甚至可以用 inline 的方式嵌入 HTML 。這些載入方式都可以藉由 webpack 來達成，甚至做最佳化的處理。接下來就來講解如何使用 webpack 載入圖片資源。
+網頁載入圖片的方式有很多，可以直接用路徑載入，或是轉為 Data URL 載入， `.svg` 格式甚至可以用內嵌的方式引進 HTML 。這些載入方式都可以藉由 webpack 來達成，甚至做最佳化的處理。接下來就來講解如何使用 webpack 載入圖片資源。
 
 ## 使用路徑載入
 
@@ -67,15 +67,15 @@ document.body.appendChild(logo(WebpackLogo));
 
 ## 使用 Data URL 載入圖片
 
-圖片使用路徑載入時會需要多一次的請求以取得資源，這對於大圖片來說是可以接受的，但對於 icon 之類的小圖示，花費請求是浪費的，數量一多，會造成效能降低。
+圖片使用路徑載入時會需要多一次的請求以取得資源，這對於大圖片來說是可以接受的，但對於 icon 之類的小圖示，花費多次請求是浪費資源的，數量一多，會造成效能降低。
 
-為了避免上述的問題，我們可以將圖片轉為 Data URL 直接寫在引用的位置中，如此一來就不需要再次請求了，為此我們需要引入 `url-loader`：
+為了避免多次請求的問題，我們可以將圖片轉為 Data URL 直接寫在引用的位置中，如此一來就不需要再次請求了，為此我們需要引入 `url-loader`：
 
 ```bash
 npm install url-loader -D
 ```
 
-接著在配置檔將 `file-loader` 替換成 `url-loader`：
+接著在配置檔中將 `file-loader` 替換成 `url-loader`：
 
 ```js
 // ./demos/load-image-by-url/webpack.config.js
@@ -106,11 +106,11 @@ module.exports = {
 
 ![url-loader-bundle](./assets/url-loader-bundle.png)
 
-可以看到圖片的內容已經被編譯為 Data URL 了，我們只需要做平常的引入就好。
+可以看到圖片的內容已經被編譯為 Data URL 了，我們只需要使用平常的引入方式處理圖片就好， webpack 已經幫我們處理了細節的部分。
 
 ## 適時切換路徑與 Data URL 載入的方式
 
-前面有提到大圖片還是比較合適使用路徑的引入方式，因此 `url-loader` 讓我們可以用檔案大小決定要使用的 Loaders ，我們可以設定 `url-loader` 選項中的 `limit` ，當檔案大小超過這個數值時，預設會使用 `file-loader` 做處理：
+前面有提到大圖片還是比較合適使用路徑的引入方式，那如果我們想要依照圖片的大小改變引入的方式要怎麼做呢？為解決此問題， `url-loader` 讓我們可以用檔案大小決定要使用的 Loaders ，我們可以設定 `url-loader` 選項中的 `limit` ，當檔案大小超過這個數值時，預設會使用 `file-loader` 做處理：
 
 ```js
 // ./demos/load-image-by-url/webpack.config.js
@@ -136,11 +136,13 @@ module.exports = {
 
 `limit` 的單位是 bytes ，上面的設定在 10 KB 以上的圖片會由 `file-loader` 做處理。
 
+讀者可以變化 `limit` 的大小觀察同張圖片不同的輸出情形，以了解不同載入方式的變化。
+
 > `url-loader` 不會安裝 `file-loader` ，如果要使用 `limit` 設定，請自行安裝 `file-loader` 。
 
 ## 載入 SVG
 
-SVG 格式的檔案與一般圖片不同，他可以被視為合法的 HTML tag ，因此我們可以直接將其內容嵌入 HTML 中。
+SVG 格式的檔案與一般圖片不同，它們可以被視為合法的 HTML tag ，因此我們可以直接將其內容嵌入 HTML 中。
 
 ### 使用 `svg-inline-loader`
 
@@ -180,9 +182,9 @@ import WebpackLogo from "./webpack-logo.svg";
 document.body.innerHTML = WebpackLogo;
 ```
 
-直接將 SVG 的內容填進 `body` 中就可以了。
+直接將 SVG 的內容使用 `innerHTML` 填進 `body` 中就可以了。
 
-SVG 格式的圖片在 inline 的狀態下才可以被 CSS 做顏色及動畫的變化，當然 inline 也會造成無法 cache 與 HTML 佈局比較亂等問題，這些  就要看使用者本身的取捨了。
+SVG 格式的圖片在 inline 的狀態下才可以被 CSS 做顏色及動畫的變化，當然 inline 也會造成無法 cache 與 HTML 佈局比較亂等問題，這些特性就要看使用者本身的取捨決定載入的方式了。
 
 ## 總結
 
