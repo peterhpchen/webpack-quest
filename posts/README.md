@@ -34,5 +34,6 @@
 23. [使用 Image](./23-image/README.md)
 24. [建立 webpack 生產環境 - 減小體積](./24-production-minimize/README.md)
 25. [建立 webpack 生產環境 - 切割代碼](./25-production-code-splitting/README.md)
+26. [建立 webpack 生產環境 - 快取](./26-production-caching/README.md)
 
 ## 第四章：解構 webpack

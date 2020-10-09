@@ -1,0 +1,16 @@
+{
+  "name": "caching",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "webpack --display-modules",
+    "start": "http-server ./dist"
+  },
+  "devDependencies": {
+    "html-webpack-plugin": "^4.5.0",
+    "http-server": "^0.12.3",
+    "webpack": "^4.44.2",
+    "webpack-cli": "^3.3.12"
+  }
+}
