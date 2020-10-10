@@ -2,6 +2,8 @@
 
 > 本文講述使用 webpack 建立生產環境中代碼減少體積的優化方式。
 
+> 本文的範例程式放在 [peterhpchen/webpack-quest](https://github.com/peterhpchen/webpack-quest/tree/master/posts/24-production-minimize/demos) 中，每個程式碼區塊的第一行都會標注檔案的位置，請搭配文章作參考。
+
 在真正的產品環境時，能將代碼的容量縮小，減少請求的時間，是開發者的目標之一。 webpack 可以在依照設定對代碼做壓縮、減少等處理，以達到優化的目的。
 
 ## 開啟 `production` 模式
