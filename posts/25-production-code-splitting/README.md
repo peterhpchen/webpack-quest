@@ -41,11 +41,11 @@ module.exports = {
 
 ![entry](./assets/entry.png)
 
-這種做法會被用在完全不相關的兩個頁面的建置，想是多頁應用程式就會使用此方式拆分 bundle ，讓每一頁只讀取它所需要的資源。
+這種做法會被用在完全不相關的兩個頁面的建置，像是多頁應用程式就會使用此方式拆分 bundle ，讓每一頁只讀取它所需要的資源。
 
 ## 動態引入
 
-webpack 會偵測是否開發者有使用 `import()` 語法載入模組，如果是以 `import()` 載入模組的話，表示此模組要非同步引入，所以 webpack 會將其拆為另一個 bundle 。
+webpack 會偵測是否開發者有使用 `import()` 語法載入模組，如果是以 `import()` 載入模組的話，表示此模組要**非同步引入**，所以 webpack 會將其拆為另一個 bundle 。
 
 例如下面這個例子：
 
@@ -100,6 +100,10 @@ async function getComponent() {
 
 ...
 ```
+
+加入 `webpackChunkName` 後所產生的 bundle 會以名稱為檔名取代原本編號的命名：
+
+![webpack-chunk-name](./assets/webpack-chunk-name.png)
 
 ## 使用 `optimization.splitChunks` 切割代碼
 
