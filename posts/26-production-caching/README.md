@@ -2,6 +2,8 @@
 
 > 本文講述如何使瀏覽器盡可能的保留快取，不用重新請求資源。
 
+> 本文的範例程式放在 [peterhpchen/webpack-quest](https://github.com/peterhpchen/webpack-quest/tree/master/posts/26-production-caching/demos) 中，每個程式碼區塊的第一行都會標注檔案的位置，請搭配文章作參考。
+
 瀏覽器有快取機制，假設今天你瀏覽了一個網頁頁面，下次你在瀏覽此頁面的時候，瀏覽器會檢查此網頁內容是否有快取，如果有快取時，就會直接拿取快取的資源，以節省傳輸的花費。
 
 ![cache](./cache.png)
