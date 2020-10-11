@@ -1,0 +1,14 @@
+{
+  "name": "performance",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "webpack-dashboard -- webpack"
+  },
+  "devDependencies": {
+    "webpack": "^4.44.2",
+    "webpack-cli": "^3.3.12",
+    "webpack-dashboard": "^3.2.1"
+  }
+}

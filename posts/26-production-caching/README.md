@@ -2,6 +2,8 @@
 
 > 本文講述如何使瀏覽器盡可能的保留快取，不用重新請求資源。
 
+> 本文的範例程式放在 [peterhpchen/webpack-quest](https://github.com/peterhpchen/webpack-quest/tree/master/posts/26-production-caching/demos) 中，每個程式碼區塊的第一行都會標注檔案的位置，請搭配文章作參考。
+
 瀏覽器有快取機制，假設今天你瀏覽了一個網頁頁面，下次你在瀏覽此頁面的時候，瀏覽器會檢查此網頁內容是否有快取，如果有快取時，就會直接拿取快取的資源，以節省傳輸的花費。
 
 ![cache](./cache.png)
@@ -59,7 +61,7 @@ module.exports = {
 
 ![refresh-cache-origin](./assets/refresh-cache-origin.png)
 
- 現在將 `Caching` 改為 `Caching ing` ，建置結果如下:
+現在將 `Caching` 改為 `Caching ing` ，建置結果如下:
 
 ![refresh-cache-after-build](./assets/refresh-cache-after-build.png)
 
@@ -124,9 +126,9 @@ module.exports = {
 
 可以看到多了一個 `vendor` 的 bundle ，這是用來存放 `node_modules` 內的模組。
 
-> webpack 提取模組的最小大小為 30 KB ，所以有時就算設定提取，沒有達到最小體積的條件依然不會提取成獨立的 bundle ，這樣的策略跟我們在[使用圖片](../23-image/README.md)中所提到的 `url-loader` 與 `file-loader` 的選擇是一樣的道理。
+> webpack 提取模組的最小大小為 30 KB ，所以有時就算設定提取，沒有達到最小體積的條件依然不會提取成獨立的 bundle ，這樣的策略跟我們在[使用圖片](../23-image/README.md)中所提到的 `url-loader` 與 `file-loader` 的選擇是一樣的道理。
 
-但是這邊有個問題，當我們變動 `index.js` 內容時，會發現 `vendor` 的 `hash` 也發生了變化：
+但是這邊有個問題，當我們變動 `index.js` 內容時，會發現 `vendor` 的 `hash` 也發生了變化：
 
 ![extract-dependency-vendor-hash-change](./assets/extract-dependency-vendor-hash-change.png)
 
@@ -229,7 +231,7 @@ module.exports = {
 
 寫 SPA 時，我們會有很多的路由元件，這些元件都只有在對應的路由中才會作用，如果一開始就載入它們，是非常浪費資源也沒有意義的，這時可以使用[建立 webpack 生產環境 - 切割代碼](./25-production-code-splitting/README.md)一文中提到的非同步載入方式載入相關的資源來節省資源請求的量。
 
-##  避免使用流水號當作 Module Ids
+## 避免使用流水號當作 Module Ids
 
 上面看了許多的建置結果，可以發現到 webpack 替每個 Module 取了一個 Id：
 
