@@ -2,6 +2,8 @@
 
 > 本文講述如何使用分析工具解析 bundle 內模組的組合。
 
+> 本文的範例程式放在 [peterhpchen/webpack-quest](https://github.com/peterhpchen/webpack-quest/tree/master/posts/27-production-analyze/demos) 中，每個程式碼區塊的第一行都會標注檔案的位置，請搭配文章作參考。
+
 開發者在完成 webpack 的配置並且可以執行後，通常就不會再去注意 webpack 每此打包出來的 bundle 了，但其實比較好的做法是持續的追蹤 webpack 所產生出來的 bundle ，隨著應用程式開發時程，整體體積會跟著提高，這時就需要跟著變化去改變 webpack 配置，以確保應用程式的效能處於高檔的狀態。
 
 ## 使用 `performance` 配置提示 bundle 狀態
