@@ -1,12 +1,18 @@
-const path = require("path");
+module.exports = (webpackEnv) => {
+  const isEnvDevelopment = webpackEnv === "development";
+  const isEnvProduction = webpackEnv === "production";
 
-module.exports = (env) => ({
-  mode: env.production ? "production" : "development",
-  entry: "./src/index2.js",
-  output: env.production
-    ? {
-        filename: "bundle.js",
-        path: path.resolve(__dirname, "build"),
-      }
-    : {},
-});
+  return {
+    mode: isEnvProduction ? "production" : isEnvDevelopment && "development",
+    module: {
+      rules: [
+        {
+          test: /\.js$/,
+          use: {
+            loader: "babel-loader",
+          },
+        },
+      ],
+    },
+  };
+};
