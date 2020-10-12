@@ -1,0 +1,12 @@
+{
+  "name": "simple",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "node boundler.js"
+  },
+  "dependencies": {
+    "acorn": "^6.4.2"
+  }
+}

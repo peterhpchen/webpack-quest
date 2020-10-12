@@ -1,0 +1,366 @@
+{
+  "errors": [],
+  "warnings": [],
+  "version": "4.44.2",
+  "hash": "bf6174ef3e6470a69576",
+  "time": 61,
+  "builtAt": 1602514241162,
+  "publicPath": "",
+  "outputPath": "/Users/PeterChen/Documents/code/webpack-quest/posts/29-write-your-webpack/demos/simple/dist",
+  "assetsByChunkName": {
+    "main": "main.js"
+  },
+  "assets": [
+    {
+      "name": "main.js",
+      "size": 4574,
+      "chunks": [0],
+      "chunkNames": ["main"],
+      "info": {},
+      "emitted": true
+    }
+  ],
+  "filteredAssets": 0,
+  "entrypoints": {
+    "main": {
+      "chunks": [0],
+      "assets": ["main.js"],
+      "children": {},
+      "childAssets": {}
+    }
+  },
+  "namedChunkGroups": {
+    "main": {
+      "chunks": [0],
+      "assets": ["main.js"],
+      "children": {},
+      "childAssets": {}
+    }
+  },
+  "chunks": [
+    {
+      "id": 0,
+      "rendered": true,
+      "initial": true,
+      "entry": true,
+      "size": 167,
+      "names": ["main"],
+      "files": ["main.js"],
+      "hash": "440c6dcc489251265b67",
+      "siblings": [],
+      "parents": [],
+      "children": [],
+      "childrenByOrder": {},
+      "modules": [
+        {
+          "id": 0,
+          "identifier": "/Users/PeterChen/Documents/code/webpack-quest/posts/29-write-your-webpack/demos/simple/src/index.js",
+          "name": "./src/index.js",
+          "index": 0,
+          "index2": 2,
+          "size": 58,
+          "cacheable": true,
+          "built": true,
+          "optional": false,
+          "prefetched": false,
+          "chunks": [0],
+          "issuer": null,
+          "issuerId": null,
+          "issuerName": null,
+          "issuerPath": null,
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "assets": [],
+          "reasons": [
+            {
+              "moduleId": null,
+              "moduleIdentifier": null,
+              "module": null,
+              "moduleName": null,
+              "type": "single entry",
+              "userRequest": "./src",
+              "loc": "main"
+            }
+          ],
+          "providedExports": [],
+          "optimizationBailout": [],
+          "depth": 0,
+          "source": "import message from './message.js';\n\nconsole.log(message);"
+        },
+        {
+          "id": 1,
+          "identifier": "/Users/PeterChen/Documents/code/webpack-quest/posts/29-write-your-webpack/demos/simple/src/message.js",
+          "name": "./src/message.js",
+          "index": 1,
+          "index2": 1,
+          "size": 76,
+          "cacheable": true,
+          "built": true,
+          "optional": false,
+          "prefetched": false,
+          "chunks": [0],
+          "issuer": "/Users/PeterChen/Documents/code/webpack-quest/posts/29-write-your-webpack/demos/simple/src/index.js",
+          "issuerId": 0,
+          "issuerName": "./src/index.js",
+          "issuerPath": [
+            {
+              "id": 0,
+              "identifier": "/Users/PeterChen/Documents/code/webpack-quest/posts/29-write-your-webpack/demos/simple/src/index.js",
+              "name": "./src/index.js"
+            }
+          ],
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "assets": [],
+          "reasons": [
+            {
+              "moduleId": 0,
+              "moduleIdentifier": "/Users/PeterChen/Documents/code/webpack-quest/posts/29-write-your-webpack/demos/simple/src/index.js",
+              "module": "./src/index.js",
+              "moduleName": "./src/index.js",
+              "type": "harmony side effect evaluation",
+              "userRequest": "./message.js",
+              "loc": "1:0-35"
+            },
+            {
+              "moduleId": 0,
+              "moduleIdentifier": "/Users/PeterChen/Documents/code/webpack-quest/posts/29-write-your-webpack/demos/simple/src/index.js",
+              "module": "./src/index.js",
+              "moduleName": "./src/index.js",
+              "type": "harmony import specifier",
+              "userRequest": "./message.js",
+              "loc": "3:12-19"
+            }
+          ],
+          "providedExports": ["default"],
+          "optimizationBailout": [],
+          "depth": 1,
+          "source": "import {demoName} from './demoName.js';\n\nexport default `hello ${demoName}`;"
+        },
+        {
+          "id": 2,
+          "identifier": "/Users/PeterChen/Documents/code/webpack-quest/posts/29-write-your-webpack/demos/simple/src/demoName.js",
+          "name": "./src/demoName.js",
+          "index": 2,
+          "index2": 0,
+          "size": 33,
+          "cacheable": true,
+          "built": true,
+          "optional": false,
+          "prefetched": false,
+          "chunks": [0],
+          "issuer": "/Users/PeterChen/Documents/code/webpack-quest/posts/29-write-your-webpack/demos/simple/src/message.js",
+          "issuerId": 1,
+          "issuerName": "./src/message.js",
+          "issuerPath": [
+            {
+              "id": 0,
+              "identifier": "/Users/PeterChen/Documents/code/webpack-quest/posts/29-write-your-webpack/demos/simple/src/index.js",
+              "name": "./src/index.js"
+            },
+            {
+              "id": 1,
+              "identifier": "/Users/PeterChen/Documents/code/webpack-quest/posts/29-write-your-webpack/demos/simple/src/message.js",
+              "name": "./src/message.js"
+            }
+          ],
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "assets": [],
+          "reasons": [
+            {
+              "moduleId": 1,
+              "moduleIdentifier": "/Users/PeterChen/Documents/code/webpack-quest/posts/29-write-your-webpack/demos/simple/src/message.js",
+              "module": "./src/message.js",
+              "moduleName": "./src/message.js",
+              "type": "harmony side effect evaluation",
+              "userRequest": "./demoName.js",
+              "loc": "1:0-39"
+            },
+            {
+              "moduleId": 1,
+              "moduleIdentifier": "/Users/PeterChen/Documents/code/webpack-quest/posts/29-write-your-webpack/demos/simple/src/message.js",
+              "module": "./src/message.js",
+              "moduleName": "./src/message.js",
+              "type": "harmony import specifier",
+              "userRequest": "./demoName.js",
+              "loc": "3:24-32"
+            }
+          ],
+          "providedExports": ["demoName"],
+          "optimizationBailout": [],
+          "depth": 2,
+          "source": "export const demoName = 'simple';"
+        }
+      ],
+      "filteredModules": 0,
+      "origins": [
+        {
+          "module": "",
+          "moduleIdentifier": "",
+          "moduleName": "",
+          "loc": "main",
+          "request": "./src",
+          "reasons": []
+        }
+      ]
+    }
+  ],
+  "modules": [
+    {
+      "id": 0,
+      "identifier": "/Users/PeterChen/Documents/code/webpack-quest/posts/29-write-your-webpack/demos/simple/src/index.js",
+      "name": "./src/index.js",
+      "index": 0,
+      "index2": 2,
+      "size": 58,
+      "cacheable": true,
+      "built": true,
+      "optional": false,
+      "prefetched": false,
+      "chunks": [0],
+      "issuer": null,
+      "issuerId": null,
+      "issuerName": null,
+      "issuerPath": null,
+      "failed": false,
+      "errors": 0,
+      "warnings": 0,
+      "assets": [],
+      "reasons": [
+        {
+          "moduleId": null,
+          "moduleIdentifier": null,
+          "module": null,
+          "moduleName": null,
+          "type": "single entry",
+          "userRequest": "./src",
+          "loc": "main"
+        }
+      ],
+      "providedExports": [],
+      "optimizationBailout": [],
+      "depth": 0,
+      "source": "import message from './message.js';\n\nconsole.log(message);"
+    },
+    {
+      "id": 1,
+      "identifier": "/Users/PeterChen/Documents/code/webpack-quest/posts/29-write-your-webpack/demos/simple/src/message.js",
+      "name": "./src/message.js",
+      "index": 1,
+      "index2": 1,
+      "size": 76,
+      "cacheable": true,
+      "built": true,
+      "optional": false,
+      "prefetched": false,
+      "chunks": [0],
+      "issuer": "/Users/PeterChen/Documents/code/webpack-quest/posts/29-write-your-webpack/demos/simple/src/index.js",
+      "issuerId": 0,
+      "issuerName": "./src/index.js",
+      "issuerPath": [
+        {
+          "id": 0,
+          "identifier": "/Users/PeterChen/Documents/code/webpack-quest/posts/29-write-your-webpack/demos/simple/src/index.js",
+          "name": "./src/index.js"
+        }
+      ],
+      "failed": false,
+      "errors": 0,
+      "warnings": 0,
+      "assets": [],
+      "reasons": [
+        {
+          "moduleId": 0,
+          "moduleIdentifier": "/Users/PeterChen/Documents/code/webpack-quest/posts/29-write-your-webpack/demos/simple/src/index.js",
+          "module": "./src/index.js",
+          "moduleName": "./src/index.js",
+          "type": "harmony side effect evaluation",
+          "userRequest": "./message.js",
+          "loc": "1:0-35"
+        },
+        {
+          "moduleId": 0,
+          "moduleIdentifier": "/Users/PeterChen/Documents/code/webpack-quest/posts/29-write-your-webpack/demos/simple/src/index.js",
+          "module": "./src/index.js",
+          "moduleName": "./src/index.js",
+          "type": "harmony import specifier",
+          "userRequest": "./message.js",
+          "loc": "3:12-19"
+        }
+      ],
+      "providedExports": ["default"],
+      "optimizationBailout": [],
+      "depth": 1,
+      "source": "import {demoName} from './demoName.js';\n\nexport default `hello ${demoName}`;"
+    },
+    {
+      "id": 2,
+      "identifier": "/Users/PeterChen/Documents/code/webpack-quest/posts/29-write-your-webpack/demos/simple/src/demoName.js",
+      "name": "./src/demoName.js",
+      "index": 2,
+      "index2": 0,
+      "size": 33,
+      "cacheable": true,
+      "built": true,
+      "optional": false,
+      "prefetched": false,
+      "chunks": [0],
+      "issuer": "/Users/PeterChen/Documents/code/webpack-quest/posts/29-write-your-webpack/demos/simple/src/message.js",
+      "issuerId": 1,
+      "issuerName": "./src/message.js",
+      "issuerPath": [
+        {
+          "id": 0,
+          "identifier": "/Users/PeterChen/Documents/code/webpack-quest/posts/29-write-your-webpack/demos/simple/src/index.js",
+          "name": "./src/index.js"
+        },
+        {
+          "id": 1,
+          "identifier": "/Users/PeterChen/Documents/code/webpack-quest/posts/29-write-your-webpack/demos/simple/src/message.js",
+          "name": "./src/message.js"
+        }
+      ],
+      "failed": false,
+      "errors": 0,
+      "warnings": 0,
+      "assets": [],
+      "reasons": [
+        {
+          "moduleId": 1,
+          "moduleIdentifier": "/Users/PeterChen/Documents/code/webpack-quest/posts/29-write-your-webpack/demos/simple/src/message.js",
+          "module": "./src/message.js",
+          "moduleName": "./src/message.js",
+          "type": "harmony side effect evaluation",
+          "userRequest": "./demoName.js",
+          "loc": "1:0-39"
+        },
+        {
+          "moduleId": 1,
+          "moduleIdentifier": "/Users/PeterChen/Documents/code/webpack-quest/posts/29-write-your-webpack/demos/simple/src/message.js",
+          "module": "./src/message.js",
+          "moduleName": "./src/message.js",
+          "type": "harmony import specifier",
+          "userRequest": "./demoName.js",
+          "loc": "3:24-32"
+        }
+      ],
+      "providedExports": ["demoName"],
+      "optimizationBailout": [],
+      "depth": 2,
+      "source": "export const demoName = 'simple';"
+    }
+  ],
+  "filteredModules": 0,
+  "logging": {
+    "webpack.buildChunkGraph.visitModules": {
+      "entries": [],
+      "filteredEntries": 2,
+      "debug": false
+    }
+  },
+  "children": []
+}

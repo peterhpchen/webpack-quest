@@ -39,3 +39,5 @@
 28. [配置多模式專案](./28-config-setup/README.md)
 
 ## 第四章：解構 webpack
+
+29. [自己動手寫 webpack](./29-write-your-webpack/README.md)
