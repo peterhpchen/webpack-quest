@@ -38,7 +38,7 @@ function createGraph(entry) {
 
       const dependencyAsset = createAsset(dependencyAbsolutePath, id++);
 
-      asset.mapping[dependencyAsset.filename] = dependencyAsset.id;
+      asset.mapping[dependencyRelativePath] = dependencyAsset.id;
 
       graph.push(dependencyAsset);
     });
