@@ -1,0 +1,13 @@
+{
+  "name": "tree-walker",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "node boundler.js"
+  },
+  "dependencies": {
+    "@babel/parser": "^7.11.5",
+    "@babel/traverse": "^7.11.5"
+  }
+}
