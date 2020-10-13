@@ -1,14 +1,14 @@
 const fs = require("fs");
-const { Parser } = require("acorn");
-const { simple } = require("acorn-walk");
+const { parse } = require("@babel/parser");
+const traverse = require("@babel/traverse").default;
 
 const content = fs.readFileSync("./src/index.js", "utf-8");
-const ast = Parser.parse(content, {
+const ast = parse(content, {
   sourceType: "module",
 });
 
-simple(ast, {
-  ImportDeclaration: (node) => {
+traverse(ast, {
+  ImportDeclaration: ({ node }) => {
     console.log(node);
   },
 });

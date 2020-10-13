@@ -3,6 +3,7 @@ const path = require("path");
 const { parse } = require("@babel/parser");
 const traverse = require("@babel/traverse").default;
 const { transformFromAstSync } = require("@babel/core");
+const prettier = require("prettier");
 
 let ID = 0;
 
@@ -28,7 +29,7 @@ function createAsset(filename) {
 
   return {
     id,
-    filename: filename,
+    filename,
     dependencies,
     code,
   };
@@ -86,5 +87,14 @@ function bundle(graph) {
   return result;
 }
 
+function output(code, outputPath) {
+  const dirname = path.dirname(outputPath);
+  fs.mkdirSync(dirname, { recursive: true });
+  const prettierCode = prettier.format(code, { parser: "babel" });
+  fs.writeFileSync(outputPath, prettierCode);
+}
+
 const graph = createGraph("./src/index.js");
-console.log(bundle(graph));
+const result = bundle(graph);
+
+output(result, "./dist/main.js");

@@ -2,9 +2,9 @@
   "errors": [],
   "warnings": [],
   "version": "4.44.2",
-  "hash": "bf6174ef3e6470a69576",
-  "time": 61,
-  "builtAt": 1602514241162,
+  "hash": "6717034d17bda230c130",
+  "time": 113,
+  "builtAt": 1602557710007,
   "publicPath": "",
   "outputPath": "/Users/PeterChen/Documents/code/webpack-quest/posts/29-write-your-webpack/demos/simple/dist",
   "assetsByChunkName": {
@@ -13,7 +13,7 @@
   "assets": [
     {
       "name": "main.js",
-      "size": 4574,
+      "size": 4577,
       "chunks": [0],
       "chunkNames": ["main"],
       "info": {},
@@ -43,10 +43,10 @@
       "rendered": true,
       "initial": true,
       "entry": true,
-      "size": 167,
+      "size": 172,
       "names": ["main"],
       "files": ["main.js"],
-      "hash": "440c6dcc489251265b67",
+      "hash": "892c15458f194b372f62",
       "siblings": [],
       "parents": [],
       "children": [],
@@ -58,7 +58,7 @@
           "name": "./src/index.js",
           "index": 0,
           "index2": 2,
-          "size": 58,
+          "size": 59,
           "cacheable": true,
           "built": true,
           "optional": false,
@@ -86,7 +86,7 @@
           "providedExports": [],
           "optimizationBailout": [],
           "depth": 0,
-          "source": "import message from './message.js';\n\nconsole.log(message);"
+          "source": "import message from \"./message.js\";\n\nconsole.log(message);\n"
         },
         {
           "id": 1,
@@ -94,7 +94,7 @@
           "name": "./src/message.js",
           "index": 1,
           "index2": 1,
-          "size": 76,
+          "size": 79,
           "cacheable": true,
           "built": true,
           "optional": false,
@@ -137,7 +137,7 @@
           "providedExports": ["default"],
           "optimizationBailout": [],
           "depth": 1,
-          "source": "import {demoName} from './demoName.js';\n\nexport default `hello ${demoName}`;"
+          "source": "import { demoName } from \"./demoName.js\";\n\nexport default `hello ${demoName}`;\n"
         },
         {
           "id": 2,
@@ -145,7 +145,7 @@
           "name": "./src/demoName.js",
           "index": 2,
           "index2": 0,
-          "size": 33,
+          "size": 34,
           "cacheable": true,
           "built": true,
           "optional": false,
@@ -178,7 +178,7 @@
               "moduleName": "./src/message.js",
               "type": "harmony side effect evaluation",
               "userRequest": "./demoName.js",
-              "loc": "1:0-39"
+              "loc": "1:0-41"
             },
             {
               "moduleId": 1,
@@ -193,7 +193,7 @@
           "providedExports": ["demoName"],
           "optimizationBailout": [],
           "depth": 2,
-          "source": "export const demoName = 'simple';"
+          "source": "export const demoName = \"simple\";\n"
         }
       ],
       "filteredModules": 0,
@@ -216,7 +216,7 @@
       "name": "./src/index.js",
       "index": 0,
       "index2": 2,
-      "size": 58,
+      "size": 59,
       "cacheable": true,
       "built": true,
       "optional": false,
@@ -244,7 +244,7 @@
       "providedExports": [],
       "optimizationBailout": [],
       "depth": 0,
-      "source": "import message from './message.js';\n\nconsole.log(message);"
+      "source": "import message from \"./message.js\";\n\nconsole.log(message);\n"
     },
     {
       "id": 1,
@@ -252,7 +252,7 @@
       "name": "./src/message.js",
       "index": 1,
       "index2": 1,
-      "size": 76,
+      "size": 79,
       "cacheable": true,
       "built": true,
       "optional": false,
@@ -295,7 +295,7 @@
       "providedExports": ["default"],
       "optimizationBailout": [],
       "depth": 1,
-      "source": "import {demoName} from './demoName.js';\n\nexport default `hello ${demoName}`;"
+      "source": "import { demoName } from \"./demoName.js\";\n\nexport default `hello ${demoName}`;\n"
     },
     {
       "id": 2,
@@ -303,7 +303,7 @@
       "name": "./src/demoName.js",
       "index": 2,
       "index2": 0,
-      "size": 33,
+      "size": 34,
       "cacheable": true,
       "built": true,
       "optional": false,
@@ -336,7 +336,7 @@
           "moduleName": "./src/message.js",
           "type": "harmony side effect evaluation",
           "userRequest": "./demoName.js",
-          "loc": "1:0-39"
+          "loc": "1:0-41"
         },
         {
           "moduleId": 1,
@@ -351,7 +351,7 @@
       "providedExports": ["demoName"],
       "optimizationBailout": [],
       "depth": 2,
-      "source": "export const demoName = 'simple';"
+      "source": "export const demoName = \"simple\";\n"
     }
   ],
   "filteredModules": 0,

@@ -2,6 +2,8 @@
 
 > 本文講解如何在同一專案中配置多種模式的 webpack 設定。
 
+> 本文的範例程式放在 [peterhpchen/webpack-quest](https://github.com/peterhpchen/webpack-quest/tree/master/posts/28-config-setup/demos) 中，每個程式碼區塊的第一行都會標注檔案的位置，請搭配文章作參考。
+
 在開發專案時，會有兩種配置：開發配置及生產配置。開發配置專責於開發階段使用，使工程師得到更好的除錯幫助，有意義的命名模組輸出、 Source Map 、 Hot Module Replacement...等。而生產環境的配置則需要做最佳化、減少體積、切割代碼以提高快取機會...等。但是這兩種環境的配置也並不完全不同，其中對於模組的載入、入口的設定等在兩個環境下是會相同的，這時要如何配置這些配置，又不會讓使用者麻煩是需要特別注意的。
 
 為解決此問題，本文會使用`函式` 、 `webpack-merge` 及 `webpack-chain` 這三種不同的方式說明如何配置 webpack 的配置檔。

@@ -1,8 +1,8 @@
 const fs = require("fs");
-const { Parser } = require("acorn");
+const { parse } = require("@babel/parser");
 
 const content = fs.readFileSync("./src/index.js", "utf-8");
-const ast = Parser.parse(content, {
+const ast = parse(content, {
   sourceType: "module",
 });
 

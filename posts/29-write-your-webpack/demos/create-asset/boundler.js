@@ -1,19 +1,19 @@
 const fs = require("fs");
-const { Parser } = require("acorn");
-const { simple } = require("acorn-walk");
+const { parse } = require("@babel/parser");
+const traverse = require("@babel/traverse").default;
 
 let ID = 0;
 
 function createAsset(fileName) {
   const content = fs.readFileSync(fileName, "utf-8");
-  const ast = Parser.parse(content, {
+  const ast = parse(content, {
     sourceType: "module",
   });
 
   const dependencies = [];
 
-  simple(ast, {
-    ImportDeclaration: (node) => {
+  traverse(ast, {
+    ImportDeclaration: ({ node }) => {
       dependencies.push(node.source.value);
     },
   });
