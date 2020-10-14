@@ -35,7 +35,7 @@ console.log(add(1, 2));
 // 3
 ```
 
-會轉譯為：
+會轉譯為:
 
 ```js
 "use strict";
@@ -69,7 +69,7 @@ CSS 的標準是由 [W3C](https://www.w3.org/Style/CSS/) 所制定，與 JavaScr
 }
 ```
 
-會轉譯為：
+會轉譯為:
 
 ```css
 :root {
@@ -88,7 +88,7 @@ CSS 的標準是由 [W3C](https://www.w3.org/Style/CSS/) 所制定，與 JavaScr
 
 JavaScript 的弱型別性質使得開發者可以快速的開發小型的專案，但這樣的便利性也很容易產生 Bug 。
 
-例如像是下面這例子：
+例如像是下面這例子:
 
 ```js
 const add = (a, b) => {
@@ -129,7 +129,7 @@ CSS 的清單式語意，語法單純，使開發者很容易可以入門。但�
 
 ### SASS
 
-這裡介紹其中一個 CSS 預處理器：[SASS](https://sass-lang.com/)，它使得 CSS 可以使用 Variables, Mixins, Extend/Inheritance 及 Nesting 等豐富的功能。
+這裡介紹其中一個 CSS 預處理器: [SASS](https://sass-lang.com/)，它使得 CSS 可以使用 Variables, Mixins, Extend/Inheritance 及 Nesting 等豐富的功能。
 
 ```scss
 // ./demos/03-new-tech/src/style.scss
@@ -166,7 +166,7 @@ $exampleColor: green;
 }
 ```
 
-它會被轉譯為：
+它會被轉譯為:
 
 ```css
 .example .example__input,
@@ -282,17 +282,17 @@ html
 
 ## 結論
 
-網頁技術在現代急遽變化，遇到了各種問題，也出現了許多的解決方案，以下做個總覽：
+網頁技術在現代急遽變化，遇到了各種問題，也出現了許多的解決方案，以下做個總覽:
 
 - JavaScript
-  - 宿主環境對各語法支援度不一：Babel
-  - 是弱型別語言：TypeScript, flow
+  - 宿主環境對各語法支援度不一: Babel
+  - 是弱型別語言: TypeScript, flow
 - CSS
-  - 宿主環境對各語法支援度不一：PostCSS
-  - 語法過於簡單：SASS
-  - 是靜態的：CSS in JS
+  - 宿主環境對各語法支援度不一: PostCSS
+  - 語法過於簡單: SASS
+  - 是靜態的: CSS in JS
 - HTML
-  - 是靜態的：Pug, Template Syntax
+  - 是靜態的: Pug, Template Syntax
 
 雖然前端工程因為語言的限制產生了許多的問題，但是也都有了對應的方案可以解決，但這些方案都有一個共通的問題，那就是**需要配置相對應的轉譯器才能在瀏覽器上執行**。
 

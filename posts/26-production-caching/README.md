@@ -8,7 +8,7 @@
 
 ![cache](./cache.png)
 
-瀏覽器取得 cache 時的請求結果如下圖所示：
+瀏覽器取得 cache 時的請求結果如下圖所示:
 
 ![cache-result](./assets/cache-result.png)
 
@@ -18,7 +18,7 @@
 
 瀏覽器的快取機制設定的方式有很多，最常使用的方式就是將快取有效時間設定為極大，並藉由改變引入資源的檔名，促使瀏覽器進行更新。
 
-我們從剛剛的例子做延伸，前例中的 `index.js` 內容如下：
+我們從剛剛的例子做延伸，前例中的 `index.js` 內容如下:
 
 ```js
 // ./demos/update-caching/src/index.js
@@ -38,7 +38,7 @@ document.body.appendChild(component());
 
 要使快取未過期的內容更新的話，可以改變其檔名來達成目標。
 
-繼續以上例說明，我們在 webpack 的 `output.filename` 中多加個 `hash` 值，只要檔案內容發生變化，依照檔案內容所產生的 `hash` 值也會跟著改變：
+繼續以上例說明，我們在 webpack 的 `output.filename` 中多加個 `hash` 值，只要檔案內容發生變化，依照檔案內容所產生的 `hash` 值也會跟著改變:
 
 ```js
 // ./demos/update-caching/webpack.config.js
@@ -53,7 +53,7 @@ module.exports = {
 };
 ```
 
-建置後結果如下：
+建置後結果如下:
 
 ![refresh-cache-before-build](./assets/refresh-cache-before-build.png)
 
@@ -65,11 +65,11 @@ module.exports = {
 
 ![refresh-cache-after-build](./assets/refresh-cache-after-build.png)
 
-現在再重新整理後，會發現畫面內容更新了：
+現在再重新整理後，會發現畫面內容更新了:
 
 ![refresh-cache-change](./assets/refresh-cache-change.png)
 
-這是因為瀏覽器會將不同檔名的檔案視為不同的資源，因而重新請求：
+這是因為瀏覽器會將不同檔名的檔案視為不同的資源，因而重新請求:
 
 ![refresh-cache](./assets/refresh-cache.png)
 
@@ -79,7 +79,7 @@ module.exports = {
 
 `hash` 值只要整個 bundle 中的任何一個模組發生變化， `hash` 就會跟著改變，為了讓每個模組更有機會被瀏覽器快取，切割模組代碼是個很好的方法。
 
-以下面的例子說明：
+以下面的例子說明:
 
 ```js
 // ./demos/extract-dependency/src/index.js
@@ -95,15 +95,15 @@ const component = () => {
 document.body.appendChild(component());
 ```
 
-這例子中，我們引入了 `lodash` ，接著我們直接建置：
+這例子中，我們引入了 `lodash` ，接著我們直接建置:
 
 ![dependency-before](./assets/dependency-before.png)
 
-接著做個簡單的修改，將 `Caching` 改為 `Caching ing`，建置結果如下：
+接著做個簡單的修改，將 `Caching` 改為 `Caching ing`，建置結果如下:
 
 ![dependency-after](./assets/dependency-after.png)
 
-這個結果如我們所料， `hash` 值已經改變了，我們只修改了極少的內容，現在卻必須連 `lodash` 的內容一起重新請求，這樣的消耗過大，接著我們嘗試使用拆分的方式來減少重新請求的資源量：
+這個結果如我們所料， `hash` 值已經改變了，我們只修改了極少的內容，現在卻必須連 `lodash` 的內容一起重新請求，這樣的消耗過大，接著我們嘗試使用拆分的方式來減少重新請求的資源量:
 
 ```js
 // ./demos/extract-dependency/webpack.config.js
@@ -120,7 +120,7 @@ module.exports = {
 }
 ```
 
-不管同步、非同步的模組，一律都提取出來，建置結果如下：
+不管同步、非同步的模組，一律都提取出來，建置結果如下:
 
 ![extract-dependency-vendor-hash](./assets/extract-dependency-vendor-hash.png)
 
@@ -128,11 +128,11 @@ module.exports = {
 
 > webpack 提取模組的最小大小為 30 KB ，所以有時就算設定提取，沒有達到最小體積的條件依然不會提取成獨立的 bundle ，這樣的策略跟我們在[使用圖片](../23-image/README.md)中所提到的 `url-loader` 與 `file-loader` 的選擇是一樣的道理。
 
-但是這邊有個問題，當我們變動 `index.js` 內容時，會發現 `vendor` 的 `hash` 也發生了變化：
+但是這邊有個問題，當我們變動 `index.js` 內容時，會發現 `vendor` 的 `hash` 也發生了變化:
 
 ![extract-dependency-vendor-hash-change](./assets/extract-dependency-vendor-hash-change.png)
 
-這是因為 `hash` 是經由整個 bundle 內容計算而成的，因此所有的 bundle `hash` 值都會相同，這時可以使用 `chunkhash` ，它會依照各個 Chunk 產生對應的 `hash` ：
+這是因為 `hash` 是經由整個 bundle 內容計算而成的，因此所有的 bundle `hash` 值都會相同，這時可以使用 `chunkhash` ，它會依照各個 Chunk 產生對應的 `hash` :
 
 ```js
 // ./demos/extract-dependency/webpack.config.js
@@ -146,7 +146,7 @@ module.exports = {
 }
 ```
 
-建置結果如下：
+建置結果如下:
 
 ![extract-dependency-chunkhash](./assets/extract-dependency-chunkhash.png)
 
@@ -154,7 +154,7 @@ module.exports = {
 
 ## 提取 webpack runtime
 
-webpack 在執行時，會有自己的執行代碼，這些代碼通常很少變化，我們可以將它提取出來，避免其他變動讓他重新請求：
+webpack 在執行時，會有自己的執行代碼，這些代碼通常很少變化，我們可以將它提取出來，避免其他變動讓他重新請求:
 
 ```js
 // ./demos/extract-runtime/webpack.config.js
@@ -169,7 +169,7 @@ module.exports = {
 }
 ```
 
-建置結果如下：
+建置結果如下:
 
 ![extract-runtime](./assets/extract-runtime.png)
 
@@ -177,7 +177,7 @@ module.exports = {
 
 ## 內嵌 `runtime` 代碼至 `index.html`
 
-`runtime` 代碼並沒有大到需要提取出來（依照 webpack 標準 30 KB 以上才需要提取），因此可以讓他直接內嵌在 `index.html` 中，這樣的方式需要 `html-webpack-inline-source-plugin` 的幫忙：
+`runtime` 代碼並沒有大到需要提取出來（依照 webpack 標準 30 KB 以上才需要提取），因此可以讓他直接內嵌在 `index.html` 中，這樣的方式需要 `html-webpack-inline-source-plugin` 的幫忙:
 
 ```bash
 npm install html-webpack-inline-source-plugin@beta -D
@@ -185,7 +185,7 @@ npm install html-webpack-inline-source-plugin@beta -D
 
 目前版本有 [bug](https://github.com/DustinJackson/html-webpack-inline-source-plugin/issues/63)，因此使用 `beta` 版本。
 
-接著將它加進配置檔中：
+接著將它加進配置檔中:
 
 ```js
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -233,7 +233,7 @@ module.exports = {
 
 ## 避免使用流水號當作 Module Ids
 
-上面看了許多的建置結果，可以發現到 webpack 替每個 Module 取了一個 Id：
+上面看了許多的建置結果，可以發現到 webpack 替每個 Module 取了一個 Id:
 
 ![stable-module-id-default](./assets/stable-module-id-default.png)
 
@@ -256,7 +256,7 @@ module.exports = {
 }
 ```
 
-結果如下：
+結果如下:
 
 ![stable-module-id-hashed](./assets/stable-module-id-hashed.png)
 

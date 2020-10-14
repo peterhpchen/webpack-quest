@@ -12,7 +12,7 @@
 
 首先，先用一般的方式寫一隻簡單的程式。
 
-建立專案的目錄及空的 `package.json` ：
+建立專案的目錄及空的 `package.json` :
 
 ```bash
 mkdir simple-app
@@ -22,13 +22,13 @@ npm init -y # or `yarn init -y`
 
 > 也可以使用 `yarn` 來取代 `npm`
 
-再來建立一個 `public` 目錄來儲存代碼：
+再來建立一個 `public` 目錄來儲存代碼:
 
 ```bash
 mkdir public
 ```
 
-再來建立 `index.html` 及 `index.js` ：
+再來建立 `index.html` 及 `index.js` :
 
 ```html
 <!-- ./demos/simple-app/public/index.html -->
@@ -59,13 +59,13 @@ function component() {
 document.body.appendChild(component());
 ```
 
-我們使用 `http-server` 當我們測試用的伺服器，要先安裝：
+我們使用 `http-server` 當我們測試用的伺服器，要先安裝:
 
 ```bash
 npm install http-server --save-dev
 ```
 
-在 `package.json` 中的 `scripts` 中加上 `start`：
+在 `package.json` 中的 `scripts` 中加上 `start`:
 
 ```js
 // ./demos/simple-app/package.json
@@ -76,23 +76,23 @@ npm install http-server --save-dev
 }
 ```
 
-接著跑指令：
+接著跑指令:
 
 ```bash
 npm run start
 ```
 
-在瀏覽器中開啟 `http://127.0.0.1:8080` 就可以看到成果了：
+在瀏覽器中開啟 `http://127.0.0.1:8080` 就可以看到成果了:
 
 ![simple-app-result](./assets/simple-app-result.png)
 
 目前 Simple App 是使用一般 JavaScript 腳本方式執行，並沒有模組化。
 
-全部的資源會被 `index.html` 的標籤引入，因此現在的相依關係如下圖所示：
+全部的資源會被 `index.html` 的標籤引入，因此現在的相依關係如下圖所示:
 
 ![simple-app](./assets/simple-app.png)
 
-到目前為止，工作目錄下是這樣子的：
+到目前為止，工作目錄下是這樣子的:
 
 ```plaintext
 root
@@ -124,7 +124,7 @@ webpack 預設的起始模組是 `./src/index.js` ，因此需要將原本的 `p
 
 另外因為 webpack 預設的輸出位置是在 `./dist` ，因此要新建一個 `dist` 的目錄，並把 `index.html` 放到 `dist` 資料夾下，這個 `dist` 是放置靜態資源以及 webpack 建置完成的檔案，也就是 bundle 。
 
-到目前為止，目錄結構會像下面這樣：
+到目前為止，目錄結構會像下面這樣:
 
 ```plaintext
 root
@@ -137,13 +137,13 @@ root
 
 ### 改為模組化編程
 
-原本 Lodash 是用 CDN 載入的，現在改為用 `npm` 安裝：
+原本 Lodash 是用 CDN 載入的，現在改為用 `npm` 安裝:
 
 ```js
 npm install lodash -D
 ```
 
-再用 `import` 語法引入：
+再用 `import` 語法引入:
 
 ```js
 // ./demos/zero-config/src/index.js
@@ -162,7 +162,7 @@ function component() {
 document.body.appendChild(component());
 ```
 
-記得要把 `index.html` 的 `<script>` 刪除：
+記得要把 `index.html` 的 `<script>` 刪除:
 
 ```html
 <!-- ./demos/zero-config/dist/index.html -->
@@ -181,7 +181,7 @@ document.body.appendChild(component());
 
 ## 使用 webpack
 
-先將 `webpack` 指令加到 `package.json` 的 `scripts`：
+先將 `webpack` 指令加到 `package.json` 的 `scripts`:
 
 ```js
 // ./demos/zero-config/package.json
@@ -194,13 +194,13 @@ document.body.appendChild(component());
 
 webpack 可以**開箱即用(out of the box)**，不需要任何配置(zero config)。
 
-直接執行指令試試看吧：
+直接執行指令試試看吧:
 
 ```bash
 npm run build
 ```
 
-執行後，會出現 webpack 的建置報告：
+執行後，會出現 webpack 的建置報告:
 
 ![zero-config-build](./assets/zero-config-build.png)
 
@@ -208,7 +208,7 @@ npm run build
 
 > WARNING 是提醒沒有配置 `mode` ，預設會以 `production` 處理。 `mode` 會在之後的章節說明。
 
-由於 JavaScript 檔名變為 `main.js`，因此要去修改 `index.html` ：
+由於 JavaScript 檔名變為 `main.js`，因此要去修改 `index.html` :
 
 ```html
 <!-- ./demos/zero-config/dist/index.html -->
@@ -223,7 +223,7 @@ npm run build
 </html>
 ```
 
-現在建置後的檔案在 `./dist` 目錄下，因此需要修改 `start` 指令中 `http-server` 的目標目錄：
+現在建置後的檔案在 `./dist` 目錄下，因此需要修改 `start` 指令中 `http-server` 的目標目錄:
 
 ```js
 // ./demos/zero-config/package.json
@@ -238,7 +238,7 @@ npm run build
 
 ![zero-config-result](./assets/zero-config-result.png)
 
-恭喜你，你寫出了第一隻 webpack 建置的應用程式，現在的架構如下：
+恭喜你，你寫出了第一隻 webpack 建置的應用程式，現在的架構如下:
 
 ![zero-config](./assets/zero-config.png)
 
@@ -248,7 +248,7 @@ npm run build
 
 ## 嘗試載入圖片
 
-現在我們來加張圖片吧，把 `webpack-logo.png` 放到 `./src` ，並且在 `index.js` 中寫程式將圖片加到畫面上：
+現在我們來加張圖片吧，把 `webpack-logo.png` 放到 `./src` ，並且在 `index.js` 中寫程式將圖片加到畫面上:
 
 ```js
 // ./demos/load-image/src/index.js
@@ -278,7 +278,7 @@ document.body.appendChild(logo(WebpackLogo));
 document.body.appendChild(component());
 ```
 
-執行 webpack 後，產生下面的錯誤：
+執行 webpack 後，產生下面的錯誤:
 
 ![load-image-fail](./assets/load-image-fail.png)
 
@@ -292,7 +292,7 @@ document.body.appendChild(component());
 npm install file-loader --save-dev
 ```
 
-然後我們修改一下 `import` 圖片的方式：
+然後我們修改一下 `import` 圖片的方式:
 
 ```js
 import WebpackLogo from "file-loader!./webpack-logo.png";
@@ -306,11 +306,11 @@ import WebpackLogo from "file-loader!./webpack-logo.png";
 
 可以看到 webpack 多了一個 bundle ，名為 `6c80d661b822703023e4531a9ec5267f.png` 圖片，可以看到他的名字已經被 `file-loader` 轉為 hash 值了。
 
-執行起來會發現圖片成功載入了：
+執行起來會發現圖片成功載入了:
 
 ![load-image-result](./assets/load-image-result.png)
 
-現在的建置流程如下：
+現在的建置流程如下:
 
 ![load-image](./assets/load-image.png)
 
@@ -320,7 +320,7 @@ import WebpackLogo from "file-loader!./webpack-logo.png";
 
 `index.html` 目前是直接放在 `./dist` 目錄下，但是大部分常規專案的 `./dist` 的內容都是自動產生的，這樣的好處是可以讓自己撰寫的有邏輯的代碼與機器所產生的建置後的代碼做區分，在 `commit` 代碼時也會避免將 `./dist` 的代碼 `push` 到代碼庫中。
 
-為了方便管理，我們建立一個 `./public` 目錄並將 `index.html` 放到這目錄下：
+為了方便管理，我們建立一個 `./public` 目錄並將 `index.html` 放到這目錄下:
 
 ```plaintext
 root
@@ -339,13 +339,13 @@ root
 
 `CopyWebpackPlugin` 可以幫助我們把檔案從 A 地複製到 B 地，它正好可以幫我們把 `index.html` 複製到 `./dist` 資料夾中。
 
-首先做安裝的動作：
+首先做安裝的動作:
 
 ```bash
 npm install copy-webpack-plugin --save-dev
 ```
 
-接著因為我們要跟 `webpack` 說要怎麼使用 `CopyWebpackPlugin` ，因此我們需要建置一個 webpack 的配置檔 `webpack.config.js` ：
+接著因為我們要跟 `webpack` 說要怎麼使用 `CopyWebpackPlugin` ，因此我們需要建置一個 webpack 的配置檔 `webpack.config.js` :
 
 ```js
 // ./copy-html/webpack.config.js
@@ -365,13 +365,13 @@ module.exports = {
 
 > webpack 會預設尋找 root 目錄下的 `webpack.config.js` 當作配置檔，配置黨的內容會在[配置 webpack](../06-config-webpack/README.md) 一文中講解。
 
-建置結果如下：
+建置結果如下:
 
 ![copy-html-build](./assets/copy-html-build.png)
 
 我們可以看到 `index.html` 也變成了其中一個 bundle 被輸出了。
 
-目前整個建置的過程如下：
+目前整個建置的過程如下:
 
 ![copy-html](./assets/copy-html.png)
 

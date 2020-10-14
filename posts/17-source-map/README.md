@@ -8,7 +8,7 @@
 
 ## 除錯時遇到的大麻煩
 
-假設今天你寫了下面的代碼：
+假設今天你寫了下面的代碼:
 
 ```js
 // ./demos/without-source-map/src/index.js
@@ -27,11 +27,11 @@ function component() {
 document.body.appenChild(component());
 ```
 
-這個簡單的代碼會將 `component` 插入頁面中。寫完後，你興高采烈地用 webpack 建置後，在瀏覽器點開要看結果，發現怎麼一片白啊，無奈的你只好打開 DevTool 準備 Debug ，他看到了錯誤如下：
+這個簡單的代碼會將 `component` 插入頁面中。寫完後，你興高采烈地用 webpack 建置後，在瀏覽器點開要看結果，發現怎麼一片白啊，無奈的你只好打開 DevTool 準備 Debug ，他看到了錯誤如下:
 
 ![without-source-map-error](./assets/without-source-map-error.png)
 
-看到當下你傻眼了，心想：「我明明只有寫 `index.js` 怎麼錯誤是從 `main.js` 來，而且行數也不太對啊」，雖然心裡毛毛的，可是你還是點開了 `main.js:9` 看 source 的內容：
+看到當下你傻眼了，心想: 「我明明只有寫 `index.js` 怎麼錯誤是從 `main.js` 來，而且行數也不太對啊」，雖然心裡毛毛的，可是你還是點開了 `main.js:9` 看 source 的內容:
 
 ![without-source-map-source](./assets/without-source-map-source.png)
 
@@ -41,7 +41,7 @@ document.body.appenChild(component());
 
 ## 使用 Source Map 解決開發問題
 
-所幸 webpack 有提供 Source Map 的功能，我們使用 CLI 將它開啟：
+所幸 webpack 有提供 Source Map 的功能，我們使用 CLI 將它開啟:
 
 ```json
 // ./demos/source-map/package.json
@@ -54,7 +54,7 @@ document.body.appenChild(component());
 }
 ```
 
-`--devtool` 參數可以選擇不同的 Source Map 方式(在 [Dev Tool](../18-devtool/README.md) 一文會講解)，這裡選 `source-map` ，執行後再來看看瀏覽器的 Dev Tool ：
+`--devtool` 參數可以選擇不同的 Source Map 方式(在 [Dev Tool](../18-devtool/README.md) 一文會講解)，這裡選 `source-map` ，執行後再來看看瀏覽器的 Dev Tool :
 
 ![source-map-devtool](./assets/source-map-devtool.png)
 
@@ -66,7 +66,7 @@ Source Map 會產生一份 map 檔案，用以對應建置後的代碼到來源�
 
 ## Source Map 原理
 
-Source Map 會為每個檔案產生一個對應資料的檔案，它的內容會像下面這樣：
+Source Map 會為每個檔案產生一個對應資料的檔案，它的內容會像下面這樣:
 
 ```json
 {
@@ -80,7 +80,7 @@ Source Map 會為每個檔案產生一個對應資料的檔案，它的內容會
 }
 ```
 
-對應檔是個 JSON 格式的資料檔，副檔名為 `.map` ，主要的屬性有：
+對應檔是個 JSON 格式的資料檔，副檔名為 `.map` ，主要的屬性有:
 
 - `version`: Source Map 的版本，目前是 `3`
 - `sources`: 組成此建置檔案的原始檔案位置
@@ -90,7 +90,7 @@ Source Map 會為每個檔案產生一個對應資料的檔案，它的內容會
 - `sourceContent`: 原始檔案的代碼內容
 - `file`: 此對應檔的目標檔案(建置檔案)
 
-有了這個檔案後，我們需要告知瀏覽器要使用此對應檔，因此要在建置後的檔案中加上資訊：
+有了這個檔案後，我們需要告知瀏覽器要使用此對應檔，因此要在建置後的檔案中加上資訊:
 
 ```js
 "use strict";
@@ -111,7 +111,7 @@ var add = function add(a, b) {
 
 ## `mappings` 的對應方式
 
-`mappings` 內的資料規則如下：
+`mappings` 內的資料規則如下:
 
 - `;` : 分號用以區隔建置代碼中的每一行。
 - `,` : 逗號用以區隔每個代碼段。
@@ -123,13 +123,13 @@ var add = function add(a, b) {
 
 ## 對應編碼的定義
 
-對應編碼的值都是使用 VLQ 編碼，總共由五個值所組成：
+對應編碼的值都是使用 VLQ 編碼，總共由五個值所組成:
 
-- 第一個值：此代碼段位於建置後代碼中的第幾欄
-- 第二個值：此代碼段的原始檔案位於 map 檔中 `sources` 陣列的第幾個元素
-- 第三個值：此代碼段位於原始檔案中的第幾行
-- 第四個值：此代碼段位於原始檔案中的第幾欄
-- 第五個值：此代碼段的名稱位於 map 檔中 `names` 陣列的第幾個元素
+- 第一個值: 此代碼段位於建置後代碼中的第幾欄
+- 第二個值: 此代碼段的原始檔案位於 map 檔中 `sources` 陣列的第幾個元素
+- 第三個值: 此代碼段位於原始檔案中的第幾行
+- 第四個值: 此代碼段位於原始檔案中的第幾欄
+- 第五個值: 此代碼段的名稱位於 map 檔中 `names` 陣列的第幾個元素
 
 所有的值都會相依在之前的值之上，因此除去第一個代碼段外，其他的代碼段編碼的正確值都要加在之前編碼值之上。這樣做的好處在於，由於是相對值，因此數值不會太大，節省儲存空間。
 
@@ -137,14 +137,14 @@ var add = function add(a, b) {
 
 這節會以 Babel 代碼轉換的 Source Map 為例子來說明其對應的方法。
 
-原始代碼為：
+原始代碼為:
 
 ```js
 // ./demos/babel-source-map/src/index.js
 const add = (a, b) => a + b;
 ```
 
-建置代碼為：
+建置代碼為:
 
 ```js
 // ./demos/babel-source-map/lib/index.js
@@ -158,7 +158,7 @@ var add = function add(a, b) {
 
 `//# sourceMappingURL=index.js.map` 告訴瀏覽器此建置檔案的對應檔位置。
 
-對應檔為：
+對應檔為:
 
 ```json
 // ./demos/babel-source-map/lib/index.js.map
@@ -179,20 +179,20 @@ var add = function add(a, b) {
 
 首先我們看到 `;;` ，代表兩行的空白行，對照 `./lin/index.js` ，第二行的確是空行，而第一行雖然有 `use strict` ，但這不在對應的範圍內，因此沒有對應編碼的資料，所以一開始是以 `;;` 開頭。
 
-接著來看第一個代碼段，是在第三行的 `AAAA` ，由 VLQ 轉為數字為 `0,0,0,0` ，這值代表：
+接著來看第一個代碼段，是在第三行的 `AAAA` ，由 VLQ 轉為數字為 `0,0,0,0` ，這值代表:
 
 - 在建置後代碼的第 1 欄
 - 原始代碼位於 `sources` 的第一個元素 `../src/index.js` 中
 - 在原始代碼的第 1 行
 - 在原始代碼的第 1 欄
 
-因此對應如下：
+因此對應如下:
 
 ![first-segment](./assets/first-segment.png)
 
 由此可知第一段代碼段對應到原始代碼中的 `const` 。
 
-第二個代碼段為 `IAAMA` ，由 VLQ 轉為數字 `4,0,0,6,0` ，這值代表：
+第二個代碼段為 `IAAMA` ，由 VLQ 轉為數字 `4,0,0,6,0` ，這值代表:
 
 - 在建置後代碼的第 4 欄(要由基底值往上加)
 - 原始代碼位於 `sources` 的第 1 個(要由基底值往上加)元素 `../src/index.js` 中
@@ -200,7 +200,7 @@ var add = function add(a, b) {
 - 在原始代碼的第 6 欄(要由基底值往上加)
 - 原始代碼中的變數名稱為 `names` 中的第 1 個(要由基底值往上加)元素 `add`
 
-對應如下：
+對應如下:
 
 ![second-segment](./assets/second-segment.png)
 
@@ -208,7 +208,7 @@ var add = function add(a, b) {
 
 > 這裡每個值都有解釋需要由基底值往上加，因為基底值為 0 的關係，所以目前看不出效果，下一個代碼段再來解釋。
 
-第三個代碼段為 `GAAG` 轉為數字 `3,0,0,3` ，這值代表：
+第三個代碼段為 `GAAG` 轉為數字 `3,0,0,3` ，這值代表:
 
 - 在建置後代碼的第 8 (`0+4+3`)欄(要由基底值往上加)
 - 原始代碼位於 `sources` 的第 1 個(要由基底值往上加)元素 `../src/index.js` 中
@@ -217,19 +217,19 @@ var add = function add(a, b) {
 
 基底值為第一及第二個代碼段的 (`0,0,0,0`) 與 (`4,0,0,6,0`) 相加而成的 (`4,0,0,6,0`)，因此第三個代碼段要基於這個值再做運算。
 
-對應如下：
+對應如下:
 
 ![third-segment](./assets/third-segment.png)
 
 由於有基底值，因此由基底值向後加，所以第三個代碼段對應的原始代碼為 `=` 。
 
-之後就以上面的方式類推，下面整理了部分代碼段的總覽圖供讀者參閱：
+之後就以上面的方式類推，下面整理了部分代碼段的總覽圖供讀者參閱:
 
 ![mappings](./assets/mappings.png)
 
 ## 負數的對應值
 
-由於會有基底值，因此對應值有可能會是負數，代表往前尋找對應的意思，例如上例中有個 `SAANA` ，轉出來的數字為 `9,0,0,-6,0` ，這代表當在找尋原始代碼的欄數時，需要與基底值做減法運算，對應如下：
+由於會有基底值，因此對應值有可能會是負數，代表往前尋找對應的意思，例如上例中有個 `SAANA` ，轉出來的數字為 `9,0,0,-6,0` ，這代表當在找尋原始代碼的欄數時，需要與基底值做減法運算，對應如下:
 
 ![negative-segment](./assets/negative-segment.png)
 
@@ -243,7 +243,7 @@ var add = function add(a, b) {
 
 ### 由數字編碼為 VLQ
 
-編碼流程如下：
+編碼流程如下:
 
 1. 轉為二進位
 1. 向左位移一位，原數為負數的話第一位為 1 ，正數的話為 0
@@ -258,7 +258,7 @@ var add = function add(a, b) {
 
 ### 由 VLQ 解碼回數字
 
-預設值：目前數值為 0，位移值為 0 。
+預設值: 目前數值為 0，位移值為 0 。
 
 1. 取得第一個字元
 1. Base64 解碼

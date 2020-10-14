@@ -8,7 +8,7 @@
 
 ## 預設值
 
-`output` 的預設值如下：
+`output` 的預設值如下:
 
 ```js
 // ./demos/output-default/webpack.config.js
@@ -52,7 +52,7 @@ module.exports = {
 
 使用 Node.js 內建的 `path` 模組及 `__dirname` 變數可以解決路徑問題並組成絕對路徑。
 
-`output` 的 `path` 屬性可以用 CLI 設定：
+`output` 的 `path` 屬性可以用 CLI 設定:
 
 ```json
 // ./demos/output-path/package.json
@@ -71,7 +71,7 @@ module.exports = {
 
 > `$PWD` 是存有目前工作目錄的變數，可以用它組出絕對路徑。
 
-`path` 中可以使用 `[hash]` 用 Compilation 的 hash 值設定目錄：
+`path` 中可以使用 `[hash]` 用 Compilation 的 hash 值設定目錄:
 
 ```js
 // ./demos/output-path/webpack.config.demo.js
@@ -84,7 +84,7 @@ module.exports = {
 };
 ```
 
-上面的例子會產生下面的結果：
+上面的例子會產生下面的結果:
 
 ```plaintext
 root
@@ -96,7 +96,7 @@ root
 
 ## `filename`
 
-`filename` 設定 bundle 輸出的檔案名稱，它有兩種設定方式：
+`filename` 設定 bundle 輸出的檔案名稱，它有兩種設定方式:
 
 - 字串值
 - 函式
@@ -109,7 +109,7 @@ root
 
 字串值可以用一般靜態的名稱做設定，也可以用上節提到的 template string 設定不同的名稱來配置輸出。
 
-下面是個使用字串值設定的範例：
+下面是個使用字串值設定的範例:
 
 ```js
 // ./demos/output-filename/webpack.config.demo.js
@@ -122,13 +122,13 @@ module.exports = {
 };
 ```
 
-執行結果如下：
+執行結果如下:
 
 ![output-filename-result](./assets/output-filename-result.png)
 
 產生的檔名從原本預設的 Chunk 名稱變為配置檔中的 `bundle.js` 。
 
-CLI 也可以配置 `filename` ：
+CLI 也可以配置 `filename` :
 
 ```json
 // ./demos/output-filename/package.json
@@ -143,7 +143,7 @@ CLI 也可以配置 `filename` ：
 
 使用 `--output-filename` 設定 `filename` 參數。
 
-`filename` 除了設定檔名外，它還可以是一個相對路徑，以此來建置輸出的目錄結構：
+`filename` 除了設定檔名外，它還可以是一個相對路徑，以此來建置輸出的目錄結構:
 
 ```js
 // ./demos/output-filename-path/webpack.config.demo.js
@@ -154,7 +154,7 @@ module.exports = {
 };
 ```
 
-執行結果為：
+執行結果為:
 
 ![output-filename-path-result](./assets/output-filename-path-result.png)
 
@@ -169,7 +169,7 @@ root
 
 #### CLI 的 `output` 配置縮寫
 
-由於 `output.path` 及 `output.filename` 常常會一起做配置，因此 CLI 提供合併兩個設定的參數 `--output` ：
+由於 `output.path` 及 `output.filename` 常常會一起做配置，因此 CLI 提供合併兩個設定的參數 `--output` :
 
 ```json
 {
@@ -188,11 +188,11 @@ root
 
 配置多個 `entry` 的時候，會產生多個 Chunk ，也意味著會有多個檔案的輸出。
 
-這時如果還是使用靜態的輸出配置，會造成錯誤：
+這時如果還是使用靜態的輸出配置，會造成錯誤:
 
 ![output-filename-fail](./assets/output-filename-fail.png)
 
-為避免這個問題，可以使用 template string 做設定， webpack 會依照 Chunk 的狀態轉換 template string 變為相符的名稱：
+為避免這個問題，可以使用 template string 做設定， webpack 會依照 Chunk 的狀態轉換 template string 變為相符的名稱:
 
 ```js
 // ./demos/output-filename-multi/webpack.config.demo.js
@@ -207,7 +207,7 @@ module.exports = {
 };
 ```
 
-執行結果如下：
+執行結果如下:
 
 ![output-filename-multi-result](./assets/output-filename-multi-result.png)
 
@@ -234,7 +234,7 @@ module.exports = {
 };
 ```
 
-執行結果如下：
+執行結果如下:
 
 ![output-filename-func-result](./assets/output-filename-func-result.png)
 
@@ -244,7 +244,7 @@ module.exports = {
 
 Template String 可以將 Chunk 的資料帶入字串值中以產生不同名稱的輸出。
 
-Template String 是藉由 Webpack 內建的 [TemplatePathPlugin](https://github.com/webpack/webpack/blob/28bafbec7f5e91dbbeccb82e2c0f6ddfb0e3a51b/lib/TemplatedPathPlugin.js) 驅動的功能，它擁有下面的 template ：
+Template String 是藉由 Webpack 內建的 [TemplatePathPlugin](https://github.com/webpack/webpack/blob/28bafbec7f5e91dbbeccb82e2c0f6ddfb0e3a51b/lib/TemplatedPathPlugin.js) 驅動的功能，它擁有下面的 template :
 
 - `[name]` : Chunk 名稱
 - `[id]` : Chunk ID
@@ -256,7 +256,7 @@ Template String 是藉由 Webpack 內建的 [TemplatePathPlugin](https://github.
 
 ### `[name]`
 
-在上面有多個例子使用了 `[name]` template ，它表示的是對應的 Chunk 名稱：
+在上面有多個例子使用了 `[name]` template ，它表示的是對應的 Chunk 名稱:
 
 ```js
 // ./demos/output-filename-template/webpack.config.name.js
@@ -271,7 +271,7 @@ module.exports = {
 };
 ```
 
-執行結果：
+執行結果:
 
 ![output-filename-template-result](./assets/output-filename-template-result.png)
 
@@ -279,7 +279,7 @@ module.exports = {
 
 ### `[id]`
 
-`[id]` 會對應每個 Chunk 的 ID ：
+`[id]` 會對應每個 Chunk 的 ID :
 
 ```js
 // ./demos/output-filename-template/webpack.config.id.js
@@ -294,7 +294,7 @@ module.exports = {
 };
 ```
 
-執行結果如下：
+執行結果如下:
 
 ![output-filename-template-id-result](./assets/output-filename-template-id-result.png)
 
@@ -302,7 +302,7 @@ module.exports = {
 
 ### `[hash]`, `[chunkhash]`, `[chunkhash]`
 
-`[hash]`, `[chunkhash]`, `[chunkhash]` 都是輸出 hash 值，但每個都有不同的構成機制，依照情況有些會變動有些可以保持原本的值，大致可以分為下面這樣：
+`[hash]`, `[chunkhash]`, `[chunkhash]` 都是輸出 hash 值，但每個都有不同的構成機制，依照情況有些會變動有些可以保持原本的值，大致可以分為下面這樣:
 
 | Actions               | `[hash]` | `[chunkhash]`                  | `[contenthash]`               |
 | --------------------- | -------- | ------------------------------ | ----------------------------- |
@@ -326,7 +326,7 @@ module.exports = {
 
 #### `[contenthash]`
 
-`[contenthash]` 的值是由輸出的 bundle 內容所產生的，我們可以看下面這個例子：
+`[contenthash]` 的值是由輸出的 bundle 內容所產生的，我們可以看下面這個例子:
 
 ```js
 // ./demos/output-filename-hash/src/index.js
@@ -347,7 +347,7 @@ console.log("index2");
 }
 ```
 
-然後配置檔如下：
+然後配置檔如下:
 
 ```js
 // ./demos/output-filename-hash/webpack.config.js
@@ -384,7 +384,7 @@ module.exports = {
 
 這裡使用 `MiniCssExtractPlugin` 將引入的 `.css` 拉出來另外產生 `.css` 檔案。
 
-建置結果如下：
+建置結果如下:
 
 ![output-filename-hash-result](./assets/output-filename-hash-result.png)
 
@@ -396,7 +396,7 @@ module.exports = {
 
 ### 跳脫 template string
 
-有時會需要真的輸出 `[id]` 這樣的字串當作檔名，可以使用 `\` 包住中間的值（例如 `id`, `name`），就可以直接當作字串輸出而不會轉換：
+有時會需要真的輸出 `[id]` 這樣的字串當作檔名，可以使用 `\` 包住中間的值（例如 `id`, `name`），就可以直接當作字串輸出而不會轉換:
 
 ```js
 // ./demos/output-filename-template/webpack.config.escape.js
@@ -413,7 +413,7 @@ module.exports = {
 
 在字串中記得再加一個 `\` 讓 `\` 可以傳入。
 
-執行結果如下：
+執行結果如下:
 
 ![output-filename-template-escape-result](./assets/output-filename-template-escape-result.png)
 
@@ -421,7 +421,7 @@ module.exports = {
 
 `publicPath` 是處理在部署時候，建置檔案在伺服器中的路徑，以此路徑設定 Chunk 在載入時所需要請求的位置。
 
-我們直接來看個例子：
+我們直接來看個例子:
 
 ```js
 // ./demos/output-publicpath/webpack.config.js
@@ -434,7 +434,7 @@ module.exports = {
 };
 ```
 
-產生出來的目錄如下：
+產生出來的目錄如下:
 
 ```plaintext
 root
@@ -448,7 +448,7 @@ root
 - `index.html` 中使用 `./js/main.js` 引入 `main.js`
 - `1.js` 會在 `main.js` 中被延遲載入
 
-將 `build` 目錄傳至伺服器上看結果：
+將 `build` 目錄傳至伺服器上看結果:
 
 ![output-publicpath-fail](./assets/output-publicpath-fail.png)
 
@@ -476,7 +476,7 @@ module.exports = {
 
 ### `chunkFilename` 的設定方式
 
-`chunkFilename` 的預設值為 `[id].js` ：
+`chunkFilename` 的預設值為 `[id].js` :
 
 ![output-chunkfilename-default-result](./assets/output-chunkfilename-default-result.png)
 
@@ -486,9 +486,9 @@ module.exports = {
 
 ## 總結
 
-`output` 擁有許多複雜的配置，本文講了四個比較常用的屬性：`path`, `filename`, `publicPath` 以及 `chunkFilename` 。
+`output` 擁有許多複雜的配置，本文講了四個比較常用的屬性: `path`, `filename`, `publicPath` 以及 `chunkFilename` 。
 
-這中間也介紹了一個重要的設定方式： Template String 。在 `webpack` 中配置所有的輸出檔案時，不管是用 plugin 建立的或是 loader 創建的還是一般 chunk 輸出的檔案，所有的檔名幾乎都可以使用 Template String 來設定，使用正確的 Template 可以大大地增加快取的效能，加快應用程式的運行。
+這中間也介紹了一個重要的設定方式: Template String 。在 `webpack` 中配置所有的輸出檔案時，不管是用 plugin 建立的或是 loader 創建的還是一般 chunk 輸出的檔案，所有的檔名幾乎都可以使用 Template String 來設定，使用正確的 Template 可以大大地增加快取的效能，加快應用程式的運行。
 
 ## 參考資料
 

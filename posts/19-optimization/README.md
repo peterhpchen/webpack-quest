@@ -61,7 +61,7 @@ module.exports = [false, true].map((namedChunks) => ({
 }));
 ```
 
-執行結果如下：
+執行結果如下:
 
 ![named-chunks-result](./assets/named-chunks-result.png)
 
@@ -86,14 +86,14 @@ module.exports = ["development", "production"].map((nodeEnv) => ({
 
 這個例子中產生兩個 bundle ，一個注入 `development` ，一個注入 `production` 。
 
-`index.js` 如下所示：
+`index.js` 如下所示:
 
 ```js
 // ./demos/node-env/src/index.js
 console.log(process.env.NODE_ENV);
 ```
 
-建置出來後， bundle 的內容如下：
+建置出來後， bundle 的內容如下:
 
 ```js
 // ./demos/node-env/dist/development.js
@@ -113,7 +113,7 @@ console.log(process.env.NODE_ENV);
 
 `flagIncludedChunks` 會標示出 bundle 中個別的 Chunks 。
 
-這個例子有三個 `entry`：`index.js`, `sub.js`, `normal.js` ， `sub.js` 相依 `normal.js` ，而 `index.js` 相依 `sub.js` ，下面是配置：
+這個例子有三個 `entry`: `index.js`, `sub.js`, `normal.js` ， `sub.js` 相依 `normal.js` ，而 `index.js` 相依 `sub.js` ，下面是配置:
 
 ```js
 // ./demos/flag-included-chunks/webpack.config.js
@@ -133,7 +133,7 @@ module.exports = [false, true].map((flagIncludedChunks) => ({
 }));
 ```
 
-建置結果如下：
+建置結果如下:
 
 ![flag-included-chunks-result](./assets/flag-included-chunks-result.png)
 
@@ -143,7 +143,7 @@ module.exports = [false, true].map((flagIncludedChunks) => ({
 
 `sideEffects` 啟用時，會去觀察 module 的 `package.json` 的 `sideEffects` 設定，如果設定 `true` ，代表此 module 全部都只有 export 的代碼，沒有自己執行並影響全域的行為，這樣一來 webpack 可以將未引入的部分代碼排除在 bundle 中，以減少 bundle 的大小。
 
-範例 `./demos/side-effects` 有使用 `./demos/sife-effects/modules/module` 中的模組，此模組會有兩個引入的模組：
+範例 `./demos/side-effects` 有使用 `./demos/sife-effects/modules/module` 中的模組，此模組會有兩個引入的模組:
 
 ```js
 // ./demos/side-effects/modules/module/index.js
@@ -153,7 +153,7 @@ import beta from "./beta";
 export { alpha, beta };
 ```
 
-但在 `./src/index.js` 中只有引入 `alpha`：
+但在 `./src/index.js` 中只有引入 `alpha`:
 
 ```js
 // ./demos/side-effects/src/index.js
@@ -162,7 +162,7 @@ import { alpha } from "../modules/module";
 console.log(alpha);
 ```
 
-然後配置檔內容如下：
+然後配置檔內容如下:
 
 ```js
 // ./demos/side-effects/webpack.config.js
@@ -177,7 +177,7 @@ module.exports = [false, true].map((sideEffects) => ({
 }));
 ```
 
-建置後的在 `sideEffects` 啟用的狀況下， `beta` 會被刪除：
+建置後的在 `sideEffects` 啟用的狀況下， `beta` 會被刪除:
 
 ![side-effects-compare](./assets/side-effects-compare.png)
 
@@ -187,7 +187,7 @@ module.exports = [false, true].map((sideEffects) => ({
 
 `usedExports` 啟用後， webpack 會使用 `terser` 去識別各個模組是否有 side effects ，如果沒有的話，不將其引入。
 
-與上面 `sideEffects` 相同的例子，我們可以改啟用 `usedExports` ，結果如下：
+與上面 `sideEffects` 相同的例子，我們可以改啟用 `usedExports` ，結果如下:
 
 ![used-exports-result](./assets/used-exports-result.png)
 
@@ -197,7 +197,7 @@ module.exports = [false, true].map((sideEffects) => ({
 
 `occurrenceOrder` 會將 modules **依照引用的次序產生 index** 。
 
-配置如下：
+配置如下:
 
 ```js
 // ./demos/occurrence-order/webpack.config.js
@@ -217,7 +217,7 @@ module.exports = [false, true].map((occurrenceOrder) => ({
 }));
 ```
 
-建置後順序為：
+建置後順序為:
 
 ```plaintext
 // ./demos/occurrence-order/dist/main.false.js
@@ -237,7 +237,7 @@ module.exports = [false, true].map((occurrenceOrder) => ({
 
 `concatenateModules` 會經由模組圖 module graph 的分析，安全地**將模組盡量做合併**，以達到較好的效能。
 
-配置如下：
+配置如下:
 
 ```js
 // ./demos/concatenate-modules/webpack.config.js
@@ -252,13 +252,13 @@ module.exports = [false, true].map((concatenateModules) => ({
 }));
 ```
 
-沒啟用時建置結果如下：
+沒啟用時建置結果如下:
 
 ![concatenate-modules-false-result](./assets/concatenate-modules-false-result.png)
 
 可以看到 webpack 依照每個模組拆分代碼。
 
-啟用後的結果如下：
+啟用後的結果如下:
 
 ![concatenate-modules-true-result](./assets/concatenate-modules-true-result.png)
 
@@ -279,7 +279,7 @@ module.exports = [false, true].map((minimize) => ({
 }));
 ```
 
-使用後會做壓縮的動作，因此 bundle 的大小會縮小：
+使用後會做壓縮的動作，因此 bundle 的大小會縮小:
 
 ![minimize-result](./assets/minimize-result.png)
 
@@ -305,5 +305,5 @@ module.exports = [false, true].map((minimize) => ({
 
 - [Webpack Documentation: Configuration - Optimization](https://v4.webpack.js.org/configuration/optimization/)
 - [Webpack Documentation: Configuration - Mode](https://v4.webpack.js.org/configuration/mode/)
-- [显微镜下的 webpack4 的新特性：mode 详解](https://juejin.im/post/6844903695033843726)
+- [显微镜下的 webpack4 的新特性: mode 详解](https://juejin.im/post/6844903695033843726)
 - [Webpack Documentation: Guides - Tree Shaking](https://v4.webpack.js.org/guides/tree-shaking/#clarifying-tree-shaking-and-sideeffects)

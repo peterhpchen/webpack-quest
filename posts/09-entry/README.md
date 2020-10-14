@@ -23,7 +23,7 @@
 
 ## 設定語法
 
-`entry` 的設定語法有四種：
+`entry` 的設定語法有四種:
 
 - 字串值
 - 陣列
@@ -43,7 +43,7 @@ module.exports = {
 };
 ```
 
-建置結果為：
+建置結果為:
 
 ![entry-string-result](./assets/entry-string-result.png)
 
@@ -53,7 +53,7 @@ module.exports = {
 
 > 因為沒有設定 `output` ，所以會在預設的 `dist` 目錄下，並且 `main` chunk 會輸出為 `main.js` ，在[輸出 Output](../10-output/README.md) 一文中會做說明。
 
-字串值的 `entry` 可以直接使用 CLI 設定：
+字串值的 `entry` 可以直接使用 CLI 設定:
 
 ```json
 // ./demos/entry-string/package.json
@@ -83,7 +83,7 @@ module.exports = {
 };
 ```
 
-建置結果為：
+建置結果為:
 
 ![entry-array-result](./assets/entry-array-result.png)
 
@@ -92,7 +92,7 @@ module.exports = {
 
 使用陣列的 `entry` 使 webpack 將不相關的模組打包在同個 Chunk 中，稱為 **multi-main entry** 。
 
-陣列的 `entry` 可以直接用 CLI 設定：
+陣列的 `entry` 可以直接用 CLI 設定:
 
 ```json
 // ./demos/entry-array/package.json
@@ -112,7 +112,7 @@ module.exports = {
 
 `entry` 設定為物件時，物件中的 `key` 為 Chunk 的名稱，因此設定多個 `key` 時會產生多個 Chunk 並產生出個別的 bundle 。
 
-物件中的值有三種：
+物件中的值有三種:
 
 - 字串值
 - 陣列
@@ -131,7 +131,7 @@ module.exports = {
 };
 ```
 
-建置結果為：
+建置結果為:
 
 ![entry-object-result](./assets/entry-object-result.png)
 
@@ -141,7 +141,7 @@ module.exports = {
 
 多入口的設定多用於**頁面應用程式**中。
 
-**字串值**的設定其實是物件設定中的 `main` 鍵值設定的縮寫：
+**字串值**的設定其實是物件設定中的 `main` 鍵值設定的縮寫:
 
 ```js
 module.exports = {
@@ -151,7 +151,7 @@ module.exports = {
 };
 ```
 
-物件的字串值設定可以使用 CLI ：
+物件的字串值設定可以使用 CLI :
 
 ```json
 // ./demos/entry-object/package.json
@@ -183,14 +183,14 @@ module.exports = {
 };
 ```
 
-建置結果為：
+建置結果為:
 
 ![entry-object-array-result](./assets/entry-object-array-result.png)
 
 - `main2` Chunk 有兩個入口 `index.js` 及 `index2.js` 。
 - 將兩個入口中的相依圖解析並包入 `main2` Chunk 中。
 
-**`entry` 陣列**的設定其實就是物件設定中的 `main` 鍵值對應陣列值的縮寫：
+**`entry` 陣列**的設定其實就是物件設定中的 `main` 鍵值對應陣列值的縮寫:
 
 ```js
 module.exports = {
@@ -200,7 +200,7 @@ module.exports = {
 };
 ```
 
-物件陣列可以用 CLI 設定：
+物件陣列可以用 CLI 設定:
 
 ```json
 // ./demos/entry-object-array
@@ -223,7 +223,7 @@ module.exports = {
 
 如果對 `entry` 設定函式， webpack 會在 Compiler 的 `make` 事件鉤子觸發此函式，取得入口設定值。
 
-函式可以回傳三種資料：
+函式可以回傳三種資料:
 
 - 字串值
 - 陣列
@@ -268,7 +268,7 @@ module.exports = {
 };
 ```
 
-執行結果為：
+執行結果為:
 
 ![entry-func-promise-result](./assets/entry-func-promise-result.png)
 
@@ -291,7 +291,7 @@ module.exports = {
 };
 ```
 
-範例的目錄如下：
+範例的目錄如下:
 
 ```plaintext
 root

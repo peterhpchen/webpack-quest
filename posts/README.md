@@ -1,10 +1,10 @@
 # 目錄
 
-## 第零章：前言
+## 第零章: 前言
 
 1. [啟程](./01-preface/README.md)
 
-## 第一章：認識 webpack
+## 第一章: 認識 webpack
 
 2. [JavaScript 的模組化之路](./02-history-of-js-module/README.md)
 3. [新技術的崛起](./03-new-tech/README.md)
@@ -14,7 +14,7 @@
 7. [使用 CLI 操作 webpack](./07-use-cli/README.md)
 8. [使用 Node.js API 操作 webpack](./08-use-node-api/README.md)
 
-## 第二章：配置 webpack
+## 第二章: 配置 webpack
 
 9. [入口 Entry](./09-entry/README.md)
 10. [輸出 Output](./10-output/README.md)
@@ -28,7 +28,7 @@
 18. [Dev Tool](./18-devtool/README.md)
 19. [最佳化 Optimization 與模式 Mode](./19-optimization/README.md)
 
-## 第三章：真實世界的 webpack
+## 第三章: 真實世界的 webpack
 
 20. [建立 webpack 開發環境](./20-development/README.md)
 21. [使用 JavaScript](./21-javascript/README.md)
@@ -40,10 +40,10 @@
 27. [建立 webpack 生產環境 - 分析 bundle 構成](./27-production-analyze/README.md)
 28. [配置多模式專案](./28-config-setup/README.md)
 
-## 第四章：解構 webpack
+## 第四章: 解構 webpack
 
 29. [自己動手寫 webpack](./29-write-your-webpack/README.md)
 
-## 最終章：結尾
+## 最終章: 結尾
 
 30. [終點只是另一個起點](./30-future/README.md)

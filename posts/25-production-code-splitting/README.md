@@ -8,10 +8,10 @@ webpack 會將從 `entry` 模組開始的所有相依模組都輸出到同一個
 
 ## 切割方式
 
-webpack 的代碼切割方式有下面三種：
+webpack 的代碼切割方式有下面三種:
 
 - `entry`: 依照不同的 `entry` 切割代碼。
-- 動態引入：藉由非同步引入方法自動切割代碼。
+- 動態引入: 藉由非同步引入方法自動切割代碼。
 - `optimization.splitChunks`: 依照 `splitChunks` 設定切割代碼。
 
 接著我們依序介紹這幾種切割方式。
@@ -20,7 +20,7 @@ webpack 的代碼切割方式有下面三種：
 
 `entry` 的分割方式是最常見的，只要將 entry 設定為物件，並加入多個鍵值， webpack 在建立 bundle 時會依照個鍵值拆分為不同的 bundle 。
 
-如下例所示：
+如下例所示:
 
 ```js
 // ./demos/entry/webpack.config.js
@@ -33,11 +33,11 @@ module.exports = {
 };
 ```
 
-這裡拆分了兩個 `entry`： `main` 與 `sub` ， webpack 在輸出時就會輸出 `main` 與 `sub` 兩個 bundle：
+這裡拆分了兩個 `entry`: `main` 與 `sub` ， webpack 在輸出時就會輸出 `main` 與 `sub` 兩個 bundle:
 
 ![entry-result](./assets/entry-result.png)
 
-這時我們的 module graph 會像下面這樣：
+這時我們的 module graph 會像下面這樣:
 
 ![entry](./assets/entry.png)
 
@@ -47,7 +47,7 @@ module.exports = {
 
 webpack 會偵測是否開發者有使用 `import()` 語法載入模組，如果是以 `import()` 載入模組的話，表示此模組要**非同步引入**，所以 webpack 會將其拆為另一個 bundle 。
 
-例如下面這個例子：
+例如下面這個例子:
 
 ```js
 import _ from "lodash";
@@ -67,24 +67,24 @@ getComponent().then((component) => {
 });
 ```
 
-這個例子中有兩種 `import`：
+這個例子中有兩種 `import`:
 
 - `import _ from 'lodash'`: 同步的引入方式，不會切割代碼
 - `import('./demoName')`: 非同步的引入方式， webpack 會將其切割為獨立代碼
 
-建置結果如下：
+建置結果如下:
 
 ![import-result](./assets/import-result.png)
 
 由結果可以清楚地看到 `lodash` 依然在原本的 bundle 中，但是 `./demoName` 已經被分至另一個 bundle `1.js` 中了。
 
-此例的 module graph 如下：
+此例的 module graph 如下:
 
 ![import](./assets/import.png)
 
 ### 設定動態引入的 Chunk 名稱
 
-上面的結果將 `demoName` 輸出為 `1` ，此為 Chunks 的編號，如果想要明確輸出名稱的話，可以使用註解 `webpackChunkName` ：
+上面的結果將 `demoName` 輸出為 `1` ，此為 Chunks 的編號，如果想要明確輸出名稱的話，可以使用註解 `webpackChunkName` :
 
 ```js
 // ./demos/import/src/index.js
@@ -101,7 +101,7 @@ async function getComponent() {
 ...
 ```
 
-加入 `webpackChunkName` 後所產生的 bundle 會以名稱為檔名取代原本編號的命名：
+加入 `webpackChunkName` 後所產生的 bundle 會以名稱為檔名取代原本編號的命名:
 
 ![webpack-chunk-name](./assets/webpack-chunk-name.png)
 
@@ -109,7 +109,7 @@ async function getComponent() {
 
 `optimization.splitChunks` 是配置 webpack 內建的 SplitChunksPlugin ，這是個幫助使用者分割代碼的 Plugin 。
 
-我們試著使用 `splitChunks` 將上例的 `lodash` 給切割出來：
+我們試著使用 `splitChunks` 將上例的 `lodash` 給切割出來:
 
 ```js
 // ./demos/split-chunks/webpack.config.js
@@ -125,7 +125,7 @@ module.exports = {
 
 `chunks` 預設是 `async` ，因此上例才只有 `import('./demoName')` 被分割出來，這裡調為 `all` 可以將同步、非同步的模組都切割出來。
 
-結果如下：
+結果如下:
 
 ![split-chunks-result](./assets/split-chunks-result.png)
 
@@ -133,13 +133,13 @@ module.exports = {
 
 > 上圖看到的 `global.js` 與 `module.js` 屬於 webpack runtime 。
 
-module graph 如下：
+module graph 如下:
 
 ![split-chunks](./assets/split-chunks.png)
 
 ## 總結
 
-總結一下三種方式的功用及使用場景：
+總結一下三種方式的功用及使用場景:
 
 | 方法                | 功用              | 場景                   |
 | ------------------- | ----------------- | ---------------------- |

@@ -6,7 +6,7 @@
 
 我有一隻愛用的滑鼠，那是個無線滑鼠，在電腦上插上接收器就可以使用了，非常的方便。因為在家裡用習慣了，因此我去上班時都會帶著它，到公司後只要插上接收器就可以直接上工，讓我的工作效率大幅的提升...。
 
-大家有沒有想過一個問題：為什麼我們可以在電腦上接上不同的滑鼠，而不需要把整台電腦換掉呢？這是因為電腦是以**模組化**的概念所設計的。那所謂的模組化又是什麼呢？
+大家有沒有想過一個問題: 為什麼我們可以在電腦上接上不同的滑鼠，而不需要把整台電腦換掉呢？這是因為電腦是以**模組化**的概念所設計的。那所謂的模組化又是什麼呢？
 
 ## 模組化
 
@@ -26,7 +26,7 @@
 
 因為模組化的概念可以使編程變得更有結構，因此大多數的語言都支援模組化的語意。
 
-將電腦的例子寫成代碼，會像下面這樣：
+將電腦的例子寫成代碼，會像下面這樣:
 
 ```js
 // computer
@@ -43,7 +43,7 @@ Keyboard.addEventListener("click", () => {
 
 電腦引入了滑鼠跟鍵盤這兩個模組，然後監聽他們的訊號，並做相對應的處理。
 
-而模組是可以做抽換的，假設今天我要換支新的滑鼠：
+而模組是可以做抽換的，假設今天我要換支新的滑鼠:
 
 ```js
 // computer
@@ -95,7 +95,7 @@ JavaScript 被發明時，只是要做一些簡單的腳本工作而已，因此
 
 以前，在寫程式庫的時候，雖然內部變數可以使用 [IIFE](https://developer.mozilla.org/zh-TW/docs/Glossary/IIFE) 避免污染外部變數，但是當要匯出的時候，我們還是需要將變數放到 `window` 這個全域物件裡，使其他的 script 可以使用目標的變數。在 lodash, JQuery 之類的庫中看到這樣的注入方式。
 
-但是這時候如果其他的 `js` 代碼覆蓋了 `window` 中的變數，問題就會發生：
+但是這時候如果其他的 `js` 代碼覆蓋了 `window` 中的變數，問題就會發生:
 
 ```html
 <!-- demos/before-webpack/index.html -->
@@ -122,7 +122,7 @@ Uncaught TypeError: _.join is not a function
 
 ### 不明確的引入
 
-由於依賴的目標庫是注入到全域物件中，因此在要引用的 `js` 中只能假設目標是存在的：
+由於依賴的目標庫是注入到全域物件中，因此在要引用的 `js` 中只能假設目標是存在的:
 
 ```js
 // demos/before-webpack/index.js
@@ -300,7 +300,7 @@ JavaScript 的模組化之路坎坷，確實使得開發變得複雜困難，但
 ## 參考資料
 
 - [What are CJS, AMD, UMD, and ESM in Javascript?](https://dev.to/iggredible/what-the-heck-are-cjs-amd-umd-and-esm-ikm)
-- [前端模块化：AMD、CMD、ES6、CommonJS](https://juejin.im/post/6844903917680066567)
+- [前端模块化: AMD、CMD、ES6、CommonJS](https://juejin.im/post/6844903917680066567)
 - [Why webpack](https://webpack.js.org/concepts/why-webpack/)
 - [How the module system, CommonJS & require works](https://blog.risingstack.com/node-js-at-scale-module-system-commonjs-require/)
 - [ECMAScript modules in browsers](https://jakearchibald.com/2017/es-modules-in-browsers/)

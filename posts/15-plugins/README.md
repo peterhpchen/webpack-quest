@@ -14,14 +14,14 @@ Plugins 使用 `tap` 將代碼注入到 [Compiler](https://webpack.js.org/api/co
 
 ## `plugins` 的設定
 
-插件配置的步驟如下：
+插件配置的步驟如下:
 
 1. 安裝插件(如果是內建插件則不用安裝)
 2. 引入插件
 3. 使用 `new` 初始插件
 4. 設定至配置檔中
 
-如以下的例子：
+如以下的例子:
 
 ```js
 // ./demos/use-cli/webpack.config.js
@@ -58,7 +58,7 @@ module.exports = {
 };
 ```
 
-建置結果如下：
+建置結果如下:
 
 ![multiple-plugins-result](./assets/multiple-plugins-result.png)
 
@@ -72,7 +72,7 @@ module.exports = {
 
 ## 內建插件
 
-前面的例子都是外部的插件，因此需要透過安裝才能引入並作使用，但有部分的插件是[內建在 webpack 中](https://webpack.js.org/plugins/internal-plugins/)的，這些插件可以直接由 `webpack` 模組找到：
+前面的例子都是外部的插件，因此需要透過安裝才能引入並作使用，但有部分的插件是[內建在 webpack 中](https://webpack.js.org/plugins/internal-plugins/)的，這些插件可以直接由 `webpack` 模組找到:
 
 ```js
 // ./demos/internal-plugins/webpack.config.js
@@ -93,7 +93,7 @@ module.exports = {
 
 ## 使用 Node API 配置插件
 
-使用 Node API 配置插件時，可以使用一般配置物件的方式：
+使用 Node API 配置插件時，可以使用一般配置物件的方式:
 
 ```js
 // ./demos/use-api/build.js
@@ -103,7 +103,7 @@ const configuration = require("./webpack.config.js");
 webpack(configuration, () => {});
 ```
 
-也可以使用 `apply` 函式引入 `compiler` 中：
+也可以使用 `apply` 函式引入 `compiler` 中:
 
 ```js
 // ./demos/use-api/build.js

@@ -14,10 +14,10 @@
 
 在決定要使用的規則後，接著就是要設定如何處理這個模組，就是圖中紅色的 `Loaders` 與 `Parser` 兩個部分。
 
-被匹配的模組在 webpack 中被稱為 [Rule results](https://webpack.js.org/configuration/module/#rule-results)，Rule results 可以有兩種配置：
+被匹配的模組在 webpack 中被稱為 [Rule results](https://webpack.js.org/configuration/module/#rule-results)，Rule results 可以有兩種配置:
 
-- 要使用的 Loaders ：設定 Loaders 的陣列，依序處理資源。
-- Parser 的設定：設定要處理此模組的 Parser 。
+- 要使用的 Loaders : 設定 Loaders 的陣列，依序處理資源。
+- Parser 的設定: 設定要處理此模組的 Parser 。
 
 接下來會從如何設定 Loaders 說起，之後再說明 Parser 的設定。
 
@@ -29,12 +29,12 @@ Loaders 的設定可以使用 `loader`, `options` 與 `use` 三種屬性做設�
 
 ### `use`
 
-`use` 可以使用字串值及物件設定單一 Loader 或是使用陣列與函式配置多組 Loaders 設定：
+`use` 可以使用字串值及物件設定單一 Loader 或是使用陣列與函式配置多組 Loaders 設定:
 
-- 字串值： `String`
-- 物件： `RuleSetUseItem`
-- 函式： `(info: ModuleInfo) => Array<String | RuleSetUseItem>`
-- 陣列： `Array<String | RuleSetUseItem | ((info: ModuleInfo) => String | RuleSetUseItem)>`
+- 字串值: `String`
+- 物件: `RuleSetUseItem`
+- 函式: `(info: ModuleInfo) => Array<String | RuleSetUseItem>`
+- 陣列: `Array<String | RuleSetUseItem | ((info: ModuleInfo) => String | RuleSetUseItem)>`
 
 > `use` 詳細定義在 [WebpackOptions.d.ts](https://github.com/webpack/webpack/blob/master/declarations/WebpackOptions.d.ts#L296) 中可以找到。
 
@@ -69,13 +69,13 @@ module.exports = {
 
 #### 使用物件設定 `use`
 
-物件會是一個 `RuleSetUseItem` ，它設定 Loader 的使用，它有三個屬性：
+物件會是一個 `RuleSetUseItem` ，它設定 Loader 的使用，它有三個屬性:
 
 - `loader`: 設定使用哪一個 Loader ，使用上節所提到的字串值（Loader 名或是 Loader 路徑）設定。
 - `options`: Loader 的選項，每個 Loader 會提供不同的設定選項供使用者選用。
 - `ident`: Loader 選項的 ID 。
 
-下面有個例子：
+下面有個例子:
 
 ```js
 // ./demos/use-obj/webpack.config.js
@@ -101,7 +101,7 @@ module.exports = {
 - `loader`: 使用自製的 Loader ，輸入 Loader 的路徑。
 - `options`: 設定 `name` 的選項，使 Loader 可以在內部使用。
 
-下面是自製 Loader 的代碼：
+下面是自製 Loader 的代碼:
 
 ```js
 // ./demos/use-obj/loader/index.js
@@ -115,7 +115,7 @@ module.exports = function (source) {
 
 我們可以看到設定進去的 `options.name` 被 Loader 所使用。
 
-執行結果如下：
+執行結果如下:
 
 ![use-obj-result](./assets/use-obj-result.png)
 
@@ -129,7 +129,7 @@ webpack 會用全部的 Loaders 包括 `options` 與資源模組建立一組唯�
 
 #### 使用函式設定 `use`
 
-函式的設定要**回傳一個 RuleSetUseItem 的陣列**。它帶有一個模組資訊的參數，這個參數有下面幾個屬性：
+函式的設定要**回傳一個 RuleSetUseItem 的陣列**。它帶有一個模組資訊的參數，這個參數有下面幾個屬性:
 
 - `issuer`: 請求模組的絕對路徑
 - `realResource`: 被請求模組的絕對路徑
@@ -165,7 +165,7 @@ console.log(hello);
 export default "Hello";
 ```
 
-執行建置結果如下：
+執行建置結果如下:
 
 ![use-func](./assets/use-func.png)
 
@@ -175,7 +175,7 @@ export default "Hello";
 
 陣列的元素可以是**字串值**、 **RuleSetUseItem** 或是**一個回傳 字串值或是 RuleSetUseItem 的函式**。
 
-以例子說明：
+以例子說明:
 
 ```js
 // ./demos/use-array/webpack.config.js
@@ -201,7 +201,7 @@ module.exports = {
 
 使用陣列的 `use` 時， Loaders 的執行順序是由後往前，因此依序執行 `sass-loader`, `css-loader` 再到最後的 `style-loader` 。
 
-陣列的設定與**同樣的條件設定多個規則**相等，因此上面的配置與下面的有相同的作用：
+陣列的設定與**同樣的條件設定多個規則**相等，因此上面的配置與下面的有相同的作用:
 
 ```js
 // ./demos/use-array/webpack.config.multiple-rules.js
@@ -229,7 +229,7 @@ module.exports = {
 
 #### `use` 小結
 
-`use` 配置雖然看起來複雜，但其實每個設定方式都很相似，卻帶給使用者在配置上的靈活性，總結 `use` 的配置如下：
+`use` 配置雖然看起來複雜，但其實每個設定方式都很相似，卻帶給使用者在配置上的靈活性，總結 `use` 的配置如下:
 
 ![use](./assets/use.png)
 
@@ -242,7 +242,7 @@ module.exports = {
 - `loader` = `use: [{loader}]`
 - `options` = `use: [{options}]`
 
-因此下面使用 `use` 的完整配置：
+因此下面使用 `use` 的完整配置:
 
 ```js
 // ./demos/use-string/webpack.config.js
@@ -257,7 +257,7 @@ module.exports = {
 }
 ```
 
-會與下面 `loader` 與 `options` 的縮寫配置相同：
+會與下面 `loader` 與 `options` 的縮寫配置相同:
 
 ```js
 // ./demos/use-string/webpack.config.js
@@ -285,13 +285,13 @@ Loaders 依照類型可以分為 `pre`, `normal`, `inline` 及 `post`:
 - `normal`: 預設值
 - `inline`: Inline 設定的 Loaders
 
-`enforce` 可以將 Loaders 的執行順序改變為先執行 `pre` 或是後執行 `post` ，全部的執行順序如下：
+`enforce` 可以將 Loaders 的執行順序改變為先執行 `pre` 或是後執行 `post` ，全部的執行順序如下:
 
 ```plaintext
 pre > normal > inline > post
 ```
 
-請看下面的例子：
+請看下面的例子:
 
 ```js
 // ./demos/loader-order/webpack.config.js
@@ -351,7 +351,7 @@ module.exports = {
 };
 ```
 
-配置檔設定：
+配置檔設定:
 
 - `a2`, `a1` 的 `pre` loader
 - `b2`, `b1` 的 `normal` loader
@@ -366,7 +366,7 @@ import "../loader/index.js?name=c2!../loader/index.js?name=c1!./hello.js";
 
 `c2` 及 `c1` 的 `inline` loader
 
-執行結果為：
+執行結果為:
 
 ![loader-order](./assets/loader-order.png)
 
@@ -374,13 +374,13 @@ import "../loader/index.js?name=c2!../loader/index.js?name=c1!./hello.js";
 
 ### Disable Loaders
 
-Loaders 的執行可以被 inline 的特定的前置符所取消：
+Loaders 的執行可以被 inline 的特定的前置符所取消:
 
 - `!`: 取消 `normal` Loaders 的執行
 - `-!`: 取消 `pre`, `normal` Loaders 的執行
 - `!!`: 取消 `pre`, `normal`, `post` Loaders 的執行
 
-可以將剛剛的例子加上各個前置符看看輸出來比對結果：
+可以將剛剛的例子加上各個前置符看看輸出來比對結果:
 
 ```js
 // ./demos/loader-order/src/index.js
@@ -409,7 +409,7 @@ module.exports = {
 };
 ```
 
-我們將預設的建置與加入 `noParse` 的建置時間比對：
+我們將預設的建置與加入 `noParse` 的建置時間比對:
 
 ![no-parse](./assets/no-parse.png)
 
@@ -419,7 +419,7 @@ module.exports = {
 
 ### `parser`
 
-`parser` 屬性可以設定哪些模組話語意要做解析：
+`parser` 屬性可以設定哪些模組話語意要做解析:
 
 ```js
 module.exports = {
@@ -449,7 +449,7 @@ module.exports = {
 
 一般都是使用 `true`, `false` 來決定要不要使用特定的語意，但也有像是 [`node` 這種用物件設定](https://webpack.js.org/configuration/node/)的模組語意。
 
-下面這個例子可以清楚地看到 `parser` 的用途：
+下面這個例子可以清楚地看到 `parser` 的用途:
 
 ```js
 // ./demos/parser/webpack.config.parser.js
@@ -473,7 +473,7 @@ module.exports = {
 
 例子中我們將 `harmony` 給設為 `false` ，表示不要解析 ESM 的模組
 
-執行結果如下：
+執行結果如下:
 
 ```js
 // ./demos/parser/dist/bundle.js
