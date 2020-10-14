@@ -1,5 +1,5 @@
 {
-  "name": "caching",
+  "name": "extract-runtime",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",

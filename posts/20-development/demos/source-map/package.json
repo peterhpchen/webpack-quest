@@ -1,5 +1,5 @@
 {
-  "name": "development-mode",
+  "name": "source-map",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",

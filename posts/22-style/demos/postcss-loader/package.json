@@ -1,5 +1,5 @@
 {
-  "name": "postcss-plugin",
+  "name": "postcss-loader",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",

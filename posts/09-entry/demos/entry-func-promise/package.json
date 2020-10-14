@@ -1,5 +1,5 @@
 {
-  "name": "entry-func",
+  "name": "entry-func-promise",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",

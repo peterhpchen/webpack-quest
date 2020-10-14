@@ -1,5 +1,5 @@
 {
-  "name": "babel-browserslist",
+  "name": "babel-webpack",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",

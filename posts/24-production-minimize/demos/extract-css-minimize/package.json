@@ -1,5 +1,5 @@
 {
-  "name": "css-minimize",
+  "name": "extract-css-minimize",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",

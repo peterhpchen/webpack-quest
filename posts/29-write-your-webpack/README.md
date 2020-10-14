@@ -2,6 +2,8 @@
 
 > 本文目標在於實作一個簡易的打包工具。
 
+> 本文的範例程式放在 [peterhpchen/webpack-quest](https://github.com/peterhpchen/webpack-quest/tree/master/posts/29-write-your-webpack/demos) 中，每個程式碼區塊的第一行都會標注檔案的位置，請搭配文章作參考。
+
 webpack 是個擁有強大功能的工具，本文將嘗試自己實作 webpack 的核心功能：**打包**，接著跟著我一起試試寫個簡易版的打包器吧。
 
 本文 Ronen Amiel 的 [Build Your Own Webpack](https://youtu.be/Gc9-7PBqOC8) 啟發，因此實作方式會以 Ronen Amiel 的 [`minipack`](https://github.com/ronami/minipack) 方式做展示，與 webpack 的打包方式比起來， `minipack` 化繁為簡，對於初學打包技巧的開發者會是比較好入門的方式。

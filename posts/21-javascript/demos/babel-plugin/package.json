@@ -1,5 +1,5 @@
 {
-  "name": "babel-cli",
+  "name": "babel-plugin",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
