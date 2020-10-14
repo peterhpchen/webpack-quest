@@ -1,5 +1,5 @@
 {
-  "name": "production-mode",
+  "name": "optimization-node-env",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",

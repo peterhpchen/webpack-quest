@@ -2,6 +2,8 @@
 
 > 本文目標在於實作一個簡易的打包工具。
 
+> 本文的範例程式放在 [peterhpchen/webpack-quest](https://github.com/peterhpchen/webpack-quest/tree/master/posts/29-write-your-webpack/demos) 中，每個程式碼區塊的第一行都會標注檔案的位置，請搭配文章作參考。
+
 webpack 是個擁有強大功能的工具，本文將嘗試自己實作 webpack 的核心功能：**打包**，接著跟著我一起試試寫個簡易版的打包器吧。
 
 本文 Ronen Amiel 的 [Build Your Own Webpack](https://youtu.be/Gc9-7PBqOC8) 啟發，因此實作方式會以 Ronen Amiel 的 [`minipack`](https://github.com/ronami/minipack) 方式做展示，與 webpack 的打包方式比起來， `minipack` 化繁為簡，對於初學打包技巧的開發者會是比較好入門的方式。
@@ -495,6 +497,10 @@ console.log(createAsset("./src/index.js"));
 
 我們用 `createAsset` 包住之前的程序，為之後要建立相依圖做準備，並將相依的路徑加入 `dependencies` 中。
 
+結果如下：
+
+![create-asset](./assets/create-asset.png)
+
 ### 建立相依圖
 
 有了相依資訊，我們可以來建立相依圖了。
@@ -530,6 +536,249 @@ function createGraph(entry) {
 
 console.log(createGraph("./src/index.js"));
 ```
+
+巡覽每個模組的每個相依，將各個模組輸出來 Asset 資訊，結果如下：
+
+![create-graph](./assets/create-graph.png)
+
+利用相依圖，我們可以清楚地了解各個模組的相依情形，藉此來建立 bundle 。
+
+## 建立模組對應表
+
+有了相依的資訊後，接著需要將資訊對應至各個模組的 ID 上，因此要在巡覽完當前模組的全部相依後，建立對應表。
+
+```js
+// ./demos/mapping/boundler.js
+const fs = require("fs");
+const path = require("path");
+const { parse } = require("@babel/parser");
+const traverse = require("@babel/traverse").default;
+
+function createAsset(filename, id) {
+  ...
+}
+
+function createGraph(entry) {
+  let id = 0;
+  const graph = [createAsset(entry, id++)];
+
+  for (const asset of graph) {
+    asset.mapping = {}; // 初始對應物件
+
+    const dirname = path.dirname(asset.filename);
+
+    asset.dependencies.forEach((dependencyRelativePath) => {
+      const dependencyAbsolutePath = path.join(dirname, dependencyRelativePath);
+
+      const dependencyAsset = createAsset(dependencyAbsolutePath, id++);
+
+      asset.mapping[dependencyRelativePath] = dependencyAsset.id; // 將相依模組與模組的 ID 做對應
+
+      graph.push(dependencyAsset);
+    });
+  }
+
+  return graph;
+}
+
+console.log(createGraph("./src/index.js"));
+```
+
+建置結果如下：
+
+![mapping](./assets/mapping.png)
+
+現在我們擁有了所有的資訊了，接著就來建立 bundle 的執行代碼吧。
+
+## 建立 bundle 執行代碼
+
+執行代碼的建立有下面幾個要點：
+
+- 模組代碼的轉換
+- 利用 IIFE 執行代碼
+- 模組包覆函式
+- `require` 方法的實作
+
+### 模組代碼的轉換
+
+範例中的代碼為 ES Module 的類型，使用 `import` 的方式引入模組，在建立 bundle 時需要修改引入的方式讓其符合 bundle 內的執行使用。
+
+這裡我們使用 `babel` 將代碼做轉換，以 `./src/index.js` 為例：
+
+```js
+import message from "./message.js";
+
+console.log(message);
+```
+
+會被轉為：
+
+```js
+"use strict";
+
+var _message = _interopRequireDefault(require("./message.js"));
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
+
+console.log(_message.default);
+```
+
+`babel` 會改為使用 `require` 引入模組，先記住這點，這讓我們有機會客製屬於我們自己打包器的引入方式。
+
+### 利用 IIFE 執行代碼
+
+我們使用與 webpack 相仿的方式，藉由 IIFE 引入模組，並在執行代碼中實作 `require` ，最後執行入口模組。
+
+```js
+(function(modules) {
+  function require(id) {
+    ...
+  }
+  require(0);
+})({...})
+```
+
+### 模組包覆函式
+
+模組作為參數時包裹為一個函式，此函式傳入 `module`, `exports`, `require` 三個與 webpack 相仿的物件、方法。
+
+```js
+(function(modules) {
+  function require(id) {
+    ...
+  }
+  require(0);
+})({
+  0: [
+    function (module, exports, require) {},
+    { "./message.js": 1 },
+  ],
+  1: [
+    function (module, exports, require) {},
+    { "./demoName.js": 2 },
+  ],
+  2: [
+    function (module, exports, require) {},
+    {},
+  ],})
+```
+
+這裡與 webpack 不同的地方在於我們不只有引入模組，還有引入模組的相依模組對應表，這是因為我們再轉至代碼時使用的是 `babel` 這樣常規的轉譯器，它並不能向 webpack 自製的轉譯器那般可以直接將引入的路徑替換成 bundle 時的模組 `index`，因此我們在這樣要多帶個對應的資訊，以利後續引入關聯模組。
+
+### `require` 方法的實作
+
+```js
+(function(modules) {
+  function require(id) {
+    const [fn, mapping] = modules[id];
+    function localRequire(name) {
+      return require(mapping[name]);
+    }
+    const module = { exports : {} };
+    fn(module, module.exports, localRequire);
+    return module.exports;
+  }
+  require(0);
+})({...})
+```
+
+1. `require` 是帶入 `id` 資訊
+2. `localRequire` 用來在模組中引入相依模組，須將相依模組的路徑轉為 bundle 中的 `index`
+3. 接著執行模組，帶入 `module`, `exports`, `require`
+4. 傳回 `module.exports`，使外部模組使用匯出資源
+
+詳細的 bundle 產生方式比較繁雜，想要了解的可以參考 `./demos/bundle` 範例。
+
+### 寫入檔案
+
+最後需要將完成的 bundle 寫入輸出檔案中。
+
+```js
+// ./demos/write-file/boundler.js
+function output(code, outputPath) {
+  const dirname = path.dirname(outputPath);
+  fs.mkdirSync(dirname, { recursive: true });
+  const prettierCode = prettier.format(code, { parser: "babel" });
+  fs.writeFileSync(outputPath, prettierCode);
+}
+```
+
+- 使用 `fs.mkdirSync` 建立資料夾
+- 使用 `prettier` 排版代碼
+- 使用 `fs.writeFileSync` 寫入檔案
+
+產生的代碼如下所示：
+
+```js
+// ./demos/write-file/dist/main.js
+(function (modules) {
+  function require(id) {
+    const [fn, mapping] = modules[id];
+    function localRequire(name) {
+      return require(mapping[name]);
+    }
+    const module = { exports: {} };
+    fn(module, module.exports, localRequire);
+    return module.exports;
+  }
+  require(0);
+})({
+  0: [
+    function (module, exports, require) {
+      "use strict";
+
+      var _message = _interopRequireDefault(require("./message.js"));
+
+      function _interopRequireDefault(obj) {
+        return obj && obj.__esModule ? obj : { default: obj };
+      }
+
+      console.log(_message["default"]);
+    },
+    { "./message.js": 1 },
+  ],
+  1: [
+    function (module, exports, require) {
+      "use strict";
+
+      Object.defineProperty(exports, "__esModule", {
+        value: true,
+      });
+      exports["default"] = void 0;
+
+      var _demoName = require("./demoName.js");
+
+      var _default = "hello ".concat(_demoName.demoName);
+
+      exports["default"] = _default;
+    },
+    { "./demoName.js": 2 },
+  ],
+  2: [
+    function (module, exports, require) {
+      "use strict";
+
+      Object.defineProperty(exports, "__esModule", {
+        value: true,
+      });
+      exports.demoName = void 0;
+      var demoName = "simple";
+      exports.demoName = demoName;
+    },
+    {},
+  ],
+});
+```
+
+可以直接將其貼在 dev tool 中的 `console` 就可以看到結果了。
+
+## 總結
+
+本文分為兩段，第一段講解如何理解 webpack 所產生的 bundle ，第二階段實際帶大家一步一步寫出簡易的打包器。
+
+理解了整個打包過程，之後對於 webpack 的掌握上會更加了得心應手。
 
 ## 參考資料
 

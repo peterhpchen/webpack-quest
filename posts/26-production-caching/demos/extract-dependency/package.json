@@ -1,5 +1,5 @@
 {
-  "name": "caching",
+  "name": "extract-dependency",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",

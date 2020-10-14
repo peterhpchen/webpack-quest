@@ -1,5 +1,5 @@
 {
-  "name": "load-image-by-url",
+  "name": "load-svg",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",

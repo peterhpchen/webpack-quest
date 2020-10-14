@@ -1,5 +1,5 @@
 {
-  "name": "used-exports",
+  "name": "concatenate-modules",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
