@@ -38,17 +38,17 @@ module.exports = {
 };
 ```
 
-建置結果如下：
+建置結果如下:
 
 ![file-loader-result](./assets/file-loader-result.png)
 
 可以看到圖片的名字被編為 hash 並存進 `./dist` 中了。
 
-接著來看 bundle 內容：
+接著來看 bundle 內容:
 
 ![file-loader-bundle](./assets/file-loader-bundle.png)
 
-模組的內容已經被 `file-loader` 轉為對應的檔名了，我們只要用平常引入模組的方式使用即可：
+模組的內容已經被 `file-loader` 轉為對應的檔名了，我們只要用平常引入模組的方式使用即可:
 
 ```js
 // ./demos/load-image-by-url/src/index.js
@@ -69,13 +69,13 @@ document.body.appendChild(logo(WebpackLogo));
 
 圖片使用路徑載入時會需要多一次的請求以取得資源，這對於大圖片來說是可以接受的，但對於 icon 之類的小圖示，花費多次請求是浪費資源的，數量一多，會造成效能降低。
 
-為了避免多次請求的問題，我們可以將圖片轉為 Data URL 直接寫在引用的位置中，如此一來就不需要再次請求了，為此我們需要引入 `url-loader`：
+為了避免多次請求的問題，我們可以將圖片轉為 Data URL 直接寫在引用的位置中，如此一來就不需要再次請求了，為此我們需要引入 `url-loader`:
 
 ```bash
 npm install url-loader -D
 ```
 
-接著在配置檔中將 `file-loader` 替換成 `url-loader`：
+接著在配置檔中將 `file-loader` 替換成 `url-loader`:
 
 ```js
 // ./demos/load-image-by-url/webpack.config.js
@@ -96,13 +96,13 @@ module.exports = {
 };
 ```
 
-建置結果如下：
+建置結果如下:
 
 ![url-loader-result](./assets/url-loader-result.png)
 
 發現到圖片檔不在輸出的結果內了，但是 webpack 確實有處理 `webpack-logo.png` 。
 
-接著我們看一下 bundle 的內容：
+接著我們看一下 bundle 的內容:
 
 ![url-loader-bundle](./assets/url-loader-bundle.png)
 
@@ -110,7 +110,7 @@ module.exports = {
 
 ## 適時切換路徑與 Data URL 載入的方式
 
-前面有提到大圖片還是比較合適使用路徑的引入方式，那如果我們想要依照圖片的大小改變引入的方式要怎麼做呢？為解決此問題， `url-loader` 讓我們可以用檔案大小決定要使用的 Loaders ，我們可以設定 `url-loader` 選項中的 `limit` ，當檔案大小超過這個數值時，預設會使用 `file-loader` 做處理：
+前面有提到大圖片還是比較合適使用路徑的引入方式，那如果我們想要依照圖片的大小改變引入的方式要怎麼做呢？為解決此問題， `url-loader` 讓我們可以用檔案大小決定要使用的 Loaders ，我們可以設定 `url-loader` 選項中的 `limit` ，當檔案大小超過這個數值時，預設會使用 `file-loader` 做處理:
 
 ```js
 // ./demos/load-image-by-url/webpack.config.js
@@ -146,13 +146,13 @@ SVG 格式的檔案與一般圖片不同，它們可以被視為合法的 HTML t
 
 ### 使用 `svg-inline-loader`
 
-`svg-inline-loader` 可以幫助我們在 HTML 中嵌入 SVG ，首先安裝 loader：
+`svg-inline-loader` 可以幫助我們在 HTML 中嵌入 SVG ，首先安裝 loader:
 
 ```bash
 npm install svg-inline-loader -D
 ```
 
-針對 `.svg` 使用 `svg-inline-loader`：
+針對 `.svg` 使用 `svg-inline-loader`:
 
 ```js
 // ./demos/load-svg/webpack.config.js
@@ -173,7 +173,7 @@ module.exports = {
 };
 ```
 
-因為建置出來的模組會變為 HTML 代碼，因此要修改嵌入方式：
+因為建置出來的模組會變為 HTML 代碼，因此要修改嵌入方式:
 
 ```js
 // ./demos/load-svg/src/index.js

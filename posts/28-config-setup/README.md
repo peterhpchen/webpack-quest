@@ -4,7 +4,7 @@
 
 > 本文的範例程式放在 [peterhpchen/webpack-quest](https://github.com/peterhpchen/webpack-quest/tree/master/posts/28-config-setup/demos) 中，每個程式碼區塊的第一行都會標注檔案的位置，請搭配文章作參考。
 
-在開發專案時，會有兩種配置：開發配置及生產配置。開發配置專責於開發階段使用，使工程師得到更好的除錯幫助，有意義的命名模組輸出、 Source Map 、 Hot Module Replacement...等。而生產環境的配置則需要做最佳化、減少體積、切割代碼以提高快取機會...等。但是這兩種環境的配置也並不完全不同，其中對於模組的載入、入口的設定等在兩個環境下是會相同的，這時要如何配置這些配置，又不會讓使用者麻煩是需要特別注意的。
+在開發專案時，會有兩種配置: 開發配置及生產配置。開發配置專責於開發階段使用，使工程師得到更好的除錯幫助，有意義的命名模組輸出、 Source Map 、 Hot Module Replacement...等。而生產環境的配置則需要做最佳化、減少體積、切割代碼以提高快取機會...等。但是這兩種環境的配置也並不完全不同，其中對於模組的載入、入口的設定等在兩個環境下是會相同的，這時要如何配置這些配置，又不會讓使用者麻煩是需要特別注意的。
 
 為解決此問題，本文會使用`函式` 、 `webpack-merge` 及 `webpack-chain` 這三種不同的方式說明如何配置 webpack 的配置檔。
 
@@ -12,7 +12,7 @@
 
 在[使用 CLI 操作 webpack](./07-use-cli/README.md) 中有提到，配置檔可以用函式的方法設定，函式的參數會傳入環境變數，以此來決定各個環境下的設定。
 
-以下面的例子說明：
+以下面的例子說明:
 
 ```js
 // ./demos/function/webpack.config.js
@@ -36,7 +36,7 @@ module.exports = (webpackEnv) => {
 };
 ```
 
-我們可以在函式中組成目標環境的配置並傳回，接著只要在指令中給予相應的環境變數，就可以使 webpack 依照不同的配置做建置的工作：
+我們可以在函式中組成目標環境的配置並傳回，接著只要在指令中給予相應的環境變數，就可以使 webpack 依照不同的配置做建置的工作:
 
 ```json
 // ./demos/function/package.json
@@ -56,7 +56,7 @@ module.exports = (webpackEnv) => {
 
 使用多個 webpack 配置檔設定不同環境的建置方式是最常見的做法，但大部分的配置不管差距再怎麼大，不同的環境還是會有相同的設定，為了避免重複的配置，開發者可以合併多個配置檔的內容。
 
-試想你有下面這些配置檔：
+試想你有下面這些配置檔:
 
 ```plaintext
 root
@@ -70,7 +70,7 @@ root
 
 為了安全的合併配置檔內容，我們可以借助 `webpack-merge` 的幫助，它是專門為了合併 webpack 配置而開發的，可以完美的組合多個配置檔。
 
-以上面的例子來看，基底配置(`webpack.base.conf.js`)設定了關於模組的載入：
+以上面的例子來看，基底配置(`webpack.base.conf.js`)設定了關於模組的載入:
 
 ```js
 // ./demos/merge/config/webpack.base.conf.js
@@ -108,7 +108,7 @@ module.exports = merge(baseWebpackConfig, {
 });
 ```
 
-接著在執行的時候針對不同的環境，選取不同的配置檔：
+接著在執行的時候針對不同的環境，選取不同的配置檔:
 
 ```js
 {
@@ -129,7 +129,7 @@ module.exports = merge(baseWebpackConfig, {
 
 需要這類細部的變動時可以使用 `webpack-chain` 來達成，它使用鏈式(chain) 設計 API ，用這些 API 我們可以產生合法的 webpack 配置，也可以使用 API 定位各個設定並做指定的修改。
 
-現在我們修改 `webpack-merge` 的基底配置：
+現在我們修改 `webpack-merge` 的基底配置:
 
 ```js
 // ./demos/chain/config/webpack.base.conf.js
@@ -146,12 +146,12 @@ webpackConfig.module
 module.exports = webpackConfig;
 ```
 
-在基底配置中我們設定了 `babel-loader` ，其中可以看到 `webpack-chain` 可以將各個設定做命名的動作：
+在基底配置中我們設定了 `babel-loader` ，其中可以看到 `webpack-chain` 可以將各個設定做命名的動作:
 
-- `.rule('js')`：將此 `rule` 命名為 `js`
-- `.use('babel')`：將此 `use`(`loaders`) 命名為 `babel`
+- `.rule('js')`: 將此 `rule` 命名為 `js`
+- `.use('babel')`: 將此 `use`(`loaders`) 命名為 `babel`
 
-接下來在開發及生產配置檔中就可以依照這些名字對應至想要修改的規則：
+接下來在開發及生產配置檔中就可以依照這些名字對應至想要修改的規則:
 
 ```js
 // ./demos/chain/config/webpack.prod.conf.js
@@ -190,7 +190,7 @@ module.exports = webpackConfig.toConfig();
 
 ## 總結
 
-本文介紹了三種設定方式，各個特色如下表所示：
+本文介紹了三種設定方式，各個特色如下表所示:
 
 | 方式            | 優                               | 缺                           | 例子                                                                                                                                  |
 | --------------- | -------------------------------- | ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |

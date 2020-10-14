@@ -16,7 +16,7 @@ webpack 主要的配置方式是利用 CLI 或是 Node.js API 引入配置物件
 
 配置物件是個標準的 JavaScript 物件，**使用者可以藉由調整物件中的屬性來做配置**。
 
-下面是個簡單的配置物件：
+下面是個簡單的配置物件:
 
 ```js
 // ./demos/config-file/webpack.config.js
@@ -36,7 +36,7 @@ webpack 主要的配置方式是利用 CLI 或是 Node.js API 引入配置物件
 
 ## 使用配置物件
 
-webpack 的 CLI 工具可以引入配置檔 (預設是 `webpack.config.js`) ，讓 webpack 依照配置物件做建置：
+webpack 的 CLI 工具可以引入配置檔 (預設是 `webpack.config.js`) ，讓 webpack 依照配置物件做建置:
 
 ```js
 // ./demos/config-file/webpack.config.js
@@ -58,29 +58,29 @@ module.exports = {
 
 ## 配置物件中的選項
 
-本節概略的介紹配置物件中各個不同的選項，我們會在下一章中詳細講解：
+本節概略的介紹配置物件中各個不同的選項，我們會在下一章中詳細講解:
 
 ```js
 {
-  mode: "production", // 模式：依照所選模式做對應的最佳化，預設值為 "production"
-  entry: "./app/entry", // 入口： webpack 開始建置作業的起始模組，預設值為 "./src/index.js"
+  mode: "production", // 模式: 依照所選模式做對應的最佳化，預設值為 "production"
+  entry: "./app/entry", // 入口:  webpack 開始建置作業的起始模組，預設值為 "./src/index.js"
   output: {
-      // 輸出：配置如何輸出 webpack
+      // 輸出: 配置如何輸出 webpack
   },
   module: {
-      // 模組：處理各個模組（檔案） 如何載入，依照對應的規則設定 loader 配置
+      // 模組: 處理各個模組（檔案） 如何載入，依照對應的規則設定 loader 配置
   },
   resolve: {
-      // 解析：配置如何解析模組，像是路徑、別名等設定
+      // 解析: 配置如何解析模組，像是路徑、別名等設定
   },
   performance: {
-      // (略)效能：提示使用者 bundle 目前的情況，以促使使用者改善 bundle 的效能
+      // (略)效能: 提示使用者 bundle 目前的情況，以促使使用者改善 bundle 的效能
   },
   devtool: "source-map", // devtool: 設定是否及如何生成 source map ，source map 可以解決 bundle 在 debug 時造成行數與原檔案 miss mapping 的問題
-  context: __dirname, // 內容：根目錄位置，此為絕對路徑，會被 entry, module.rules.loader 等選項使用於路徑的解析上
-  target: "web", // 目標： 設定 bundle 的目標環境，它會依照環境會 bundle 做相對應的處理
-  externals: ["react", /^@angular/], // 外部擴展：從相依中排除此選項設定的模組
-  stats: "errors-only", // (略)stats：控制輸出資訊
+  context: __dirname, // 內容: 根目錄位置，此為絕對路徑，會被 entry, module.rules.loader 等選項使用於路徑的解析上
+  target: "web", // 目標:  設定 bundle 的目標環境，它會依照環境會 bundle 做相對應的處理
+  externals: ["react", /^@angular/], // 外部擴展: 從相依中排除此選項設定的模組
+  stats: "errors-only", // (略)stats: 控制輸出資訊
   devServer: {
       // webpack-dev-server 中的設定選項
   },
@@ -89,10 +89,10 @@ module.exports = {
       // 設定監聽模式的選項
   }
   plugins: [
-      // 插件：設定插件的配置
+      // 插件: 設定插件的配置
   ],
   optimization: {
-      // 最佳化：設定 Code split, Tree Shaking 等優化配置
+      // 最佳化: 設定 Code split, Tree Shaking 等優化配置
   }
 }
 ```
@@ -119,7 +119,7 @@ module.exports = {
 
 webpack-cli 有個 [init](https://github.com/webpack/webpack-cli/blob/next/packages/init/README.md#webpack-cli-init) 的指令，它可以幫我們產生 webpack 為基底的起始專案 。
 
-要使用 `webpack-cli init` 需要另外安裝 `@webpack-cli/init`：
+要使用 `webpack-cli init` 需要另外安裝 `@webpack-cli/init`:
 
 ```bash
 npm install webpack webpack-cli @webpack-cli/init@0.2.2
@@ -127,7 +127,7 @@ npm install webpack webpack-cli @webpack-cli/init@0.2.2
 
 > 目前使用 webpack v4 ，[不能使用 `@webpack-cli/init` 最新的 `0.3.0` 版本](https://github.com/webpack/webpack-cli/issues/1127)，必須指定 `0.2` 的版本。
 
-他會以交互問答的方式完成專案的配置：
+他會以交互問答的方式完成專案的配置:
 
 ![webpack-cli-init](./assets/webpack-cli-init.png)
 

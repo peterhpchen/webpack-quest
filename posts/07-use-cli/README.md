@@ -8,7 +8,7 @@
 
 ## CLI
 
-CLI 工具是 webpack 提供開發者可以直接使用指令的方式控制 webpack 。 CLI 並不在 webpack 的核心庫中，他被另外放在 `webpack-cli` ，所以需要另外安裝：
+CLI 工具是 webpack 提供開發者可以直接使用指令的方式控制 webpack 。 CLI 並不在 webpack 的核心庫中，他被另外放在 `webpack-cli` ，所以需要另外安裝:
 
 ```bash
 npm install webpack webpack-cli --save-dev
@@ -42,7 +42,7 @@ npm run build
 
 ## 使用 CLI 配置 webpack
 
-CLI 有兩種方式可以配置 webpack ：
+CLI 有兩種方式可以配置 webpack :
 
 - 使用指令參數
 - 使用配置檔
@@ -86,7 +86,7 @@ webpack --mode development
 
 指令參數在像是 demo 或 prototype 的專案上，可以較配置檔來的節省配置的時間，加快開發的速度。
 
-但指令參數並不能設定太複雜的 配置，因此某些功能無法在 CLI 中設定(例如： Plugins)，所以在大型專案上，還是使用配置檔會是更好的選擇。
+但指令參數並不能設定太複雜的 配置，因此某些功能無法在 CLI 中設定(例如: Plugins)，所以在大型專案上，還是使用配置檔會是更好的選擇。
 
 ### 使用配置檔
 
@@ -108,7 +108,7 @@ module.exports = {
 
 上面就是一個配置檔的例子，用 `module.exports` 匯出配置物件。
 
-webpack CLI 會將 root 目錄下的 `webpack.config.js` 做為預設的配置檔。如果要指定其他配置檔的話，可以下 `--config` 指令：
+webpack CLI 會將 root 目錄下的 `webpack.config.js` 做為預設的配置檔。如果要指定其他配置檔的話，可以下 `--config` 指令:
 
 ```bash
 webpack --config webpack.config.prod.js
@@ -126,14 +126,14 @@ webpack 的配置會基於建置環境的不同而變化，像是開發環境與
 
 ### 使用不同的配置檔
 
-最簡單的方式就是使用不同的配置檔，我們以例子來說明：
+最簡單的方式就是使用不同的配置檔，我們以例子來說明:
 
 ```js
 // ./demos/diff-config/src/index2.js
 console.log("This is index2.js");
 ```
 
-這是一個 JavaScript 檔 `index2.js` ，我們有兩個環境 `development` 及 `production` 需要配置，於是創建了 `webpack.config.dev.js` 及 `webpack.config.prod.js` 兩個配置檔：
+這是一個 JavaScript 檔 `index2.js` ，我們有兩個環境 `development` 及 `production` 需要配置，於是創建了 `webpack.config.dev.js` 及 `webpack.config.prod.js` 兩個配置檔:
 
 ```js
 // ./demos/diff-config/webpack.config.dev.js
@@ -159,7 +159,7 @@ module.exports = {
 
 我想要將 `production` 所產生的檔案改為 `./build/bundle.js` ，因此在 `webpack.config.prod.js` 中要再加上 `output` 的設定。
 
-我們下指令各別建置不同的環境：
+我們下指令各別建置不同的環境:
 
 ```js
 // ./demos/diff-config/package.json
@@ -195,7 +195,7 @@ module.exports = (env, argv) => ({
 });
 ```
 
-webpack 會傳入兩個參數：
+webpack 會傳入兩個參數:
 
 - `env`: 環境變數，在 CLI 中用 [`--env`](https://webpack.js.org/api/cli/#environment-options) 設定
 - `argv`: CLI 參數，像是 `--mode` 、 `--config` 等參數
@@ -214,7 +214,7 @@ webpack 會傳入兩個參數：
 
 使用 `--env` 傳回環境變數，藉由環境變數判斷環境配置。
 
-也可以使用 `argv` 做判斷：
+也可以使用 `argv` 做判斷:
 
 ```js
 // ./demos/export-function/webpack.config.argv.js
@@ -277,7 +277,7 @@ module.exports = (env, argv) => {
 
 ### 配置模組傳回陣列
 
-有些情況，我們需要同時建置多種環境，這時就可以使用陣列的方式：
+有些情況，我們需要同時建置多種環境，這時就可以使用陣列的方式:
 
 ```js
 // ./demos/export-array/webpack.config.js
@@ -303,7 +303,7 @@ module.exports = [
 
 直接下 `webpack` 指令就可以建置 `development` 及 `production` 環境。
 
-如果只想要執行其中一個的話，可以使用 `--config-name` 來對應屬性 `name` 做不同的配置：
+如果只想要執行其中一個的話，可以使用 `--config-name` 來對應屬性 `name` 做不同的配置:
 
 ```js
 // ./demos/export-array/package.json

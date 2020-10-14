@@ -8,7 +8,7 @@
 
 ## 開啟 `production` 模式
 
-webpack 使用模式 `mode` 來設定預設的最佳化配置，當目標環境為生產模式時，我們可以將 `mode` 設為 `production`，下面的配置輸出 `none` 與 `production` 的 bundle 供比較：
+webpack 使用模式 `mode` 來設定預設的最佳化配置，當目標環境為生產模式時，我們可以將 `mode` 設為 `production`，下面的配置輸出 `none` 與 `production` 的 bundle 供比較:
 
 ```js
 // ./demos/production-mode/webpack.config.js
@@ -20,13 +20,13 @@ module.exports = ["none", "production"].map((mode) => ({
 }));
 ```
 
-建置結果如下：
+建置結果如下:
 
 ![none-vs-production](./assets/none-vs-production.png)
 
 可以看到在沒有最佳化的狀態下(`none`)的 bundle 容量大於 `production` 模式下的最佳化處理很多。
 
-`production` 模式做了許多優化的處理：
+`production` 模式做了許多優化的處理:
 
 - 使用 terser 壓縮代碼
 - 設定 `process.env.NODE_ENV` 為 `production`
@@ -39,7 +39,7 @@ webpack 的 `production` 模式已經將大部分減少體積的優化做好了�
 
 webpack 提供了 `optimization.minimize` 與 `optimization.minimizer` 配置供使用者設定使否啟用最小化以及如何處理最小化。
 
-預設的 `minimizer` 是使用 `terser-webpack-plugin` 做最小化的處理，而 `minimize` 在 `production` 模式下預設是開啟的，你也可以手動開啟：
+預設的 `minimizer` 是使用 `terser-webpack-plugin` 做最小化的處理，而 `minimize` 在 `production` 模式下預設是開啟的，你也可以手動開啟:
 
 ```js
 // ./demos/optimization-minimize/webpack.config.js
@@ -65,7 +65,7 @@ module.exports = [
 
 ## 善用環境變數
 
-不僅是在 webpack 的配置中，在專案的代碼中，我們也有需要判斷是在哪個環境下而做不同的處理，例如在不同模式下要顯示不同的 Log：
+不僅是在 webpack 的配置中，在專案的代碼中，我們也有需要判斷是在哪個環境下而做不同的處理，例如在不同模式下要顯示不同的 Log:
 
 ```js
 // ./demos/optimization-node-env/src/index.js
@@ -77,7 +77,7 @@ if (process.env.NODE_ENV === "development") {
 }
 ```
 
-配置如下：
+配置如下:
 
 ```js
 // ./demos/optimization-node-env/webpack.config.js
@@ -93,7 +93,7 @@ module.exports = {
 - `nodeEnv` 設為 `production` ，因此 `process.env.NODE_ENV = 'production'`
 - 開啟 `minimize`
 
-如此一來上面的 `index.js` 會被 webpack 視為：
+如此一來上面的 `index.js` 會被 webpack 視為:
 
 ```js
 if ("production" === "production") {
@@ -104,7 +104,7 @@ if ("production" === "development") {
 }
 ```
 
-`minimizer`(預設是 terser) 會將 dead code 刪除：
+`minimizer`(預設是 terser) 會將 dead code 刪除:
 
 ```js
 console.log("production");
@@ -134,13 +134,13 @@ webpack 預設會將每個模組分塊包至 bundle 中，這樣會增加分裝�
 
 ## 縮小 CSS 的體積
 
-與 JavaScript 一樣， CSS 也可以縮小體積來增加效能，這裡要借助 PostCSS 與 `cssnano` 的幫助：
+與 JavaScript 一樣， CSS 也可以縮小體積來增加效能，這裡要借助 PostCSS 與 `cssnano` 的幫助:
 
 ```bash
 npm install postcss postcss-loader cssnano -D
 ```
 
-接著配置如下：
+接著配置如下:
 
 ```js
 // ./demos/css-minimize/webpack.config.js
@@ -164,7 +164,7 @@ module.exports = [false, true].map((isProcessByPostCSS) => ({
 
 配置中也將未壓縮的配置一同輸出，讓我們做個比較。
 
-記得要設置 `postcss.config.js`：
+記得要設置 `postcss.config.js`:
 
 ```js
 // ./demos/css-minimize/postcss.config.js
@@ -179,7 +179,7 @@ module.exports = {
 
 可以看到加上 `cssnano` 處理過的 `.css` 內容換行及空白都沒了。
 
-`postcss-loader` 與 `cssnano` 配合的壓縮方式也一樣適用在 extract css 上：
+`postcss-loader` 與 `cssnano` 配合的壓縮方式也一樣適用在 extract css 上:
 
 ```js
 // ./demos/extract-css-minimize/webpack.config.js
@@ -217,13 +217,13 @@ module.exports = [false, true].map((isProcessByPostCSS) => ({
 
 ## 減少 Image 的大小
 
-在[載入圖片資源](../23-image/README.md)一文中有提到如何使用 `file-loader` 與 `url-loader` 來載入圖片，現在我們要使用 `image-webpack-loader` 來壓縮圖片：
+在[載入圖片資源](../23-image/README.md)一文中有提到如何使用 `file-loader` 與 `url-loader` 來載入圖片，現在我們要使用 `image-webpack-loader` 來壓縮圖片:
 
 ```js
 npm install image-webpack-loader -D
 ```
 
-我們在被 `url-loader` 處理前使用 `image-webpack-loader`：
+我們在被 `url-loader` 處理前使用 `image-webpack-loader`:
 
 ```js
 // ./demos/minify-image/webpack.config.js
@@ -256,7 +256,7 @@ module.exports = [false, true].map((isCompress) => ({
 
 `url-loader.options.limit` 因為壓縮後有可能低於 `limit` 而變為 Data URL ，為了有個明確的比較，因此設為 0 。
 
-結果如下：
+結果如下:
 
 ![minify-image-compare](./assets/minify-image-compare.png)
 
@@ -307,7 +307,7 @@ module.exports = [false, true].map((isCompress) => ({
 }));
 ```
 
-看一下 bundle 的比較：
+看一下 bundle 的比較:
 
 ![minify-svg-compare](./assets/minify-svg-compare.png)
 

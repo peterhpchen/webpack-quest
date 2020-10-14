@@ -29,7 +29,7 @@ npm install @babel/core @babel/cli -D
 
 ### 執行 Babel
 
-現在有個 `.js` 檔內容如下：
+現在有個 `.js` 檔內容如下:
 
 ```js
 // ./demos/babel-plugin/src/index.js
@@ -45,7 +45,7 @@ export default {
 
 這裡使用了 es5 的 `const` 及 arrow function 。
 
-接著使用 Babel CLI 執行 Babel 的建置：
+接著使用 Babel CLI 執行 Babel 的建置:
 
 ```bash
 babel src -d dist
@@ -55,22 +55,22 @@ babel src -d dist
 
 ### 使用 Babel Plugins
 
-現在我們幫 Babel 加上 Plugins ，為了可以將 `const` 與 arrow function 轉為舊版本的語法我們要安裝 `@babel/plugin-transform-arrow-functions` 與 `@babel/plugin-transform-block-scoping` ：
+現在我們幫 Babel 加上 Plugins ，為了可以將 `const` 與 arrow function 轉為舊版本的語法我們要安裝 `@babel/plugin-transform-arrow-functions` 與 `@babel/plugin-transform-block-scoping` :
 
 ```bash
 yarn add @babel/plugin-transform-arrow-functions @babel/plugin-transform-block-scoping -D
 ```
 
-- `@babel/plugin-transform-arrow-functions`：轉換 arrow function
+- `@babel/plugin-transform-arrow-functions`: 轉換 arrow function
 - `@babel/plugin-transform-block-scoping`: 轉換 `const`
 
-執行建置：
+執行建置:
 
 ```bash
 babel src -d dist-with-plugin --plugins=@babel/plugin-transform-arrow-functions,@babel/plugin-transform-block-scoping
 ```
 
-加上 `plugins` 參數帶入 Plugins ，結果如下：
+加上 `plugins` 參數帶入 Plugins ，結果如下:
 
 ```js
 // ./demos/babel-plugin/dist-with-plugin/index.js
@@ -88,7 +88,7 @@ export default {
 
 ### 使用 Babel 配置檔
 
-使用 CLI 做設定時，只要設定一多，會變得很難設定，因此 Babel 提供了配置檔的方式做設定：
+使用 CLI 做設定時，只要設定一多，會變得很難設定，因此 Babel 提供了配置檔的方式做設定:
 
 ```js
 // ./demos/babel-config/babel.config.js
@@ -106,7 +106,7 @@ module.exports = {
 
 每個 Plugins 都針對特定的語法處理，假設使用了其他的語法，就必須要個別加上對應的 Plugins ，設定會變得相當複雜，所幸 Babel 提供了 Presets ，Presets 會將多個 Plugins 包起來，供使用者引入所需的 Plugins 。
 
-這裡使用 `@babel/preset-env`：
+這裡使用 `@babel/preset-env`:
 
 ```bash
 npm install @babel/preset-env -D
@@ -114,7 +114,7 @@ npm install @babel/preset-env -D
 
 `@babel/preset-env` 可以依照目標環境，決定要轉換什麼語法。
 
-現在將 `@babel/preset-env` 加到配置中：
+現在將 `@babel/preset-env` 加到配置中:
 
 ```js
 // ./demos/babel-preset/babel.config.js
@@ -123,7 +123,7 @@ module.exports = {
 };
 ```
 
-執行建置會發現除了 `const` 與 arrow function 外，還另外幫我們轉換了 `export` 的語法：
+執行建置會發現除了 `const` 與 arrow function 外，還另外幫我們轉換了 `export` 的語法:
 
 ```js
 // ./demos/babel-preset/babel.config.js
@@ -149,7 +149,7 @@ exports["default"] = _default;
 
 `@babel/preset-env` 預設會將 ES2015-ES2020 的所有語法轉為 ES5 版本的語法，但使用者的目標環境瀏覽器不一定只支援 ES5 版本語法，像是 Chrome 或是 Firefox 等現代瀏覽器都已經支援較新的語法，這時可以使用 [browserslist](https://github.com/browserslist/browserslist) 設定目標瀏覽器，讓 Babel 知道該以哪個環境為目標做轉換。
 
-建立一個 `.browserslistrc` 的檔案， Babel 會識別此檔案已做對應的轉換：
+建立一個 `.browserslistrc` 的檔案， Babel 會識別此檔案已做對應的轉換:
 
 ```yaml
 > 5%
@@ -161,13 +161,13 @@ exports["default"] = _default;
 
 Babel 的 Plugins 只負責轉換語法，並沒有對新的語意做解釋，這時就要藉由 Polyfill 的幫助。
 
-我們需要引入 `core-js`：
+我們需要引入 `core-js`:
 
 ```bash
 npm install core-js
 ```
 
-這是個 Polyfill 庫，他使用原有的語法實現新的語意 features ，Babel 使用 core-js 幫忙轉換：
+這是個 Polyfill 庫，他使用原有的語法實現新的語意 features ，Babel 使用 core-js 幫忙轉換:
 
 ```js
 // ./demos/babel-polyfill/babel.config.js
@@ -188,7 +188,7 @@ module.exports = {
   - `false`: 預設值，全部手動引入
   - `'entry'`: 在入口 `.js` 檔中引入完整的 `core-js` ，Babel 會依照環境配置取出對應的 Polyfill
   - `'usage'`: Babel 會偵測代碼，以引入對應的 Polyfill
-- `corejs`：指定 `core-js` 版本
+- `corejs`: 指定 `core-js` 版本
 
 這裡配置使用 `usage` 的方式自動引入 Polyfill 。
 
@@ -212,7 +212,7 @@ export default {
 };
 ```
 
-建置結果如下：
+建置結果如下:
 
 ```js
 // ./demos/babel-polyfill/dist/index.js
@@ -249,7 +249,7 @@ exports["default"] = _default;
 
 ### 將 Babel 加到 webpack 中
 
-使用 `babel-loader` 將 babel 引入 webpack 的建置流程中：
+使用 `babel-loader` 將 babel 引入 webpack 的建置流程中:
 
 ```js
 // ./demos/babel-webpack/webpack.config.js
@@ -269,7 +269,7 @@ module.exports = {
 
 由於我們已經將所有的配置都拿到配置檔中（`.browserslistrc` 與 `babel.config.js`），因此 `babel-loader` 中不需再做設定。
 
-建置後可以在 bundle 中看到，代碼已經被轉換為目標環境相容的狀態：
+建置後可以在 bundle 中看到，代碼已經被轉換為目標環境相容的狀態:
 
 ```js
 // ./demos/babel-webpack/dist/main.js

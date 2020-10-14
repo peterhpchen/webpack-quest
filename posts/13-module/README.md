@@ -16,12 +16,12 @@ webpack 從 `entry` 開始依序掃描各個模組，在掃描的過程中會用
 
 ## 設定一個 `rules`
 
-設定模組的規則時，有兩個點要考慮：
+設定模組的規則時，有兩個點要考慮:
 
 - **哪些模組要使用**: 設定此規則好包含哪些模組
 - **要做哪些處理**: 這些模組要做什麼處理
 
-記住這兩點後，來看下面這個例子：
+記住這兩點後，來看下面這個例子:
 
 ```js
 // ./demos/css-module/webpack.config.demo.js
@@ -40,7 +40,7 @@ module.exports = {
 };
 ```
 
-我們將配置中的 `test` 及 `use` 依照上面的兩類做區分：
+我們將配置中的 `test` 及 `use` 依照上面的兩類做區分:
 
 - **哪些模組要使用**: `test` 判斷哪些模組適用此規則。
 - **要做哪些處理**: `use` 設定這些模組要用哪些 Loaders 做處理。
@@ -49,7 +49,7 @@ module.exports = {
 
 ## 判斷類
 
-判斷類的屬性有： `test`, `include`, `exclude`...等，雖然有些設定的功能不同，但是條件設定方式都是一樣的，如下所示：
+判斷類的屬性有: `test`, `include`, `exclude`...等，雖然有些設定的功能不同，但是條件設定方式都是一樣的，如下所示:
 
 - RegExp: 如果正規表達式判斷為真則條件成立
 - 字串值: 如果是以此字串值開頭的路徑則條件成立
@@ -94,7 +94,7 @@ module.exports = {
 };
 ```
 
-執行結果如下：
+執行結果如下:
 
 ![rules-test-include-result](./assets/rules-test-include-result.png)
 
@@ -119,7 +119,7 @@ module.exports = {
 };
 ```
 
-執行結果如下：
+執行結果如下:
 
 ![rules-exclude-result](./assets/rules-exclude-result.png)
 
@@ -129,7 +129,7 @@ module.exports = {
 
 如果 `resourecQuery` 所設定的判斷式**匹配目標資源的 query 時，則條件成立**。
 
-我們將上面的例子改一下：
+我們將上面的例子改一下:
 
 ```js
 // ./demos/rules-resource-query/src/index.js
@@ -160,7 +160,7 @@ module.exports = {
 
 每個 `rule` 中能使用複數種的條件判斷，當多種條件存在時，檔案的路徑與檔名要**符合全部的條件**才歸為此規則。
 
-以下面的例子來說：
+以下面的例子來說:
 
 ```plaintext
 root
@@ -178,7 +178,7 @@ root
     |- index.js
 ```
 
-配置了下面的設定：
+配置了下面的設定:
 
 ```js
 // ./demos/rules-test-include-exclude
@@ -208,13 +208,13 @@ module.exports = {
 };
 ```
 
-總共設置三種條件：
+總共設置三種條件:
 
 - `test`: 要是 `.js` 檔
 - `include`: 要在 `src` 目錄中 **或** 目錄中有符合 `app` 字串的檔案
 - `exclude`: 排除在 `app/exclude` 目錄下的檔案
 
-建置結果為：
+建置結果為:
 
 ![rules-test-include-exclude-result](./assets/rules-test-include-exclude-result.png)
 
@@ -222,19 +222,19 @@ module.exports = {
 
 ## 判斷目標 `resource` 與 `issuer`
 
-判斷類的屬性是設定此規則適用哪些模組，它的判斷依據有兩類：
+判斷類的屬性是設定此規則適用哪些模組，它的判斷依據有兩類:
 
-- 資源本身(resource)：**被請求的**模組的絕對路徑
-- 資源使用者(issuer)：**請求模組的**模組的絕對路徑
+- 資源本身(resource): **被請求的**模組的絕對路徑
+- 資源使用者(issuer): **請求模組的**模組的絕對路徑
 
-以上節的例子來說，在 `./src/index.js` 中使用 `import excludeStr from './exclude/index.js'` 引入 `./exclude/index.js`：
+以上節的例子來說，在 `./src/index.js` 中使用 `import excludeStr from './exclude/index.js'` 引入 `./exclude/index.js`:
 
 - `resource` 為 `/{absolute-path}/src/exclue/index.js`
 - `issuer` 為 `/{absolute-path}/src/index.js`
 
 依照判斷依據的不同，分別使用 `resource` 與 `issuer` 設定兩個不同類別。
 
-前面章節所提到的 `test`, `include` 及 `exclude` 其實分別是 `resource.test`, `resource.include` 及 `resource.exclude` 的縮寫，因此我們可以將上面的例子改為：
+前面章節所提到的 `test`, `include` 及 `exclude` 其實分別是 `resource.test`, `resource.include` 及 `resource.exclude` 的縮寫，因此我們可以將上面的例子改為:
 
 ```js
 const path = require("path");
@@ -276,7 +276,7 @@ module.exports = {
 
 ### `and`, `or` 與 `not`
 
-除了上述的三個判斷(`test`, `include`, `exclude`)外，另外還有 `and`, `or` 與 `not` 三個沒有縮寫的判斷，它們的說明如下：
+除了上述的三個判斷(`test`, `include`, `exclude`)外，另外還有 `and`, `or` 與 `not` 三個沒有縮寫的判斷，它們的說明如下:
 
 - `and`: 包含匹配所有規則的模組，須在 `resource`, `issuer` 中使用。
 - `or`: 包含匹配任意規則的模組，須在 `resource`, `issuer` 中使用。
@@ -284,7 +284,7 @@ module.exports = {
 
 這三個需要明確寫出是在 `resource` 還是 `issuer` 中做設定。
 
-以例子來說明用法，範例的資料結構如下：
+以例子來說明用法，範例的資料結構如下:
 
 ```plaintext
 root
@@ -296,7 +296,7 @@ root
   |- style.css
 ```
 
-配置如下：
+配置如下:
 
 ```js
 // ./demos/rules-issuer-and/webpack.config.js
@@ -323,17 +323,17 @@ module.exports = {
 };
 ```
 
-執行結果為：
+執行結果為:
 
 ![rules-issuer-and](./assets/rules-issuer-and.png)
 
-結果中可以看到只有 `./src/style.css` 觸發規則，因為`issuer` 的判斷目標為請求資源的模組 ，而 `and` 判斷需要所有的條件為真，所以此設定的意義是：請求資源的模組路徑要在 `./src` 下，並且要是 `.js` 檔案。
+結果中可以看到只有 `./src/style.css` 觸發規則，因為`issuer` 的判斷目標為請求資源的模組 ，而 `and` 判斷需要所有的條件為真，所以此設定的意義是: 請求資源的模組路徑要在 `./src` 下，並且要是 `.js` 檔案。
 
 `./app/index.js` 雖然是 `.js` 檔案，但並不在 `./src` 目錄下，因此 `./app/style.css` 並不符合條件。
 
 ## 設定習慣
 
-上面介紹下來，讀者應該有個疑問，為什麼許多的屬性的判斷功能是相同的，例如 `test` 與 `inlcude` ？ webpack 提供了極大的彈性配置規則，其目的在於希望使用者可以配置出可讀性高的規則，因此會用下面的方式來配置 `module.rules` ：
+上面介紹下來，讀者應該有個疑問，為什麼許多的屬性的判斷功能是相同的，例如 `test` 與 `inlcude` ？ webpack 提供了極大的彈性配置規則，其目的在於希望使用者可以配置出可讀性高的規則，因此會用下面的方式來配置 `module.rules` :
 
 - `test`: 篩選目標副檔名
 - `inlcude`: 篩選目標目錄
@@ -346,7 +346,7 @@ module.exports = {
 
 上面的例子都是單個規則，其實 webpack 是可以讓同個資源使用多個規則做設定。
 
-以下面例子來說：
+以下面例子來說:
 
 ```js
 // ./demos/rules-multiple/webpack.config.js
@@ -382,11 +382,11 @@ module.exports = {
 };
 ```
 
-執行結果如下：
+執行結果如下:
 
 ![rules-multiple](./assets/rules-multiple.png)
 
-還記得 Loaders 的觸發順序是由後往前嗎？在配置檔中也是如此，因此執行順序為：
+還記得 Loaders 的觸發順序是由後往前嗎？在配置檔中也是如此，因此執行順序為:
 
 - Loader `b` 會先被觸發。
 - `a` 因為是巢狀規則，在巢狀結構下，是由內向外觸發，因此依序是 `a-b`, `a-a` 到 `a` 。
@@ -430,7 +430,7 @@ module.exports = {
 };
 ```
 
-執行結果如下：
+執行結果如下:
 
 ![rules-oneof](./assets/rules-oneof.png)
 
@@ -438,7 +438,7 @@ module.exports = {
 
 從 `oneOf` 的例子可以知道，**判斷是由前往後的，而執行是由後往前的**。
 
-可以用下面的圖來說明判斷及執行的順序：
+可以用下面的圖來說明判斷及執行的順序:
 
 ![rule-condition-execution](./assets/rule-condition-execution.png)
 

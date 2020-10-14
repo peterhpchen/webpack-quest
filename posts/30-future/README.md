@@ -10,7 +10,7 @@ webpack 雖然不像是 Vue.js 、 Bootstrap 這類的框架那麼常被使用�
 
 這裡總結整個系列的各篇文章，
 
-### 第一章：認識 webpack
+### 第一章: 認識 webpack
 
 - [JavaScript 的模組化之路](../02-history-of-js-module/README.md): 前端工程模組化的歷史發展
 - [新技術的崛起](../03-new-tech/README.md): 介紹現代前端工程的新興技術
@@ -20,7 +20,7 @@ webpack 雖然不像是 Vue.js 、 Bootstrap 這類的框架那麼常被使用�
 - [使用 CLI 操作 webpack](../07-use-cli/README.md): 如何使用 CLI 執行 webpack 建置
 - [使用 Node.js API 操作 webpack](../08-use-node-api/README.md): 如何使用 Node.js API 執行 webpack 建置
 
-### 第二章：配置 webpack
+### 第二章: 配置 webpack
 
 - [入口 Entry](../09-entry/README.md): 入口(`entry`)屬性配置方法
 - [輸出 Output](../10-output/README.md): 輸出(`output`)屬性配置方法
@@ -34,7 +34,7 @@ webpack 雖然不像是 Vue.js 、 Bootstrap 這類的框架那麼常被使用�
 - [Dev Tool](../18-devtool/README.md): `devtool` 屬性配置方法
 - [最佳化 Optimization 與模式 Mode](../19-optimization/README.md): 最佳化(`optimization`)與模式(`mode`)屬性配置方法
 
-### 第三章：真實世界的 webpack
+### 第三章: 真實世界的 webpack
 
 - [建立 webpack 開發環境](../20-development/README.md): 配合多種屬性建立 webpack 的開發環境
 - [使用 JavaScript](../21-javascript/README.md): 在 webpack 中配置 JavaScript
@@ -46,13 +46,13 @@ webpack 雖然不像是 Vue.js 、 Bootstrap 這類的框架那麼常被使用�
 - [建立 webpack 生產環境 - 分析 bundle 構成](../27-production-analyze/README.md): 學習追蹤 bundle 狀況
 - [配置多模式專案](../28-config-setup/README.md): 學習如何在同專案中多模式的配合
 
-### 第四章：解構 webpack
+### 第四章: 解構 webpack
 
 - [自己動手寫 webpack](../29-write-your-webpack/README.md): 理解 bundle 原理，並模仿 webpack 自己開發一個簡易的打包器
 
 ## 推薦網站
 
-下面是我在寫文章的時候經常參考的網站：
+下面是我在寫文章的時候經常參考的網站:
 
 - [GitHub: webpack/webpack](https://github.com/webpack/webpack): webpack 代碼庫， [examples](https://github.com/webpack/webpack/tree/master/examples) 值得一看，對於各種情境以例子說明
 - [Webpack 官網](https://webpack.js.org/): webpack 官方網站，官方文件非常豐富，但稍嫌雜亂

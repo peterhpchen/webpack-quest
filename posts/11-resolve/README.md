@@ -8,7 +8,7 @@
 
 ## webpack 尋找模組的方式
 
-在 webpack 中可以用三種方式引入模組：
+在 webpack 中可以用三種方式引入模組:
 
 - 絕對路徑
 - 相對路徑
@@ -47,14 +47,14 @@ console.log(`Hello ${name}`);
 
 ### 模組路徑
 
-使用模組時可以直接使用名稱引入：
+使用模組時可以直接使用名稱引入:
 
 ```js
 // ./demos/module/src/index.js
 import _ from "lodash";
 ```
 
-建置結果如下：
+建置結果如下:
 
 ![module-result](./assets/module-result.png)
 
@@ -68,12 +68,12 @@ import _ from "lodash";
 
 ## 使用 `resolve` 找出模組
 
-webpack 發現模組引入的語法(ex: `import`, `require`)時，會使用這個引入的字串值確認是否有在 `resolve.alias` 屬性中設定別名，接著如果是模組路徑的話，找尋 `resolve.modules` 中的目錄，發現目標後，視目標為檔案或是目錄會有不同的處理方式：
+webpack 發現模組引入的語法(ex: `import`, `require`)時，會使用這個引入的字串值確認是否有在 `resolve.alias` 屬性中設定別名，接著如果是模組路徑的話，找尋 `resolve.modules` 中的目錄，發現目標後，視目標為檔案或是目錄會有不同的處理方式:
 
-- 檔案：確認是否有附檔名，如果沒有則使用 `resolve.extensions` 屬性所設定的副檔名尋找。
-- 目錄：確認是否有 `package.json` ，如果有則使用 `resolve.mainFileds` 找出目標檔案，如果沒有則使用 `resolve.mainFiles` 找出目標檔案，找到目標檔案後，再依照檔案的方式處理。
+- 檔案: 確認是否有附檔名，如果沒有則使用 `resolve.extensions` 屬性所設定的副檔名尋找。
+- 目錄: 確認是否有 `package.json` ，如果有則使用 `resolve.mainFileds` 找出目標檔案，如果沒有則使用 `resolve.mainFiles` 找出目標檔案，找到目標檔案後，再依照檔案的方式處理。
 
-整個流程圖如下所示：
+整個流程圖如下所示:
 
 ![process](./assets/process.png)
 
@@ -85,7 +85,7 @@ webpack 發現模組引入的語法(ex: `import`, `require`)時，會使用這�
 
 ### 解決相對路徑設定的麻煩
 
-原本在開發時都會使用相對路徑取得專案中的模組：
+原本在開發時都會使用相對路徑取得專案中的模組:
 
 ```js
 // ./demos/resolve-alias/src/pages/index.js
@@ -94,7 +94,7 @@ import alpha from "../utils/alpha.js";
 
 只要資料夾層數變多，或是重構時改變了資料夾的相對路徑，需要逐一的調整，會十分的麻煩。
 
-使用 webpack 時用 `resolve.alias` 設定路徑別名即可解決此問題：
+使用 webpack 時用 `resolve.alias` 設定路徑別名即可解決此問題:
 
 ```js
 // ./demos/resolve-alias/webpack.config.js
@@ -119,7 +119,7 @@ import alpha from "@/utils/alpha.js";
 
 ### 使用第三方庫更加方便
 
-有時引入的第三方庫並沒有依照預設的方式設定檔案結構，造成要明確指定才能使用，以 vue.js 為例：
+有時引入的第三方庫並沒有依照預設的方式設定檔案結構，造成要明確指定才能使用，以 vue.js 為例:
 
 ```js
 // ./demos/resolve-alias/src/index.js
@@ -129,7 +129,7 @@ import 'vue/dist/vue.esm.js'
 
 為了使用 vue.js template 的功能，我們需要載入包含 compiler 及 runtime 的完成包，可是 vue.js 預設是載入 runtime only 的版本，因此我們需要明確指定版本(`vue.esm.js`)，這使得在引用時十分麻煩。
 
-這時我們可以使用 `resolve.alias` 簡化引用：
+這時我們可以使用 `resolve.alias` 簡化引用:
 
 ```js
 // ./demos/resolve-alias/webpack.config.js
@@ -153,7 +153,7 @@ module.exports = {
 
 由於 `resolve.modules` 的預設值為 `['node_modules']` ，這也是為什麼前面的例子在引入 `lodash` 時， webpack 會知道要從 `node_modules` 底下尋找目標。
 
-我們可以自己調整成自己的目錄：
+我們可以自己調整成自己的目錄:
 
 ```js
 // ./demos/module/webpack.config.js
@@ -166,13 +166,13 @@ module.exports = {
 };
 ```
 
-建置結果為：
+建置結果為:
 
 ![module-modules-result](./assets/module-modules-result.png)
 
 可以看到原本使用 `node_modules` 下的 `lodash` ，現在已經改引用 `./src` 下的 `lodash.js` 。
 
-這例子可以知道下面幾點：
+這例子可以知道下面幾點:
 
 - 設定越前面的會越先尋找，只要找到就停止查找。
 - 設定可以為**絕對路徑**或是**相對路徑**
@@ -181,7 +181,7 @@ module.exports = {
 
 ## `resolve.mainFields`
 
-找到模組目錄後， webpack 會需要知道要使用哪個檔案，以 `vue.js` 為例，你在 `node_modules` 看到如下的結構：
+找到模組目錄後， webpack 會需要知道要使用哪個檔案，以 `vue.js` 為例，你在 `node_modules` 看到如下的結構:
 
 ![vue-directory](./assets/vue-directory.png)
 
@@ -201,12 +201,12 @@ module.exports = {
 }
 ```
 
-vue.js 設定了兩個入口： `main` 與 `module`:
+vue.js 設定了兩個入口: `main` 與 `module`:
 
 - `main`: 預設的入口
 - `module`: ESM 的入口
 
-在預設的情況下， `target` 是 `web` ，這時 `resolve.mainFields` 是：
+在預設的情況下， `target` 是 `web` ，這時 `resolve.mainFields` 是:
 
 ```js
 module.exports = {
@@ -228,7 +228,7 @@ module.exports = {
 
 當使用者只有指定目錄時， webpack 會依照 `resolve.mainFiles` 設定依序尋找正確的檔案，它的預設值是 `['index']`。
 
-有一個例子目錄結構如下：
+有一個例子目錄結構如下:
 
 ```plaintext
 root
@@ -246,13 +246,13 @@ root
 import "./utils/alpha";
 ```
 
-執行結果如下：
+執行結果如下:
 
 ![mainfiles-result](./assets/mainfiles-result.png)
 
 省略的 `index.js` 會因為 `resolve.mainFiles` 所設定的 `['index']` 而被視為目標檔案，從而取得模組資源。
 
-我們也可以設定 `main` 作為優先尋找的檔案：
+我們也可以設定 `main` 作為優先尋找的檔案:
 
 ```js
 // ./demos/mainfiles/webpack.config.js
@@ -278,7 +278,7 @@ import "./utils/alpha/index";
 
 ## 總結
 
-webpack 的模組路徑有三種類型：絕對路徑、相對路徑與模組路徑。
+webpack 的模組路徑有三種類型: 絕對路徑、相對路徑與模組路徑。
 
 路徑的解析仰賴 `resolve` 屬性的設定。當遇到不同路徑時， `resolve` 會依照對應的配置解析，最終得以找到模組，讓使用者引入正確的資源。
 

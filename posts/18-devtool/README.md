@@ -10,7 +10,7 @@ webpack 是個建置工具，他會將多個檔案或是不同語言的模組合
 
 `devtool` 屬性是用來設定要怎麼輸出 Source Map 的資訊，預設是 `false` ，代表不產出 Source Map 資訊。
 
-如果要讓 webpack 產出 Source Map ， `devtool` 必須要是字串值，這個字串值設定要使用什麼樣的 Source Map 方式，總共有下面這些選項：
+如果要讓 webpack 產出 Source Map ， `devtool` 必須要是字串值，這個字串值設定要使用什麼樣的 Source Map 方式，總共有下面這些選項:
 
 ```js
 // ./demos/devtool/webpack.config.js
@@ -50,7 +50,7 @@ const devtools = [
 
 ## Source Map 種類
 
-此節會使用範例 **devtool** ，此範例的代碼如下：
+此節會使用範例 **devtool** ，此範例的代碼如下:
 
 ```js
 // ./demos/devtool/src/index.js
@@ -71,7 +71,7 @@ export default "beta";
 
 這個例子中埋了一個錯誤 `join` 寫成 `joi` ，以此檢視 Source Map 的效果。
 
-配置檔如下：
+配置檔如下:
 
 ```js
 // ./demos/devtool/webpack.config.js
@@ -159,7 +159,7 @@ console.log(output(_const_alpha_js__WEBPACK_IMPORTED_MODULE_0__["default"], _con
 
 webpack 將各個檔案內容綁定至 bundle 中，可以看到經過 `babel-loader` 轉換後的 `./src/index.js` 內容。
 
-放到瀏覽器上，在 Development Tool 中內容如下：
+放到瀏覽器上，在 Development Tool 中內容如下:
 
 ![false](./assets/false.png)
 
@@ -206,7 +206,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _con
 
 可以看到 `eval` 內的字串最後有個 `//# sourceURL=webpack:///./src/index.js?` 註解，他會提示使用者原始的檔案名稱。
 
-結果如下：
+結果如下:
 
 ![eval](./assets/eval.png)
 
@@ -243,7 +243,7 @@ bundle 的內容跟 `false` 時一樣，只差在最後一行有 `//# sourceMapp
 
 另外， `cheap-source-map` 所產生出來的 `mappings` 每行都只有一個代碼段， `cheap-source-map` 藉由將整行視為同一個代碼段以減少 Source Map 所需的容量。
 
-結果如下：
+結果如下:
 
 ![cheap-source-map](./assets/cheap-source-map.png)
 
@@ -267,7 +267,7 @@ bundle 的內容跟 `false` 時一樣，只差在最後一行有 `//# sourceMapp
 
 可以看到 `sourceContent` 中的代碼是 `babel-loader` 處理前的 arrow function 寫法。
 
-結果如下：
+結果如下:
 
 ![cheap-module-source-map](./assets/cheap-module-source-map.png)
 
@@ -293,7 +293,7 @@ bundle 的內容跟 `false` 時一樣，只差在最後一行有 `//# sourceMapp
 
 可以看到一行不在只有一個代碼段了， `source-map` 可以產生完整的 map 資訊。
 
-結果如下：
+結果如下:
 
 ![source-map](./assets/source-map.png)
 
@@ -331,7 +331,7 @@ bundle 的內容跟 `false` 時一樣，只差在最後一行有 `//# sourceMapp
 
 上面是 `nosources-source-map.js.map` 的**完整**內容，可以看到它並沒有 `sourceContent` 。
 
-結果如下：
+結果如下:
 
 ![nosources-source-map](./assets/nosources-source-map.png)
 
@@ -357,7 +357,7 @@ bundle 的內容跟 `false` 時一樣，只差在最後一行有 `//# sourceMapp
 
 ## 統整各 Source Map 類型特性
 
-雖然還有很多類型沒有介紹到，但其他的類型都是由上面幾種組合而成的，用表來表示：
+雖然還有很多類型沒有介紹到，但其他的類型都是由上面幾種組合而成的，用表來表示:
 
 | 產生 bundle 的方式 | 特性                                       |
 | ------------------ | ------------------------------------------ |
@@ -372,11 +372,11 @@ bundle 的內容跟 `false` 時一樣，只差在最後一行有 `//# sourceMapp
 | cheap           | `mappings` 中不產生**欄**資訊， `sourceContent` 為 Loader 載入後的內容 |
 | cheap-module    | `mappings` 中產生**欄**資訊， `sourceContent` 為原始代碼的內容         |
 
-`devtool` 設定的模式如下：
+`devtool` 設定的模式如下:
 
 `[inline-|hidden-|eval-][nosources-][cheap-[module-]]source-map` 或 `eval`
 
-由此可知：
+由此可知:
 
 - 有 `source-map` 與 `eval` 兩者可選
 - 選擇 `source-map` 時
@@ -385,15 +385,15 @@ bundle 的內容跟 `false` 時一樣，只差在最後一行有 `//# sourceMapp
   - 可以使用 `cheap`
   - 可以加上 `cheap-module`
 
-整個配置流程如下：
+整個配置流程如下:
 
 ![how-to-create-bundle](./assets/how-to-create-bundle.png)
 
-先決定要怎麼產生 bundle ，接著在決定 map 檔的生成方式：
+先決定要怎麼產生 bundle ，接著在決定 map 檔的生成方式:
 
 ![how-to-create-map](./assets/how-to-create-map.png)
 
-下面總結一下各個特性在除錯時能取得的資訊：
+下面總結一下各個特性在除錯時能取得的資訊:
 
 | devtool       | 特性                                                    |
 | ------------- | ------------------------------------------------------- |

@@ -18,7 +18,7 @@ Loaders 就像是個翻譯機，將 webpack 不懂的模組翻譯成理解的形
 
 ## 使用 webpack 載入 `.css`
 
-假設現在我們想要載入 `.css` 的樣式檔：
+假設現在我們想要載入 `.css` 的樣式檔:
 
 ```js
 // ./demos/loader-css/src/index.js
@@ -37,7 +37,7 @@ document.head.appendChild(style(css.toString()));
 
 這個程式會將 `style.css` 的內容讀進來，並且填到 `<head>` 標籤中，讓 `style.css` 的設定生效。
 
-直接執行 webpack 會看到錯誤訊息：
+直接執行 webpack 會看到錯誤訊息:
 
 ![loader-css-fail](./assets/loader-css-fail.png)
 
@@ -47,13 +47,13 @@ document.head.appendChild(style(css.toString()));
 
 ### 安裝 Loaders
 
-絕大多數的 Loaders 都不會內建在 webpack 內，需要自行安裝，因此在使用 `css-loader` 前請安裝它：
+絕大多數的 Loaders 都不會內建在 webpack 內，需要自行安裝，因此在使用 `css-loader` 前請安裝它:
 
 ```bash
 npm install css-loader -D
 ```
 
-安裝完成後我們需要在引入 `./style.css` 時，跟 webpack 說要使用 `css-loader`：
+安裝完成後我們需要在引入 `./style.css` 時，跟 webpack 說要使用 `css-loader`:
 
 ```js
 // ./demos/loader-css-inline/src/index.js
@@ -62,7 +62,7 @@ import css from "css-loader!./style.css";
 ...
 ```
 
-再建置一次：
+再建置一次:
 
 ![loader-css-inline-result](./assets/loader-css-inline-result.png)
 
@@ -70,7 +70,7 @@ import css from "css-loader!./style.css";
 
 ![loader-pipe](./assets/loader-pipe.png)
 
-如此一來我們的應用程式就可以載入 `.css` 了：
+如此一來我們的應用程式就可以載入 `.css` 了:
 
 ![loader-css-inline-view](./assets/loader-css-inline-view.png)
 
@@ -84,14 +84,14 @@ import css from "css-loader!./style.css";
 npm install style-loader -D
 ```
 
-再來我們將 `index.js` 改為下面這樣：
+再來我們將 `index.js` 改為下面這樣:
 
 ```js
 // ./demos/loader-style-inline/src/index.js
 import "style-loader!css-loader!./style.css";
 ```
 
-建置結果如下：
+建置結果如下:
 
 ![loader-style-inline-result](./assets/loader-style-inline-result.png)
 
@@ -101,7 +101,7 @@ import "style-loader!css-loader!./style.css";
 
 #### 從載入 `.css` 的範例中學到
 
-從這個範例中我們學習到了：
+從這個範例中我們學習到了:
 
 - webpack 載入 JS, JSON 外的格式會發生錯誤
 - Loaders 會幫助 webpack 看懂 JS, JSON 外其他格式的模組
@@ -114,7 +114,7 @@ import "style-loader!css-loader!./style.css";
 
 ## 配置 Loaders 的方式
 
-Loaders 的配置除了上面說明的 Inline 方式外，還有 CLI 及配置檔總共三種的設定方式：
+Loaders 的配置除了上面說明的 Inline 方式外，還有 CLI 及配置檔總共三種的設定方式:
 
 - Inline: 在模組路徑上使用 `!` 串接 Loaders 與路徑。
 - CLI: 使用 `--module-bind` 參數設定特定檔案的 Loaders 。
@@ -133,7 +133,7 @@ import "style-loader!css-loader!./style.css";
 
 使用 `!` 串接 Loaders 及模組路徑。
 
-我們也可以使用 `?` 設定 Loaders 的配置：
+我們也可以使用 `?` 設定 Loaders 的配置:
 
 ```js
 // ./demos/css-module-inline/src/index.js
@@ -163,7 +163,7 @@ import style from 'style-loader!css-loader?{"modules":true}!./style.css'; // JSO
 
 `--module-bind` 設定的 key 是欲處理目標模組的副檔名（`css`）， value 是 Inline 的設定方式，以 `!` 串接 Loaders（`style-loader!css-loader`）。
 
-同樣的 CLI 也可以使用 Inline 設定方式配置參數：
+同樣的 CLI 也可以使用 Inline 設定方式配置參數:
 
 ```json
 // ./demos/css-module/package.json
@@ -186,7 +186,7 @@ import style from 'style-loader!css-loader?{"modules":true}!./style.css'; // JSO
 
 `module` 屬性用於告訴 webpack 模組應該怎麼被解析，因此我們可以使用 `module` 配置各模組對應的 Loaders 讓 webpack 可以讀懂特定的模組。
 
-下面來看個例子：
+下面來看個例子:
 
 ```js
 // ./demos/css-module/webpack.config.demo.js
@@ -205,13 +205,13 @@ module.exports = {
 };
 ```
 
-`module.rules` 屬性中配置如何解析模組，基本的配置有 `test` 及 `use` 兩個屬性：
+`module.rules` 屬性中配置如何解析模組，基本的配置有 `test` 及 `use` 兩個屬性:
 
 - `test`: 判斷模組是否適用此規則，以此例來說 `/\.css$/` 是個正則表達式(RegExp)，所有 `.css` 的檔案都會適用此規則。
 - `use`: 設定此規則要使用什麼 Loaders 做處理，以此例來說，會使用 `css-loader` 及 `style-loader` 做處理。
 - `use.options`: 設定特定 loader 的配置，以此例來說 `css-loader` 開啟了 `modules` 配置，將 css module 的功能開啟。
 
-在 `use` 設定中， Loaders 的引用順序是由後往前：
+在 `use` 設定中， Loaders 的引用順序是由後往前:
 
 ![module-rules-use](./assets/module-rules-use.png)
 
@@ -219,7 +219,7 @@ module.exports = {
 
 ## 三種設定方式的優劣
 
-下面說明三種方式的優缺點：
+下面說明三種方式的優缺點:
 
 | 方式          | 特性               | 優                               | 劣                           |
 | ------------- | ------------------ | -------------------------------- | ---------------------------- |

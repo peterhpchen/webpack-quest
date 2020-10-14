@@ -34,7 +34,7 @@ postcss src/style.css --dir dist
 - `src/style.css`: 欲轉換的 `.css`
 - `--dir dist`: 輸出的目錄位置
 
-建置結果如下：
+建置結果如下:
 
 ![postcss-cli-result](./assets/postcss-cli-result.png)
 
@@ -42,7 +42,7 @@ postcss src/style.css --dir dist
 
 ### 使用 `postcss-preset-env` 轉換代碼
 
-現在我們想要將擁有新語法的 `.css` 內容轉為舊版本相容的語法，這時就可以藉由 PostCSS 的 `postcss-preset-env` Plugin ：
+現在我們想要將擁有新語法的 `.css` 內容轉為舊版本相容的語法，這時就可以藉由 PostCSS 的 `postcss-preset-env` Plugin :
 
 ```bash
 npm install postcss-preset-env -D
@@ -56,7 +56,7 @@ postcss src/style.css --dir dist --use postcss-preset-env
 
 - `--use`: 設定要使用的 Plugins
 
-執行結果如下：
+執行結果如下:
 
 ![post-plugin-result](./assets/post-plugin-result.png)
 
@@ -64,7 +64,7 @@ postcss src/style.css --dir dist --use postcss-preset-env
 
 ### 使用配置檔設定 PostCSS
 
-使用 CLI 設定雖然簡單，但只要配置複雜，就會變得難以維護，因此 PostCSS 提供了配置檔的方式做設定：
+使用 CLI 設定雖然簡單，但只要配置複雜，就會變得難以維護，因此 PostCSS 提供了配置檔的方式做設定:
 
 ```js
 // ./demos/postcss-config/postcss.config.js
@@ -82,7 +82,7 @@ module.exports = {
 
 預設 `postcss-preset-env` 會將目標對象視為 browserslist 的 [`defaults` 值](https://github.com/browserslist/browserslist#full-list)。
 
-我們可以自己使用 `.browserslistrc` 做目標的調整：
+我們可以自己使用 `.browserslistrc` 做目標的調整:
 
 ```yaml
 // ./demos/postcss-browserslist/.browserslistrc
@@ -99,7 +99,7 @@ module.exports = {
 npm install postcss-loader -D
 ```
 
-接個配置設定：
+接個配置設定:
 
 ```js
 // ./demos/postcss-loader/webpack.config.js
@@ -119,7 +119,7 @@ module.exports = {
 };
 ```
 
-我們為 `.css` 配置 `post-loader` ，建置後發生下面的錯誤：
+我們為 `.css` 配置 `post-loader` ，建置後發生下面的錯誤:
 
 ![postcss-loader-result](./assets/postcss-loader-result.png)
 
@@ -127,13 +127,13 @@ module.exports = {
 
 ### 使用 `css-loader` 載入 Style 至 JavaScript 中
 
-先安裝 `css-loader` ：
+先安裝 `css-loader` :
 
 ```bash
 npm install css-loader -D
 ```
 
-然後加進配置中：
+然後加進配置中:
 
 ```js
 // ./demos/css-loader/webpack.config.js
@@ -157,7 +157,7 @@ module.exports = {
 };
 ```
 
-建置結果如下：
+建置結果如下:
 
 ![css-loader](./assets/css-loader.png)
 
@@ -165,13 +165,13 @@ module.exports = {
 
 ### 使用 `style-loader` 載入 CSS 內容至 Document 中
 
-藉由 `style-loader` 的幫助，可以幫我們嵌入 `.css` 內容至 Document 中：
+藉由 `style-loader` 的幫助，可以幫我們嵌入 `.css` 內容至 Document 中:
 
 ```bash
 npm install style-loader -D
 ```
 
-接著在配置中加上 `style-loader`：
+接著在配置中加上 `style-loader`:
 
 ```js
 // ./demos/style-loader/webpack.config.js
@@ -198,7 +198,7 @@ module.exports = {
 };
 ```
 
-建置後執行 bundle 會發現 `style.css` 內容加到 Document 中了：
+建置後執行 bundle 會發現 `style.css` 內容加到 Document 中了:
 
 ![style-loader-result](./assets/style-loader-result.png)
 
@@ -214,7 +214,7 @@ module.exports = {
 npm install mini-css-extract-plugin -D
 ```
 
-接著加入配置：
+接著加入配置:
 
 ```js
 // ./demos/extract-css/webpack.config.js
@@ -245,20 +245,20 @@ module.exports = {
 };
 ```
 
-這裡有幾點要注意：
+這裡有幾點要注意:
 
 - 不需要使用 `style-loader` ，因此從中刪去
 - 加入 `mini-css-extract-plugin` 的 loader 以處理 CSS
 - 加入 `mini-css-extract-plugin` 產生獨立的 style 檔案
 - 加入 `html-webpack-plugin` 自動引入 `.js` 與 `.css` 檔案
 
-接著建置結果如下：
+接著建置結果如下:
 
 ![extract-css-result](./assets/extract-css-result.png)
 
 可以看到多了 `main.css` 輸出，並且 Chunk ID 與 `main.js` 相同，代表是由相同的 Chunk `./src/index.js` 所切割出來的。
 
-另外 `html-webpack-plugin` 建立出來的 `index.html` 中也可以看到自動引入了 `main.css`：
+另外 `html-webpack-plugin` 建立出來的 `index.html` 中也可以看到自動引入了 `main.css`:
 
 ```html
 <!-- ./demos/extract-css/dist/index.html -->

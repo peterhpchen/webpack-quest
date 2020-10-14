@@ -8,7 +8,7 @@
 
 ## 使用 `development` 模式
 
-將 `mode` 設置為 `development` ，指示 webpack 開啟開發模式：
+將 `mode` 設置為 `development` ，指示 webpack 開啟開發模式:
 
 ```js
 // ./demos/development-mode/webpack.config.js
@@ -17,7 +17,7 @@ module.exports = {
 };
 ```
 
-建置結果如下：
+建置結果如下:
 
 ![development-mode-result](./assets/development-mode-result.png)
 
@@ -31,7 +31,7 @@ module.exports = {
 
 可以看到上面沒有使用 Source Map 時瀏覽器會直接拿 bundle 的內容檔做除錯的依據，這對於除錯來說非常的困難。
 
-現在我們在配置中加入 `devtool` 設置 Source Map：
+現在我們在配置中加入 `devtool` 設置 Source Map:
 
 ```js
 // ./demos/source-map/webpack.config.js
@@ -41,7 +41,7 @@ module.exports = {
 }
 ```
 
-現在再看瀏覽器的 Dev Tool 中的報錯及代碼內容：
+現在再看瀏覽器的 Dev Tool 中的報錯及代碼內容:
 
 ![with-source-map](./assets/with-source-map.png)
 
@@ -55,13 +55,13 @@ module.exports = {
 
 這裡我們使用 `webpack-dev-server` 開啟伺服器並開啟監聽模式。
 
-首先先下載 `webpack-dev-server`：
+首先先下載 `webpack-dev-server`:
 
 ```bash
 npm install webpack-dev-server -D
 ```
 
-將指令換為 `webpack-dev-server` ：
+將指令換為 `webpack-dev-server` :
 
 ```js
 // ./demos/dev-server/package.json
@@ -74,7 +74,7 @@ npm install webpack-dev-server -D
 }
 ```
 
-接著修改 `webpack.config.js` ：
+接著修改 `webpack.config.js` :
 
 ```js
 // ./demos/dev-server/webpack.config.js
@@ -90,7 +90,7 @@ module.exports = {
 
 `contentBase` 設定 Dev Server 要以哪個目錄為伺服器的根目錄，由於 `index.html` 在 `./dist` 目錄中，因此修改 `contentBase` 的設定。
 
-執行後可以看到 Dev Server 已經跑在 `http://localhost:8080` ：
+執行後可以看到 Dev Server 已經跑在 `http://localhost:8080` :
 
 ![dev-server](./assets/dev-server.png)
 
@@ -100,7 +100,7 @@ module.exports = {
 
 ## 使用 `html-webpack-plugin` 產生 `index.html`
 
-前面的例子中 `index.html` 是個靜態檔，這樣會有下面的問題：
+前面的例子中 `index.html` 是個靜態檔，這樣會有下面的問題:
 
 - 需要我們自己知道 bundle 檔的目錄及檔名，才能在 `index.html` 中正確的載入 bundle 。
 - 需要跟 Dev Server 說 `index.html` 在哪個目錄中，才能在正確位置啟動伺服器。
@@ -113,7 +113,7 @@ module.exports = {
 npm install html-webpack-plugin -D
 ```
 
-然後在配置檔中刪除 `contentBase` ，並且加上 `html-webpack-plugin` 設定：
+然後在配置檔中刪除 `contentBase` ，並且加上 `html-webpack-plugin` 設定:
 
 ```js
 // ./demos/auto-create-html/webpack.config.js
@@ -138,13 +138,13 @@ module.exports = {
 
 由於 Dev Server 的監聽範圍僅限專案的內容，並不包括其他的檔案，因此在上節加上 `html-webpack-plugin` 的時候，我們修改了 `webpack.config.js` ，但是並不會重新建置。
 
-這時就需要 `nodemon` 的幫助，這是一個可以偵測 node.js 程式並自動重載的工具，首先先安裝：
+這時就需要 `nodemon` 的幫助，這是一個可以偵測 node.js 程式並自動重載的工具，首先先安裝:
 
 ```bash
 npm install nodemon -D
 ```
 
-接著修改指令：
+接著修改指令:
 
 ```json
 // ./demos/reload-config/package.json
@@ -191,7 +191,7 @@ module.exports = {
 }
 ```
 
-接著在 `index.js` 偵測 `demoName.js` 的修改：
+接著在 `index.js` 偵測 `demoName.js` 的修改:
 
 ```js
 // ./demos/hmr/src/index.js
@@ -220,13 +220,13 @@ if (module.hot) {
 
 這裡偵測 `./demoName` ，只要更新了，就在 console 輸出 `demoName` 新的內容。
 
-結果如下：
+結果如下:
 
 ![hmr-console](./assets/hmr-console.png)
 
 我們將原本 `demoName` 中的 `Dev Server` 改為 `hmr` ，可以看到 Console 中輸出了新的內容。
 
-畫面內容就可以在這 callback 中做更新：
+畫面內容就可以在這 callback 中做更新:
 
 ```js
 // ./demos/hmr/src/index.js
@@ -259,7 +259,7 @@ if (module.hot) {
 }
 ```
 
-結果如下：
+結果如下:
 
 ![hmr-page](./assets/hmr-page.png)
 

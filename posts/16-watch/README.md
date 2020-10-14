@@ -12,7 +12,7 @@
 
 ## 開啟監聽功能
 
-`watch` 屬性是個布林值，預設是 `false` ，代表關閉監聽模式，而 `true` 的時候就是開啟監聽模式：
+`watch` 屬性是個布林值，預設是 `false` ，代表關閉監聽模式，而 `true` 的時候就是開啟監聽模式:
 
 ```js
 // ./demos/simple-watch/webpack.config.js
@@ -21,7 +21,7 @@ module.exports = {
 };
 ```
 
-建置結果如下：
+建置結果如下:
 
 ![simple-watch-result](./assets/simple-watch-result.png)
 
@@ -31,7 +31,7 @@ module.exports = {
 
 現在可以嘗試修改代碼並**重新整理頁面**，可以看到修改後的內容出現在瀏覽器上。
 
-使用 CLI 的 `--watch` 參數同樣可以啟動監聽模式：
+使用 CLI 的 `--watch` 參數同樣可以啟動監聽模式:
 
 ```json
 // ./demos/simple-watch/package.json
@@ -49,7 +49,7 @@ module.exports = {
 
 ## `--info-verbosity`
 
-預設的監聽模式在修改後不會再輸出 Log ，如果你想要知道是否有重新建置的話，可以設定 `--info-verbosity` 參數為 `verbose` ：
+預設的監聽模式在修改後不會再輸出 Log ，如果你想要知道是否有重新建置的話，可以設定 `--info-verbosity` 參數為 `verbose` :
 
 ![simple-watch-verbose](./assets/simple-watch-verbose.png)
 
@@ -57,7 +57,7 @@ module.exports = {
 
 ## `watchOptions`
 
-開啟監聽模式後，可以使用 `watchOptions` 調整監聽模式下的各樣選項：
+開啟監聽模式後，可以使用 `watchOptions` 調整監聽模式下的各樣選項:
 
 ```js
 module.exports = {
@@ -106,7 +106,7 @@ module.exports = {
 
 `ignore` 資料夾會被排除在監聽對象外，因此修改 `ignore` 內的檔案內容是不會觸發建置的。
 
-`ignored` 屬性也可以是 [anymatch](https://github.com/micromatch/anymatch)：
+`ignored` 屬性也可以是 [anymatch](https://github.com/micromatch/anymatch):
 
 ```js
 // ./demos/watch-options/webpack.config.ignored.js
@@ -120,7 +120,7 @@ module.exports = {
 
 ## `watchOptions.poll`
 
-監聽模式下有時會無法探測檔案的變化，這時可以啟用 `poll` 屬性，以固定時間觸發重新建置：
+監聽模式下有時會無法探測檔案的變化，這時可以啟用 `poll` 屬性，以固定時間觸發重新建置:
 
 ```js
 // ./demos/watch-options/webpack.config.poll.js
@@ -136,7 +136,7 @@ module.exports = {
 
 ## 使用 Webpack Dev Server
 
-開啟了監聽模式讓開發者可以除去修改代碼後建置的步驟，但是還有兩個多餘的動作：
+開啟了監聽模式讓開發者可以除去修改代碼後建置的步驟，但是還有兩個多餘的動作:
 
 - 開啟 `http-server`
 - 需要手動重新整理
@@ -145,13 +145,13 @@ module.exports = {
 
 為了造福廣大懶惰的工程師們， webpack 貼心的開發了 webpack 用的 Dev Server ，並內建伺服器及監聽的功能。
 
-由於 Dev Server 是另一個庫，因此需要先做安裝：
+由於 Dev Server 是另一個庫，因此需要先做安裝:
 
 ```bash
 npm install webpack-dev-server -D
 ```
 
-然後設定 `devServer` 屬性：
+然後設定 `devServer` 屬性:
 
 ```js
 // ./demos/dev-server/webpack.config.js
@@ -162,7 +162,7 @@ module.exports = {
 };
 ```
 
-接著執行 `webpack-dev-server` 指令，其執行結果如下：
+接著執行 `webpack-dev-server` 指令，其執行結果如下:
 
 ![wds](./assets/wds.png)
 

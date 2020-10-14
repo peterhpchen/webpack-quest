@@ -8,7 +8,7 @@ Node.js API 是除了 CLI 外另一個操作 webpack 的方法。由於 CLI 會�
 
 ## 安裝
 
-使用 Node.js API 只需要安裝 `webpack` 核心庫即可：
+使用 Node.js API 只需要安裝 `webpack` 核心庫即可:
 
 ```bash
 npm install webpack --save-dev
@@ -16,7 +16,7 @@ npm install webpack --save-dev
 
 ## 使用 `webpack(configObj, callback)` 啟動建置程序
 
-安裝後，我們就可以像是 Node.js 函式一樣使用 `webpack` 模組：
+安裝後，我們就可以像是 Node.js 函式一樣使用 `webpack` 模組:
 
 ```js
 // ./demos/node-interface-callback/build.js
@@ -38,7 +38,7 @@ webpack(configurationObject, callbackFunction);
 
 如果 `webpack()` 有第二個參數 callback function ，那會直接執行編譯，並將結果傳至 callback function 中。
 
-回呼函式會接受兩個參數：
+回呼函式會接受兩個參數:
 
 - `err`: 與 webpack 相關的錯誤，例如錯誤的配置物件
 - `stats`: 擁有建置結果的資訊物件
@@ -49,10 +49,10 @@ webpack(configurationObject, callbackFunction);
 
 沒有第二個參數時， `webpack()` 會傳回編譯器物件(Compiler)，可以用它操作 webpack 的建置。
 
-此物件有兩個方法：
+此物件有兩個方法:
 
 - `run(callback)`: 執行建置
-- `watch(watchOptions, callback)`：執行並監聽檔案，發生變化後重新建置，它會傳回 `watching` 物件，用來操作監聽的動作
+- `watch(watchOptions, callback)`: 執行並監聽檔案，發生變化後重新建置，它會傳回 `watching` 物件，用來操作監聽的動作
 
 ### `run(callback)`
 
@@ -103,7 +103,7 @@ const watching = compiler.watch(watchOptions, callbackFunction);
 
 `watchOptions` 是[監聽相關的設定](https://webpack.js.org/configuration/watch/)。
 
-要關閉監聽狀態，可以使用 `close(callback)` 方法：
+要關閉監聽狀態，可以使用 `close(callback)` 方法:
 
 ```js
 watching.close(() => {
@@ -119,7 +119,7 @@ watching.close(() => {
 watching.invalidate();
 ```
 
-下面這裡例子展示了 Compiler 的使用方式：
+下面這裡例子展示了 Compiler 的使用方式:
 
 ```js
 // ./demos/node-interface-watch/build.js
@@ -186,7 +186,7 @@ setTimeout(() => {
 }, 5000);
 ```
 
-其結果如下圖：
+其結果如下圖:
 
 ![webpack-node-api-watch-demo](./assets/webpack-node-api-watch-demo.png)
 
@@ -197,7 +197,7 @@ setTimeout(() => {
 
 #### 配置物件為陣列時
 
-`webpack()` 與 CLI 的配置檔一樣只要給予陣列的格式，就可以同時編譯多種配置：
+`webpack()` 與 CLI 的配置檔一樣只要給予陣列的格式，就可以同時編譯多種配置:
 
 ```js
 // ./demos/node-interface-multiple/build.js
@@ -269,9 +269,9 @@ compiler.run(callbackFunction);
 
 ## Stats 物件
 
-Node.js API 在建置完成後會對 `callback` 傳入 `err` 及 `stats` 參數，其中的 `stats` 是個擁有建置結果資訊的 Stats 物件，在前面的例子我們有使用 `stats` 取得對應的資訊並做輸出， `stats` 有下面這些資訊：
+Node.js API 在建置完成後會對 `callback` 傳入 `err` 及 `stats` 參數，其中的 `stats` 是個擁有建置結果資訊的 Stats 物件，在前面的例子我們有使用 `stats` 取得對應的資訊並做輸出， `stats` 有下面這些資訊:
 
-- 基本資訊：版本、 hash 、執行時間...等
+- 基本資訊: 版本、 hash 、執行時間...等
 - 模組資訊
 - Chunks 資訊
 - Bundle 資訊
@@ -280,7 +280,7 @@ webpack CLI 內部就是使用 `stats` 中的資訊輸出訊息的。
 
 ### Stats 的方法
 
-Stats 物件提供了幾個方法：
+Stats 物件提供了幾個方法:
 
 - `stats.hasErrors()`: 如果建置有錯誤時為 `true` 否則為 `false`
 - `stats.hasWarnings()`: 如果建置有警告時為 `true` 否則為 `false`
@@ -289,7 +289,7 @@ Stats 物件提供了幾個方法：
 
 ### 擁有的資訊
 
-在使用 `toJson()` 後，會取回 [Stats 資料](https://webpack.js.org/api/stats/) ，這個資料物件會像下面這樣：
+在使用 `toJson()` 後，會取回 [Stats 資料](https://webpack.js.org/api/stats/) ，這個資料物件會像下面這樣:
 
 ```js
 {
