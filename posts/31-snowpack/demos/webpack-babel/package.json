@@ -1,0 +1,24 @@
+{
+  "name": "webpack-babel",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "watch": "webpack --watch",
+    "start": "webpack-dev-server",
+    "build": "webpack --mode production"
+  },
+  "dependencies": {
+    "core-js": "^3.6.5",
+    "lodash": "^4.17.20"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.3",
+    "@babel/preset-env": "^7.12.1",
+    "babel-loader": "^8.1.0",
+    "html-webpack-plugin": "4.5.0",
+    "webpack": "4.44.2",
+    "webpack-cli": "3.3.12",
+    "webpack-dev-server": "3.11.0"
+  }
+}
