@@ -1,0 +1,17 @@
+{
+  "name": "snowpack-demo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "watch": "snowpack build --watch",
+    "start": "snowpack dev",
+    "build": "snowpack build"
+  },
+  "devDependencies": {
+    "snowpack": "^2.15.1"
+  },
+  "dependencies": {
+    "lodash": "^4.17.20"
+  }
+}

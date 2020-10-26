@@ -1,0 +1,6 @@
+{
+  "imports": {
+    "core-js/modules/es.promise.js": "./core-js/modules/es.promise.js",
+    "lodash": "./lodash.js"
+  }
+}
